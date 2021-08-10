@@ -45,12 +45,21 @@ public class GenericClassParserTest {
         assertEquals(destinationClass.integerValue,1254,0);
     }
     @Test
-    public void testMapToClassIntegerWith(){
+    public void testMapToClassIntegerWithDoubleValue(){
         valuesMap.put("integerValue","123.123");
         fieldMatchMap.put("integerValue","integerValue");
 
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
         assertEquals(destinationClass.integerValue,123,0);
+    }
+
+    @Test
+    public void testMapToClassIntegerWithDoubleValueMultipleComma(){
+        valuesMap.put("integerValue","123.123,154");
+        fieldMatchMap.put("integerValue","integerValue");
+
+        genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+        assertEquals(destinationClass.integerValue,123123,0);
     }
 
 }

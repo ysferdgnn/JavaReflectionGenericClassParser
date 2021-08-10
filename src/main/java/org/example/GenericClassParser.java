@@ -68,18 +68,25 @@ public class GenericClassParser<T,V> {
                 if (Integer.class.equals(destinationClassType)) {
                     Integer value ;
 
-                    if(!isNumeric(expectedValue)){
-                        // return 0 is value alphanumeric
-                        value=0;
-                    }else{
+                    if(isNumeric(expectedValue)){
                         try{
-                            int intvalprimitive = Integer.decode(sourceMap.get(sourceField));
-                            logger.info("decoded int value ->"+intvalprimitive);
-                            value = Integer.valueOf(intvalprimitive);
+                            if (isContainsDotOrComma(expectedValue)){
+                                expectedValue = clearDotsAndCommasFromString(expectedValue);
+                                Double doubleValue = Double.valueOf(expectedValue);
+                                value = doubleValue.intValue();
+                            }else{
+                                value = Integer.valueOf(expectedValue);
+                            }
+
+
+
+
 
                         }catch (NumberFormatException e){
                             value =0;
                         }
+                    }else{
+                        value=0;
                     }
 
 
@@ -162,5 +169,46 @@ public class GenericClassParser<T,V> {
           return  false;
        }
        return  true;
+    }
+    public Boolean isContainsDotOrComma(String value){
+        logger.info(String.format("Value %s containing dot or comma",value));
+        if(value.contains(".") || value.contains(",")){
+            return true;
+        }
+        return  false;
+    }
+    public String changeCommasAsDot(String value){
+        logger.info(String.format("Value %s changing commas as dot..",value));
+        value = value.replace(',','.');
+        return  value;
+    }
+    public int calculateDotCount(String value){
+        value = changeCommasAsDot(value);
+       int commaCount = (int)value.codePoints().filter(s->s =='.').count();
+
+        logger.info(String.format("Value %s containing %s comma",value,commaCount));
+
+       return  commaCount;
+    }
+    public String clearDotsAndCommasFromString(String value){
+        logger.info(String.format("Value %s clearing commas",value));
+        value = changeCommasAsDot(value);
+        int dotCount = calculateDotCount(value);
+        int changedDotCount =0;
+        if(dotCount>1){
+            for (int i=0; i<value.length();i++){
+
+                if(value.charAt(i) =='.' && changedDotCount <dotCount-1){
+                    StringBuilder sb = new StringBuilder(value);
+                    sb.deleteCharAt(i);
+                    value =sb.toString();
+                    changedDotCount++;
+                }
+
+            }
+        }
+        logger.info(String.format("Value %s has been cleared.",value));
+        return  value;
+
     }
 }
