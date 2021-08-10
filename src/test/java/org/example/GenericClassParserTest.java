@@ -61,5 +61,15 @@ public class GenericClassParserTest {
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
         assertEquals(destinationClass.integerValue,123123,0);
     }
+    @Test
+    public void testMapToClassIntegerWithAlphaNumericValue(){
+        valuesMap.put("integerValue","value");
+        fieldMatchMap.put("integerValue","integerValue");
+
+        genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+        assertEquals(destinationClass.integerValue,0,0);
+
+    }
+
 
 }
