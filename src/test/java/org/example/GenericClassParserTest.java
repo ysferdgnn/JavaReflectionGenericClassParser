@@ -257,4 +257,12 @@ public class GenericClassParserTest {
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
         Assert.assertEquals(destinationClass.longval, 17000000000L, 0);
     }
+    @Test
+    public void testMapToClassLongStartsWithZerosAndEndsWithZeros() {
+        valuesMap.put("longValue", "00017000000000");
+        fieldMatchMap.put("longValue", "longval");
+
+        genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
+        Assert.assertEquals(destinationClass.longval, 17000000000L, 0);
+    }
 }
