@@ -10,7 +10,7 @@ import org.junit.runners.Suite;
                 GenericClassParserTestInteger.class,
                 GenericClassParserTestBigDecimal.class,
                 GenericClassParserTestLong.class,
-
+                GenericClassParserTestFloat.class
         }
 )
 public class GenericClassParserTestSuite {

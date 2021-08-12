@@ -8,6 +8,9 @@ import org.junit.Test;
 import java.util.HashMap;
 import java.util.Map;
 
+
+
+
 public class GenericClassParserTestLong {
 
     GenericClassParser<Map<String, String>, DestinationClass> genericClassParser;

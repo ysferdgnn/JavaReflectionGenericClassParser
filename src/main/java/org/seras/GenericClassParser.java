@@ -10,6 +10,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+/*
+* @author Yusuf Erdoğan
+* @version 1.0
+*
+* */
+
 public class GenericClassParser<T,V> {
 
     Logger logger = Logger.getLogger(GenericClassParser.class.getName());
@@ -95,7 +101,7 @@ public class GenericClassParser<T,V> {
 
                 /* start Float*/
                 else if (Float.class.equals(destinationClassType)){
-                    Float value =Float.valueOf(sourceMap.get(sourceField));
+                    Float value = parseFloat(expectedValue);
                     destinationField.set(destinationClazz,value);
                 }
                 /* end Float */
@@ -138,17 +144,42 @@ public class GenericClassParser<T,V> {
 
     }
 
+    private Float parseFloat(String expectedValue) {
+        Float value =0f;
+
+        if(isNumeric(expectedValue)){
+            expectedValue=clearSpaces(expectedValue);
+            if(isContainsDotOrComma(expectedValue)){
+                logger.info(String.format("Value: %s is contains dot",expectedValue));
+                expectedValue=clearDotsAndCommasFromString(expectedValue);
+
+            }
+            try{
+                logger.info(String.format("Value: %s is expected value",expectedValue));
+                value=Float.parseFloat(expectedValue);
+
+                logger.info(String.format("Value: %s is %s",expectedValue,value.isInfinite() ? "infinite it must be 0" : "finite"));
+
+                value = value.isInfinite() ? 0f :value;
+            }catch (NumberFormatException exception){
+                logger.warning(String.format("Value: %s Float Number Format Exception",value));
+                value=0F;
+            }
+        }else{
+            logger.info("Value: %s is not Numeric!");
+        }
+        return value;
+    }
+
     private Long parseLong(String expectedValue) {
         Long value =0L;
         if(isNumeric(expectedValue)){
             expectedValue = clearSpaces(expectedValue);
             if(isContainsDotOrComma(expectedValue)){
+                logger.info(String.format("Value: %s is contains dot",expectedValue));
                 expectedValue =clearDotsAndCommasFromString(expectedValue);
-                if(isContainsDotOrComma(expectedValue)){
-                    logger.info(String.format("Value: %s is contains dot",expectedValue));
-                    expectedValue= expectedValue.split("\\.")[0];
-                    logger.info(String.format("Value %s changed.",expectedValue));
-                }
+                expectedValue= expectedValue.split("\\.")[0];
+                logger.info(String.format("Value %s changed.",expectedValue));
 
             }
             try{
