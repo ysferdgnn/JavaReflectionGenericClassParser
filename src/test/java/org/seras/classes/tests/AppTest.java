@@ -1,4 +1,4 @@
-package org.seras;
+package org.seras.classes.tests;
 
 import static org.junit.Assert.assertTrue;
 

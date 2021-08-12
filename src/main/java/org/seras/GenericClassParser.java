@@ -146,8 +146,26 @@ public class GenericClassParser<T,V> {
     }
 
     private Double parseDouble(String expectedValue) {
-        Double value;
-        value =Double.valueOf(expectedValue);
+        Double value=0d;
+        if(isNumeric(expectedValue)){
+            expectedValue = clearSpaces(expectedValue);
+
+            if(isContainsDotOrComma(expectedValue)){
+                expectedValue=clearDotsAndCommasFromString(expectedValue);
+            }
+            try{
+                value=Double.parseDouble(expectedValue);
+
+            }catch (NumberFormatException exception){
+                logger.warning(String.format("Value: %s Double Number Format Exception",value));
+                value=0d;
+            }
+
+
+        }else
+        {
+            value=0d;
+        }
         return value;
     }
 

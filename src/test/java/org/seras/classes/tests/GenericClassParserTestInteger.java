@@ -1,4 +1,4 @@
-package org.seras;
+package org.seras.classes.tests;
 import org.junit.Assert;
 import org.seras.classes.GenericClassParserBase;
 

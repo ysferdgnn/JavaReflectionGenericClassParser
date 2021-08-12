@@ -1,4 +1,4 @@
-package org.seras;
+package org.seras.classes.tests;
 
 import org.seras.Classes.DestinationClass;
 import org.junit.Assert;
