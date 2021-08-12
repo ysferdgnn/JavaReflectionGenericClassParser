@@ -48,7 +48,7 @@ public class GenericClassParserTestLong {
         fieldMatchMap = new HashMap<>();
 
 
-        genericClassParser = new GenericClassParser<Map<String, String>, DestinationClass>();
+        genericClassParser = new GenericClassParser<>();
     }
 
 

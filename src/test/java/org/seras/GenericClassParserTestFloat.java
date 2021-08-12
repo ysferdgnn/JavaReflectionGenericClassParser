@@ -48,7 +48,7 @@ public class GenericClassParserTestFloat {
         fieldMatchMap = new HashMap<>();
 
 
-        genericClassParser = new GenericClassParser<Map<String, String>, DestinationClass>();
+        genericClassParser = new GenericClassParser<>();
     }
 
     @Test
