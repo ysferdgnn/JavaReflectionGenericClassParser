@@ -25,6 +25,8 @@ public class GenericClassParserTestFloat {
     * test floating point
     * test dot
     * test multiple dots
+    * test comma
+    * test multiple commas
     * test start with zeros
     * test start with zeros and dots
     * test end with zeros
@@ -66,7 +68,7 @@ public class GenericClassParserTestFloat {
     }
 
     @Test
-    public void testMapToClassWithFloatingPoint(){
+    public void testMapToClassFloatWithFloatingPoint(){
         valuesMap.put("float","999,999");
         fieldMatchMap.put("float","floatVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
@@ -74,7 +76,7 @@ public class GenericClassParserTestFloat {
     }
 
     @Test
-    public void testMapToClassWithAlphaNumeric(){
+    public void testMapToClassFloatWithAlphaNumeric(){
         valuesMap.put("float","99a9,99a9");
         fieldMatchMap.put("float","floatVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
@@ -82,7 +84,7 @@ public class GenericClassParserTestFloat {
     }
 
     @Test
-    public void testMapToClassFloatingPoint(){
+    public void testMapToClassFloatFloatingPoint(){
         valuesMap.put("float","9,999999999");
         fieldMatchMap.put("float","floatVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
@@ -90,7 +92,7 @@ public class GenericClassParserTestFloat {
     }
 
     @Test
-    public void testMapToClassWithDot(){
+    public void testMapToClassFloatWithDot(){
         valuesMap.put("float","9.999999999");
         fieldMatchMap.put("float","floatVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
@@ -98,7 +100,7 @@ public class GenericClassParserTestFloat {
     }
 
     @Test
-    public void testMapToClassWithMultipleDots(){
+    public void testMapToClassFloatWithMultipleDots(){
         valuesMap.put("float","9.9.9.9.9.99999");
         fieldMatchMap.put("float","floatVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
@@ -106,7 +108,23 @@ public class GenericClassParserTestFloat {
     }
 
     @Test
-    public void testMapToClassStartWithZeros(){
+    public void testMapToClassFloatWithComma(){
+        valuesMap.put("float","9,99");
+        fieldMatchMap.put("float","floatVal");
+        genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+        Assert.assertEquals(destinationClass.floatVal,9.99f,0);
+    }
+
+    @Test
+    public void testMapToClassFloatWithMultipleCommas(){
+        valuesMap.put("float","9,9,9,9,9,99999");
+        fieldMatchMap.put("float","floatVal");
+        genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+        Assert.assertEquals(destinationClass.floatVal,99999.99999f,0);
+    }
+
+    @Test
+    public void testMapToClassFloatStartWithZeros(){
         valuesMap.put("float","0000099,99");
         fieldMatchMap.put("float","floatVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
@@ -114,7 +132,7 @@ public class GenericClassParserTestFloat {
     }
 
     @Test
-    public void testMapToClassStartWithZerosAndDots(){
+    public void testMapToClassFloatStartWithZerosAndDots(){
         valuesMap.put("float","0000099.99");
         fieldMatchMap.put("float","floatVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
@@ -122,7 +140,7 @@ public class GenericClassParserTestFloat {
     }
 
     @Test
-    public void testMapToClassEndWithZeros(){
+    public void testMapToClassFloatEndWithZeros(){
         valuesMap.put("float","99.99000000");
         fieldMatchMap.put("float","floatVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
@@ -130,7 +148,7 @@ public class GenericClassParserTestFloat {
     }
 
     @Test
-    public void testMapToClassStartWithZerosAndEndWithZeros(){
+    public void testMapToClassFloatStartWithZerosAndEndWithZeros(){
         valuesMap.put("float","00099.99000000");
         fieldMatchMap.put("float","floatVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
@@ -138,7 +156,7 @@ public class GenericClassParserTestFloat {
     }
 
     @Test
-    public void testMapToClassStartWithNegativeNumber(){
+    public void testMapToClassFloatStartWithNegativeNumber(){
         valuesMap.put("float","-99.99");
         fieldMatchMap.put("float","floatVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
@@ -146,7 +164,7 @@ public class GenericClassParserTestFloat {
     }
 
     @Test
-    public void testMapToClassStartWithNegativeNumberAndContainsMultipleDots(){
+    public void testMapToClassFloatStartWithNegativeNumberAndContainsMultipleDots(){
         valuesMap.put("float","-99.9.9");
         fieldMatchMap.put("float","floatVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
@@ -154,7 +172,7 @@ public class GenericClassParserTestFloat {
     }
 
     @Test
-    public void testMapToClassStartWithNegativeNumberAndAlphanumericAndContainsMultipleDots(){
+    public void testMapToClassFloatStartWithNegativeNumberAndAlphanumericAndContainsMultipleDots(){
         valuesMap.put("float","-99abc.9.9");
         fieldMatchMap.put("float","floatVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
@@ -162,7 +180,7 @@ public class GenericClassParserTestFloat {
     }
 
     @Test
-    public void testMapToClassContainsSpaces(){
+    public void testMapToClassFloatContainsSpaces(){
         valuesMap.put("float","9 99 9");
         fieldMatchMap.put("float","floatVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
@@ -170,7 +188,7 @@ public class GenericClassParserTestFloat {
     }
 
     @Test
-    public void testMapToClassContainsSpacesAndDots(){
+    public void testMapToClassFloatContainsSpacesAndDots(){
         valuesMap.put("float","9 9 9.9");
         fieldMatchMap.put("float","floatVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);

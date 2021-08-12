@@ -9,7 +9,29 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-
+/*Test Generic Class Parser for Float Parse
+ * @author Yusuf Erdoğan
+ * @version 1.0
+ *
+ * test normal
+ * test big number
+ * test alphanumeric
+ * test floating point
+ * test dot
+ * test multiple dots
+ * test comma
+ * test multiple commas
+ * test start with zeros
+ * test start with zeros and dots
+ * test end with zeros
+ * test start with zeros and end with zeros
+ * test start with negative number
+ * test start with negative number and contains multiple dots
+ * start with negative number and contains alphanumeric and contains multiple dots
+ * contains spaces
+ * contains spaces and dots
+ *
+ * */
 
 public class GenericClassParserTestLong {
 
@@ -68,12 +90,39 @@ public class GenericClassParserTestLong {
     }
 
     @Test
+    public void testMapToClassLongDot() {
+        valuesMap.put("longValue", "0.99");
+        fieldMatchMap.put("longValue", "longval");
+
+        genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
+        Assert.assertEquals(destinationClass.longval, 0L, 0);
+    }
+
+    @Test
     public void testMapToClassLongMultipleDots() {
         valuesMap.put("longValue", "990.0.0.0,8,99");
         fieldMatchMap.put("longValue", "longval");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
         Assert.assertEquals(destinationClass.longval, 9900008L, 0);
+    }
+
+    @Test
+    public void testMapToClassLongComma() {
+        valuesMap.put("longValue", "1,99");
+        fieldMatchMap.put("longValue", "longval");
+
+        genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
+        Assert.assertEquals(destinationClass.longval, 1L, 0);
+    }
+
+    @Test
+    public void testMapToClassLongMultipleCommas() {
+        valuesMap.put("longValue", "1,9,9");
+        fieldMatchMap.put("longValue", "longval");
+
+        genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
+        Assert.assertEquals(destinationClass.longval, 19L, 0);
     }
 
     @Test
