@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.seras.Classes.DestinationClass;
+import org.seras.classes.GenericClassParserBase;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,27 +33,16 @@ import java.util.Map;
  * contains spaces and dots
  *
  * */
-public class GenericClassParserTestByte {
-
-    GenericClassParser<Map<String, String>, DestinationClass> genericClassParser;
-    DestinationClass destinationClass;
-    Map<String, String> valuesMap;
-    Map<String, String> fieldMatchMap;
+public class GenericClassParserTestByte  extends GenericClassParserBase {
 
 
-    @Before
+    @Override
     public void initDestinationClass() {
-        destinationClass = new DestinationClass();
-        valuesMap = new HashMap<>();
-        fieldMatchMap = new HashMap<>();
-
-
-        genericClassParser = new GenericClassParser<>();
+        super.initDestinationClass();
     }
 
-
-    @Test
-    public void testMapToClassByteNormal() {
+    @Override
+    public void testNormal() {
         valuesMap.put("byte", "1");
         fieldMatchMap.put("byte", "byteVal");
 
@@ -60,8 +50,8 @@ public class GenericClassParserTestByte {
         Assert.assertEquals(destinationClass.byteVal, 1, 0);
     }
 
-    @Test
-    public void testMapToClassByteBigNumber() {
+    @Override
+    public void testBigNumber() {
         valuesMap.put("byte", "999");
         fieldMatchMap.put("byte", "byteVal");
 
@@ -69,8 +59,8 @@ public class GenericClassParserTestByte {
         Assert.assertEquals(destinationClass.byteVal, 0, 0);
     }
 
-    @Test
-    public void testMapToClassByteAlphanumeric() {
+    @Override
+    public void testAlphanumeric() {
         valuesMap.put("byte", "14abc");
         fieldMatchMap.put("byte", "byteVal");
 
@@ -78,8 +68,8 @@ public class GenericClassParserTestByte {
         Assert.assertEquals(destinationClass.byteVal, 0, 0);
     }
 
-    @Test
-    public void testMapToClassByteFloatingPoint() {
+    @Override
+    public void testFloatingPoint() {
         valuesMap.put("byte", "14.4");
         fieldMatchMap.put("byte", "byteVal");
 
@@ -87,16 +77,17 @@ public class GenericClassParserTestByte {
         Assert.assertEquals(destinationClass.byteVal, 0, 0);
     }
 
-    @Test
-    public void testMapToClassByteDot() {
+    @Override
+    public void testDot() {
         valuesMap.put("byte", "14.4");
         fieldMatchMap.put("byte", "byteVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
         Assert.assertEquals(destinationClass.byteVal, 0, 0);
     }
-    @Test
-    public void testMapToClassByteMultipleDots() {
+
+    @Override
+    public void testMultipleDots() {
         valuesMap.put("byte", "14.4.4.4");
         fieldMatchMap.put("byte", "byteVal");
 
@@ -104,8 +95,8 @@ public class GenericClassParserTestByte {
         Assert.assertEquals(destinationClass.byteVal, 0, 0);
     }
 
-    @Test
-    public void testMapToClassByteComma() {
+    @Override
+    public void testComma() {
         valuesMap.put("byte", "14,4");
         fieldMatchMap.put("byte", "byteVal");
 
@@ -113,8 +104,8 @@ public class GenericClassParserTestByte {
         Assert.assertEquals(destinationClass.byteVal, 0, 0);
     }
 
-    @Test
-    public void testMapToClassByteMultipleCommas() {
+    @Override
+    public void testMultipleCommas() {
         valuesMap.put("byte", "14,4");
         fieldMatchMap.put("byte", "byteVal");
 
@@ -122,8 +113,8 @@ public class GenericClassParserTestByte {
         Assert.assertEquals(destinationClass.byteVal, 0, 0);
     }
 
-    @Test
-    public void testMapToClassByteStartWithZeros() {
+    @Override
+    public void testStartWithZeros() {
         valuesMap.put("byte", "0000000014");
         fieldMatchMap.put("byte", "byteVal");
 
@@ -131,8 +122,26 @@ public class GenericClassParserTestByte {
         Assert.assertEquals(destinationClass.byteVal, 14, 0);
     }
 
-    @Test
-    public void testMapToClassByteStartWithZerosAndEndWithZeros() {
+    @Override
+    public void testStartWithZerosAndDots() {
+        valuesMap.put("byte", "000000..0014");
+        fieldMatchMap.put("byte", "byteVal");
+
+        genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
+        Assert.assertEquals(destinationClass.byteVal, 0, 0);
+    }
+
+    @Override
+    public void testEndWithZeros() {
+        valuesMap.put("byte", "1400000");
+        fieldMatchMap.put("byte", "byteVal");
+
+        genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
+        Assert.assertEquals(destinationClass.byteVal, 0, 0);
+    }
+
+    @Override
+    public void testStartWithZerosAndEndWithZeros() {
         valuesMap.put("byte", "000000001400000");
         fieldMatchMap.put("byte", "byteVal");
 
@@ -140,8 +149,8 @@ public class GenericClassParserTestByte {
         Assert.assertEquals(destinationClass.byteVal, 0, 0);
     }
 
-    @Test
-    public void testMapToClassByteStartWithNegativeNumber() {
+    @Override
+    public void testStartWithNegativeNumber() {
         valuesMap.put("byte", "-15");
         fieldMatchMap.put("byte", "byteVal");
 
@@ -149,8 +158,8 @@ public class GenericClassParserTestByte {
         Assert.assertEquals(destinationClass.byteVal, -15, 0);
     }
 
-    @Test
-    public void testMapToClassByteStartWithNegativeNumberAndContainsMultipleDots() {
+    @Override
+    public void testStartWithNegativeNumberAndContainsMultipleDots() {
         valuesMap.put("byte", "-15.1.1.1");
         fieldMatchMap.put("byte", "byteVal");
 
@@ -158,8 +167,8 @@ public class GenericClassParserTestByte {
         Assert.assertEquals(destinationClass.byteVal, 0, 0);
     }
 
-    @Test
-    public void testMapToClassByteStartWithNegativeNumberAndContainsMultipleDotsAndAlphanumeric() {
+    @Override
+    public void testStartWithNegativeNumberAndContainsAlphanumericAndContainsMultipleDots() {
         valuesMap.put("byte", "-15.1adads.1.1");
         fieldMatchMap.put("byte", "byteVal");
 
@@ -167,8 +176,8 @@ public class GenericClassParserTestByte {
         Assert.assertEquals(destinationClass.byteVal, 0, 0);
     }
 
-    @Test
-    public void testMapToClassByteContainsSpaces() {
+    @Override
+    public void testContainsSpaces() {
         valuesMap.put("byte", "1        1");
         fieldMatchMap.put("byte", "byteVal");
 
@@ -176,13 +185,12 @@ public class GenericClassParserTestByte {
         Assert.assertEquals(destinationClass.byteVal, 11, 0);
     }
 
-    @Test
-    public void testMapToClassByteContainsSpacesAndContainsDots() {
+    @Override
+    public void testContainsSpacesAndDots() {
         valuesMap.put("byte", "1     .   1");
         fieldMatchMap.put("byte", "byteVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
         Assert.assertEquals(destinationClass.byteVal, 0, 0);
     }
-
 }

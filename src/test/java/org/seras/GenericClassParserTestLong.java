@@ -4,6 +4,7 @@ import org.seras.Classes.DestinationClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.seras.classes.GenericClassParserBase;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,29 +34,15 @@ import java.util.Map;
  *
  * */
 
-public class GenericClassParserTestLong {
+public class GenericClassParserTestLong extends GenericClassParserBase {
 
-    GenericClassParser<Map<String, String>, DestinationClass> genericClassParser;
-    DestinationClass destinationClass;
-    Map<String, String> valuesMap;
-    Map<String, String> fieldMatchMap;
-
-
-    @Before
+    @Override
     public void initDestinationClass() {
-        destinationClass = new DestinationClass();
-        valuesMap = new HashMap<>();
-        fieldMatchMap = new HashMap<>();
-
-
-        genericClassParser = new GenericClassParser<>();
+        super.initDestinationClass();
     }
 
-
-
-
-    @Test
-    public void testMapToClassLongNormal() {
+    @Override
+    public void testNormal() {
         valuesMap.put("longValue", "154");
         fieldMatchMap.put("longValue", "longval");
 
@@ -63,8 +50,8 @@ public class GenericClassParserTestLong {
         Assert.assertEquals(destinationClass.longval, 154, 0);
     }
 
-    @Test
-    public void testMapToClassLongBigNumber() {
+    @Override
+    public void testBigNumber() {
         valuesMap.put("longValue", "9999999999999999999999999999999999999999999999999999");
         fieldMatchMap.put("longValue", "longval");
 
@@ -72,16 +59,8 @@ public class GenericClassParserTestLong {
         Assert.assertEquals(destinationClass.longval, 0L, 0);
     }
 
-    @Test
-    public void testMapToClassLongWithFloatingPoint() {
-        valuesMap.put("longValue", "99,899");
-        fieldMatchMap.put("longValue", "longval");
-
-        genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.longval, 99L, 0);
-    }
-    @Test
-    public void testMapToClassLongAlphanumeric() {
+    @Override
+    public void testAlphanumeric() {
         valuesMap.put("longValue", "99aavb,899");
         fieldMatchMap.put("longValue", "longval");
 
@@ -89,8 +68,17 @@ public class GenericClassParserTestLong {
         Assert.assertEquals(destinationClass.longval, 0L, 0);
     }
 
-    @Test
-    public void testMapToClassLongDot() {
+    @Override
+    public void testFloatingPoint() {
+        valuesMap.put("longValue", "99,899");
+        fieldMatchMap.put("longValue", "longval");
+
+        genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
+        Assert.assertEquals(destinationClass.longval, 99L, 0);
+    }
+
+    @Override
+    public void testDot() {
         valuesMap.put("longValue", "0.99");
         fieldMatchMap.put("longValue", "longval");
 
@@ -98,8 +86,8 @@ public class GenericClassParserTestLong {
         Assert.assertEquals(destinationClass.longval, 0L, 0);
     }
 
-    @Test
-    public void testMapToClassLongMultipleDots() {
+    @Override
+    public void testMultipleDots() {
         valuesMap.put("longValue", "990.0.0.0,8,99");
         fieldMatchMap.put("longValue", "longval");
 
@@ -107,8 +95,8 @@ public class GenericClassParserTestLong {
         Assert.assertEquals(destinationClass.longval, 9900008L, 0);
     }
 
-    @Test
-    public void testMapToClassLongComma() {
+    @Override
+    public void testComma() {
         valuesMap.put("longValue", "1,99");
         fieldMatchMap.put("longValue", "longval");
 
@@ -116,8 +104,8 @@ public class GenericClassParserTestLong {
         Assert.assertEquals(destinationClass.longval, 1L, 0);
     }
 
-    @Test
-    public void testMapToClassLongMultipleCommas() {
+    @Override
+    public void testMultipleCommas() {
         valuesMap.put("longValue", "1,9,9");
         fieldMatchMap.put("longValue", "longval");
 
@@ -125,8 +113,8 @@ public class GenericClassParserTestLong {
         Assert.assertEquals(destinationClass.longval, 19L, 0);
     }
 
-    @Test
-    public void testMapToClassLongStartsWithZeros() {
+    @Override
+    public void testStartWithZeros() {
         valuesMap.put("longValue", "0000000000000017");
         fieldMatchMap.put("longValue", "longval");
 
@@ -134,8 +122,8 @@ public class GenericClassParserTestLong {
         Assert.assertEquals(destinationClass.longval, 17L, 0);
     }
 
-    @Test
-    public void testMapToClassLongStartsWithZerosWithDots() {
+    @Override
+    public void testStartWithZerosAndDots() {
         valuesMap.put("longValue", "0000000000000.017");
         fieldMatchMap.put("longValue", "longval");
 
@@ -143,16 +131,17 @@ public class GenericClassParserTestLong {
         Assert.assertEquals(destinationClass.longval, 0L, 0);
     }
 
-    @Test
-    public void testMapToClassLongEndsWithZeros() {
+    @Override
+    public void testEndWithZeros() {
         valuesMap.put("longValue", "17000000000");
         fieldMatchMap.put("longValue", "longval");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
         Assert.assertEquals(destinationClass.longval, 17000000000L, 0);
     }
-    @Test
-    public void testMapToClassLongStartsWithZerosAndEndsWithZeros() {
+
+    @Override
+    public void testStartWithZerosAndEndWithZeros() {
         valuesMap.put("longValue", "00017000000000");
         fieldMatchMap.put("longValue", "longval");
 
@@ -160,8 +149,8 @@ public class GenericClassParserTestLong {
         Assert.assertEquals(destinationClass.longval, 17000000000L, 0);
     }
 
-    @Test
-    public void testMapToClassLongStartsWithNegativeNumber() {
+    @Override
+    public void testStartWithNegativeNumber() {
         valuesMap.put("longValue", "-17000000000");
         fieldMatchMap.put("longValue", "longval");
 
@@ -169,8 +158,8 @@ public class GenericClassParserTestLong {
         Assert.assertEquals(destinationClass.longval, -17000000000L, 0);
     }
 
-    @Test
-    public void testMapToClassLongStartsWithNegativeNumberContainsMultipleDots() {
+    @Override
+    public void testStartWithNegativeNumberAndContainsMultipleDots() {
         valuesMap.put("longValue", "-170000.0.00.00");
         fieldMatchMap.put("longValue", "longval");
 
@@ -178,8 +167,8 @@ public class GenericClassParserTestLong {
         Assert.assertEquals(destinationClass.longval, -170000000L, 0);
     }
 
-    @Test
-    public void testMapToClassLongStartsWithNegativeNumberAndAlphanumericAndContainsMultipleDots() {
+    @Override
+    public void testStartWithNegativeNumberAndContainsAlphanumericAndContainsMultipleDots() {
         valuesMap.put("longValue", "-170000adadwd.0.00.00");
         fieldMatchMap.put("longValue", "longval");
 
@@ -187,8 +176,8 @@ public class GenericClassParserTestLong {
         Assert.assertEquals(destinationClass.longval, 0L, 0);
     }
 
-    @Test
-    public void testMapToClassLongContainsSpaces() {
+    @Override
+    public void testContainsSpaces() {
         valuesMap.put("longValue", "  5 5 5  ");
         fieldMatchMap.put("longValue", "longval");
 
@@ -196,13 +185,12 @@ public class GenericClassParserTestLong {
         Assert.assertEquals(destinationClass.longval, 555L, 0);
     }
 
-    @Test
-    public void testMapToClassLongContainsSpacesAndDots() {
+    @Override
+    public void testContainsSpacesAndDots() {
         valuesMap.put("longValue", "  5. 5 5.  ");
         fieldMatchMap.put("longValue", "longval");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
         Assert.assertEquals(destinationClass.longval, 555L, 0);
     }
-
 }

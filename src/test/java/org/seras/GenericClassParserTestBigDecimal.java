@@ -4,58 +4,22 @@ import org.seras.Classes.DestinationClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.seras.classes.GenericClassParserBase;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
 
-/*Test Generic Class Parser for Float Parse
- * @author Yusuf Erdoğan
- * @version 1.0
- *
- * test normal
- * test big number
- * test alphanumeric
- * test floating point
- * test dot
- * test multiple dots
- * test comma
- * test multiple commas
- * test start with zeros
- * test start with zeros and dots
- * test end with zeros
- * test start with zeros and end with zeros
- * test start with negative number
- * test start with negative number and contains multiple dots
- * start with negative number and contains alphanumeric and contains multiple dots
- * contains spaces
- * contains spaces and dots
- *
- * */
-public class GenericClassParserTestBigDecimal {
+public class GenericClassParserTestBigDecimal extends GenericClassParserBase {
 
-    GenericClassParser<Map<String, String>, DestinationClass> genericClassParser;
-    DestinationClass destinationClass;
-    Map<String, String> valuesMap;
-    Map<String, String> fieldMatchMap;
-
-
-    @Before
+    @Override
     public void initDestinationClass() {
-        destinationClass = new DestinationClass();
-        valuesMap = new HashMap<>();
-        fieldMatchMap = new HashMap<>();
-
-
-        genericClassParser = new GenericClassParser<>();
+        super.initDestinationClass();
     }
 
-
-
-
-    @Test
-    public void testMapToClassBigDecimalNormal() {
+    @Override
+    public void testNormal() {
         valuesMap.put("decimalValue", "11111");
         fieldMatchMap.put("decimalValue", "decimal");
 
@@ -63,17 +27,18 @@ public class GenericClassParserTestBigDecimal {
         Assert.assertEquals(0, destinationClass.decimal.compareTo(new BigDecimal("11111")));
     }
 
-    @Test
-    public void testMapToClassBigDecimalBigNumber() {
+    @Override
+    public void testBigNumber() {
         valuesMap.put("decimalValue", "9999999999999999999999999999999999999999999999999999999,99999999999999999999999999999999999");
         fieldMatchMap.put("decimalValue", "decimal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
         Assert.assertEquals(0, destinationClass.decimal.compareTo(new BigDecimal("9999999999999999999999999999999999999999999999999999999.99999999999999999999999999999999999")));
+
     }
 
-    @Test
-    public void testMapToClassBigDecimalAlphanumeric() {
+    @Override
+    public void testAlphanumeric() {
         valuesMap.put("decimalValue", "111.111112313aaaa33123");
         fieldMatchMap.put("decimalValue", "decimal");
 
@@ -81,18 +46,26 @@ public class GenericClassParserTestBigDecimal {
         Assert.assertEquals(0, destinationClass.decimal.compareTo(BigDecimal.ZERO));
     }
 
-
-    @Test
-    public void testMapToClassBigDecimalWithDot() {
-        valuesMap.put("decimalValue", "111.11111231333123");
+    @Override
+    public void testFloatingPoint() {
+        valuesMap.put("decimalValue", "111,11111111111231333123");
         fieldMatchMap.put("decimalValue", "decimal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(0, destinationClass.decimal.compareTo(new BigDecimal("111.11111231333123")));
+        Assert.assertEquals(0, destinationClass.decimal.compareTo(new BigDecimal("111.11111111111231333123")));
     }
 
-    @Test
-    public void testMapToClassBigDecimalWithMultipleDots() {
+    @Override
+    public void testDot() {
+        valuesMap.put("decimalValue", "111.1");
+        fieldMatchMap.put("decimalValue", "decimal");
+
+        genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
+        Assert.assertEquals(0, destinationClass.decimal.compareTo(new BigDecimal("111.1")));
+    }
+
+    @Override
+    public void testMultipleDots() {
         valuesMap.put("decimalValue", "111.1.1.111231333123");
         fieldMatchMap.put("decimalValue", "decimal");
 
@@ -100,8 +73,8 @@ public class GenericClassParserTestBigDecimal {
         Assert.assertEquals(0, destinationClass.decimal.compareTo(new BigDecimal("11111.111231333123")));
     }
 
-    @Test
-    public void testMapToClassBigDecimalWithComma() {
+    @Override
+    public void testComma() {
         valuesMap.put("decimalValue", "111.11111,231333123");
         fieldMatchMap.put("decimalValue", "decimal");
 
@@ -109,8 +82,8 @@ public class GenericClassParserTestBigDecimal {
         Assert.assertEquals(0, destinationClass.decimal.compareTo(new BigDecimal("11111111.231333123")));
     }
 
-    @Test
-    public void testMapToClassBigDecimalWithMultipleCommas() {
+    @Override
+    public void testMultipleCommas() {
         valuesMap.put("decimalValue", "1.1.1.1.1.1.1.1,231333123");
         fieldMatchMap.put("decimalValue", "decimal");
 
@@ -118,9 +91,8 @@ public class GenericClassParserTestBigDecimal {
         Assert.assertEquals(0, destinationClass.decimal.compareTo(new BigDecimal("11111111.231333123")));
     }
 
-
-    @Test
-    public void testMapToClassBigDecimalWithStartWithZeros() {
+    @Override
+    public void testStartWithZeros() {
         valuesMap.put("decimalValue", "0000000015,95444");
         fieldMatchMap.put("decimalValue", "decimal");
 
@@ -128,8 +100,8 @@ public class GenericClassParserTestBigDecimal {
         Assert.assertEquals(0, destinationClass.decimal.compareTo(new BigDecimal("15.95444")));
     }
 
-    @Test
-    public void testMapToClassBigDecimalWithStartWithZerosAndDots() {
+    @Override
+    public void testStartWithZerosAndDots() {
         valuesMap.put("decimalValue", "000.00,00.015,9544400");
         fieldMatchMap.put("decimalValue", "decimal");
 
@@ -137,8 +109,8 @@ public class GenericClassParserTestBigDecimal {
         Assert.assertEquals(0, destinationClass.decimal.compareTo(new BigDecimal("15.95444")));
     }
 
-    @Test
-    public void testMapToClassBigDecimalEndWithZeros() {
+    @Override
+    public void testEndWithZeros() {
         valuesMap.put("decimalValue", "1500,0000000");
         fieldMatchMap.put("decimalValue", "decimal");
 
@@ -146,8 +118,8 @@ public class GenericClassParserTestBigDecimal {
         Assert.assertEquals(0, destinationClass.decimal.compareTo(new BigDecimal("1500")));
     }
 
-    @Test
-    public void testMapToClassBigDecimalStartWithZerosEndWithZeros() {
+    @Override
+    public void testStartWithZerosAndEndWithZeros() {
         valuesMap.put("decimalValue", "0001500,0000000");
         fieldMatchMap.put("decimalValue", "decimal");
 
@@ -155,16 +127,17 @@ public class GenericClassParserTestBigDecimal {
         Assert.assertEquals(0, destinationClass.decimal.compareTo(new BigDecimal("1500")));
     }
 
-    @Test
-    public void testMapToClassBigDecimalWithNegativeNumber() {
+    @Override
+    public void testStartWithNegativeNumber() {
         valuesMap.put("decimalValue", "-1.000");
         fieldMatchMap.put("decimalValue", "decimal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
         Assert.assertEquals(0, destinationClass.decimal.compareTo(new BigDecimal("-1")));
     }
-    @Test
-    public void testMapToClassBigDecimalWithNegativeNumberAndContainsMultipleDots() {
+
+    @Override
+    public void testStartWithNegativeNumberAndContainsMultipleDots() {
         valuesMap.put("decimalValue", "-1.0.0.0");
         fieldMatchMap.put("decimalValue", "decimal");
 
@@ -172,16 +145,17 @@ public class GenericClassParserTestBigDecimal {
         Assert.assertEquals(0, destinationClass.decimal.compareTo(new BigDecimal("-100")));
     }
 
-    @Test
-    public void testMapToClassBigDecimalWithNegativeNumberAndContainsMultipleDotsAndAlphaNumeric() {
+    @Override
+    public void testStartWithNegativeNumberAndContainsAlphanumericAndContainsMultipleDots() {
         valuesMap.put("decimalValue", "-1.0.0.ggggg0");
         fieldMatchMap.put("decimalValue", "decimal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
         Assert.assertEquals(0, destinationClass.decimal.compareTo(BigDecimal.ZERO));
     }
-    @Test
-    public void testMapToClassBigDecimalContainsSpaces() {
+
+    @Override
+    public void testContainsSpaces() {
         valuesMap.put("decimalValue", "  1   2  ");
         fieldMatchMap.put("decimalValue", "decimal");
 
@@ -189,8 +163,8 @@ public class GenericClassParserTestBigDecimal {
         Assert.assertEquals(0, destinationClass.decimal.compareTo(new BigDecimal("12")));
     }
 
-    @Test
-    public void testMapToClassBigDecimalContainsSpacesAndDots() {
+    @Override
+    public void testContainsSpacesAndDots() {
         valuesMap.put("decimalValue", "  1.   2  ");
         fieldMatchMap.put("decimalValue", "decimal");
 

@@ -116,7 +116,7 @@ public class GenericClassParser<T,V> {
 
                 /* start Double */
                 else if (Double.class.equals(destinationClassType)){
-                    Double value =Double.valueOf(sourceMap.get(sourceField));
+                    Double value = parseDouble(expectedValue);
                     destinationField.set(destinationClazz,value);
                 }
                 /* end Double */
@@ -143,6 +143,12 @@ public class GenericClassParser<T,V> {
 
 
 
+    }
+
+    private Double parseDouble(String expectedValue) {
+        Double value;
+        value =Double.valueOf(expectedValue);
+        return value;
     }
 
     private Byte parseByte(String expectedValue) {

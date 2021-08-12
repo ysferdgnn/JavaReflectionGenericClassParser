@@ -1,55 +1,17 @@
 package org.seras;
-
-import org.seras.Classes.DestinationClass;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.seras.classes.GenericClassParserBase;
 
-import java.util.HashMap;
-import java.util.Map;
-
-/*Test Generic Class Parser for Float Parse
- * @author Yusuf Erdoğan
- * @version 1.0
- *
- * test normal
- * test big number
- * test alphanumeric
- * test floating point
- * test dot
- * test multiple dots
- * test start with zeros
- * test start with zeros and dots
- * test end with zeros
- * test start with zeros and end with zeros
- * test start with negative number
- * test start with negative number and contains multiple dots
- * start with negative number and contains alphanumeric and contains multiple dots
- * contains spaces
- * contains spaces and dots
- *
- * */
-public class GenericClassParserTestInteger {
-    GenericClassParser<Map<String, String>, DestinationClass> genericClassParser;
-    DestinationClass destinationClass;
-    Map<String, String> valuesMap;
-    Map<String, String> fieldMatchMap;
+public class GenericClassParserTestInteger  extends GenericClassParserBase  {
 
 
-
-    @Before
+    @Override
     public void initDestinationClass() {
-        destinationClass = new DestinationClass();
-        valuesMap = new HashMap<>();
-        fieldMatchMap = new HashMap<>();
-
-
-        genericClassParser = new GenericClassParser<>();
+        super.initDestinationClass();
     }
 
-    @Test
-    public void testMapToClassIntegerNormal() {
-        // number bigger than integer max test
+    @Override
+    public void testNormal() {
         valuesMap.put("integerValue", "15");
         fieldMatchMap.put("integerValue", "integerValue");
 
@@ -57,8 +19,8 @@ public class GenericClassParserTestInteger {
         Assert.assertEquals(destinationClass.integerValue, 15, 0);
     }
 
-    @Test
-    public void testMapToClassIntegerBigNumber() {
+    @Override
+    public void testBigNumber() {
         // number bigger than integer max test
         valuesMap.put("integerValue", "12199354420");
         fieldMatchMap.put("integerValue", "integerValue");
@@ -67,8 +29,17 @@ public class GenericClassParserTestInteger {
         Assert.assertEquals(destinationClass.integerValue, 0, 0);
     }
 
-    @Test
-    public void testMapToClassIntegerFloatingPoint() {
+    @Override
+    public void testAlphanumeric() {
+        valuesMap.put("integerValue", "value");
+        fieldMatchMap.put("integerValue", "integerValue");
+
+        genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
+        Assert.assertEquals(destinationClass.integerValue, 0, 0);
+    }
+
+    @Override
+    public void testFloatingPoint() {
         valuesMap.put("integerValue", "125,4");
         fieldMatchMap.put("integerValue", "integerValue");
 
@@ -76,9 +47,8 @@ public class GenericClassParserTestInteger {
         Assert.assertEquals(destinationClass.integerValue, 125, 0);
     }
 
-
-    @Test
-    public void testMapToClassIntegerDot() {
+    @Override
+    public void testDot() {
         valuesMap.put("integerValue", ",154123.123");
         fieldMatchMap.put("integerValue", "integerValue");
 
@@ -86,8 +56,8 @@ public class GenericClassParserTestInteger {
         Assert.assertEquals(destinationClass.integerValue, 154123, 0);
     }
 
-    @Test
-    public void testMapToClassIntegerMultipleDots() {
+    @Override
+    public void testMultipleDots() {
         valuesMap.put("integerValue", "1.1.13");
         fieldMatchMap.put("integerValue", "integerValue");
 
@@ -95,8 +65,8 @@ public class GenericClassParserTestInteger {
         Assert.assertEquals(destinationClass.integerValue, 11, 0);
     }
 
-    @Test
-    public void testMapToClassIntegerComma() {
+    @Override
+    public void testComma() {
         valuesMap.put("integerValue", ",154123,123");
         fieldMatchMap.put("integerValue", "integerValue");
 
@@ -104,8 +74,8 @@ public class GenericClassParserTestInteger {
         Assert.assertEquals(destinationClass.integerValue, 154123, 0);
     }
 
-    @Test
-    public void testMapToClassIntegerMultipleCommas() {
+    @Override
+    public void testMultipleCommas() {
         valuesMap.put("integerValue", "1,1,13");
         fieldMatchMap.put("integerValue", "integerValue");
 
@@ -113,20 +83,8 @@ public class GenericClassParserTestInteger {
         Assert.assertEquals(destinationClass.integerValue, 11, 0);
     }
 
-    @Test
-    public void testMapToClassIntegerWithAlphaNumeric() {
-        valuesMap.put("integerValue", "value");
-        fieldMatchMap.put("integerValue", "integerValue");
-
-        genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.integerValue, 0, 0);
-
-    }
-
-
-
-    @Test
-    public void testMapToClassIntegerWithStartsWithZeros() {
+    @Override
+    public void testStartWithZeros() {
         valuesMap.put("integerValue", "0000000000015");
         fieldMatchMap.put("integerValue", "integerValue");
 
@@ -134,8 +92,8 @@ public class GenericClassParserTestInteger {
         Assert.assertEquals(destinationClass.integerValue, 15, 0);
     }
 
-    @Test
-    public void testMapToClassIntegerWithStartsWithZerosAndDots() {
+    @Override
+    public void testStartWithZerosAndDots() {
         valuesMap.put("integerValue", "000.0000000.015");
         fieldMatchMap.put("integerValue", "integerValue");
 
@@ -143,8 +101,26 @@ public class GenericClassParserTestInteger {
         Assert.assertEquals(destinationClass.integerValue, 0, 0);
     }
 
-    @Test
-    public void testMapToClassIntegerWithStartsNegativeNumber(){
+    @Override
+    public void testEndWithZeros() {
+        valuesMap.put("integerValue", "150000");
+        fieldMatchMap.put("integerValue", "integerValue");
+
+        genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
+        Assert.assertEquals(destinationClass.integerValue, 150000, 0);
+    }
+
+    @Override
+    public void testStartWithZerosAndEndWithZeros() {
+        valuesMap.put("integerValue", "000150000");
+        fieldMatchMap.put("integerValue", "integerValue");
+
+        genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
+        Assert.assertEquals(destinationClass.integerValue, 150000, 0);
+    }
+
+    @Override
+    public void testStartWithNegativeNumber() {
         valuesMap.put("integerValue", "-500");
         fieldMatchMap.put("integerValue", "integerValue");
 
@@ -152,33 +128,17 @@ public class GenericClassParserTestInteger {
         Assert.assertEquals(destinationClass.integerValue, -500, 0);
     }
 
-    @Test
-    public void testMapToClassIntegerWithStartsNegativeNumberAndAlphaNumeric(){
-        valuesMap.put("integerValue", "-500abc");
+    @Override
+    public void testStartWithNegativeNumberAndContainsMultipleDots() {
+        valuesMap.put("integerValue", "-500.0.0.0");
         fieldMatchMap.put("integerValue", "integerValue");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.integerValue, 0, 0);
-    }
-    @Test
-    public void testMapToClassIntegerWithStartsNegativeNumberAndDot(){
-        valuesMap.put("integerValue", "-500.000");
-        fieldMatchMap.put("integerValue", "integerValue");
-
-        genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.integerValue, -500, 0);
-    }
-    @Test
-    public void testMapToClassIntegerWithStartsNegativeNumberAndMultipleDots(){
-        valuesMap.put("integerValue", "-500.1.5");
-        fieldMatchMap.put("integerValue", "integerValue");
-
-        genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.integerValue, -5001, 0);
+        Assert.assertEquals(destinationClass.integerValue, -50000, 0);
     }
 
-    @Test
-    public void testMapToClassIntegerWithStartsNegativeNumberAndAlphanumericAndMultipleDots(){
+    @Override
+    public void testStartWithNegativeNumberAndContainsAlphanumericAndContainsMultipleDots() {
         valuesMap.put("integerValue", "-500aa.1.5");
         fieldMatchMap.put("integerValue", "integerValue");
 
@@ -186,13 +146,23 @@ public class GenericClassParserTestInteger {
         Assert.assertEquals(destinationClass.integerValue, 0, 0);
     }
 
-    @Test
-    public void testMapToClassIntegerWithSpace(){
-        valuesMap.put("integerValue", "-  10  .0 ");
+    @Override
+    public void testContainsSpaces() {
+        valuesMap.put("integerValue", "  10  0 ");
         fieldMatchMap.put("integerValue", "integerValue");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.integerValue, -10, 0);
+        Assert.assertEquals(destinationClass.integerValue, 100, 0);
     }
+
+    @Override
+    public void testContainsSpacesAndDots() {
+        valuesMap.put("integerValue", "  10  .0 ");
+        fieldMatchMap.put("integerValue", "integerValue");
+
+        genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
+        Assert.assertEquals(destinationClass.integerValue, 10, 0);
+    }
+
 
 }
