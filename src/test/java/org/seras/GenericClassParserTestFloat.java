@@ -8,6 +8,30 @@ import org.seras.Classes.DestinationClass;
 import java.util.HashMap;
 import java.util.Map;
 
+
+/*Test Generic Class Parser for Float Parse
+ * @author Yusuf Erdoğan
+ * @version 1.0
+ *
+ * test normal
+ * test big number
+ * test alphanumeric
+ * test floating point
+ * test dot
+ * test multiple dots
+ * test comma
+ * test multiple commas
+ * test start with zeros
+ * test start with zeros and dots
+ * test end with zeros
+ * test start with zeros and end with zeros
+ * test start with negative number
+ * test start with negative number and contains multiple dots
+ * start with negative number and contains alphanumeric and contains multiple dots
+ * contains spaces
+ * contains spaces and dots
+ *
+ * */
 public class GenericClassParserTestFloat {
 
     GenericClassParser<Map<String, String>, DestinationClass> genericClassParser;
@@ -15,29 +39,7 @@ public class GenericClassParserTestFloat {
     Map<String, String> valuesMap;
     Map<String, String> fieldMatchMap;
 
-    /*Test Generic Class Parser for Float Parse
-    * @author Yusuf Erdoğan
-    * @version 1.0
-    *
-    * test normal
-    * test big number
-    * test alphanumeric
-    * test floating point
-    * test dot
-    * test multiple dots
-    * test comma
-    * test multiple commas
-    * test start with zeros
-    * test start with zeros and dots
-    * test end with zeros
-    * test start with zeros and end with zeros
-    * test start with negative number
-    * test start with negative number and contains multiple dots
-    * start with negative number and contains alphanumeric and contains multiple dots
-    * contains spaces
-    * contains spaces and dots
-    *
-    * */
+
 
     @Before
     public void initDestinationClass() {

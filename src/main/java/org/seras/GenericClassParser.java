@@ -108,7 +108,8 @@ public class GenericClassParser<T,V> {
 //
                 /* start Byte */
                 else if (Byte.class.equals(destinationClassType)){
-                    Byte value =Byte.valueOf(sourceMap.get(sourceField));
+
+                    Byte value = parseByte(expectedValue);
                     destinationField.set(destinationClazz,value);
                 }
                 /* end Byte */
@@ -142,6 +143,31 @@ public class GenericClassParser<T,V> {
 
 
 
+    }
+
+    private Byte parseByte(String expectedValue) {
+        Byte value=0;
+        if(isNumeric(expectedValue)){
+            expectedValue = clearSpaces(expectedValue);
+            if(isContainsDotOrComma(expectedValue)){
+                logger.info(String.format("Value: %s is contains dot",expectedValue));
+                expectedValue=clearDotsAndCommasFromString(expectedValue);
+            }
+            try{
+                logger.info(String.format("Value: %s is expected value",expectedValue));
+                value=Byte.parseByte(expectedValue);
+
+            }catch (NumberFormatException exception){
+                logger.warning(String.format("Value: %s Byte Number Format Exception",value));
+                value=0;
+            }
+
+        }else{
+            value=0;
+        }
+
+
+        return value;
     }
 
     private Float parseFloat(String expectedValue) {
