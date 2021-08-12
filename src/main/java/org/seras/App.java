@@ -1,7 +1,7 @@
-package org.example;
+package org.seras;
 
-import org.example.Classes.DestinationClass;
-import org.example.Classes.SourceClass;
+import org.seras.Classes.DestinationClass;
+import org.seras.Classes.SourceClass;
 
 import java.util.HashMap;
 import java.util.Map;

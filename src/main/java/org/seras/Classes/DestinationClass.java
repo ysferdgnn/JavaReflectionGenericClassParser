@@ -1,4 +1,4 @@
-package org.example.Classes;
+package org.seras.Classes;
 
 import java.math.BigDecimal;
 

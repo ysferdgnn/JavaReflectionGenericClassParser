@@ -1,8 +1,7 @@
-package org.example;
+package org.seras;
 
 
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
