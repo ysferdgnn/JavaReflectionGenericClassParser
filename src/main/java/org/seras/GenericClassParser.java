@@ -141,6 +141,7 @@ public class GenericClassParser<T,V> {
     private Long parseLong(String expectedValue) {
         Long value =0L;
         if(isNumeric(expectedValue)){
+            expectedValue = clearSpaces(expectedValue);
             if(isContainsDotOrComma(expectedValue)){
                 expectedValue =clearDotsAndCommasFromString(expectedValue);
                 if(isContainsDotOrComma(expectedValue)){
@@ -170,6 +171,7 @@ public class GenericClassParser<T,V> {
         BigDecimal value =BigDecimal.ZERO;
         if(isNumeric(expectedValue)){
             try {
+                expectedValue = clearSpaces(expectedValue);
                 if(isContainsDotOrComma(expectedValue)){
                     expectedValue =clearDotsAndCommasFromString(expectedValue);
 
@@ -193,11 +195,12 @@ public class GenericClassParser<T,V> {
 
     private Integer parseInteger(String expectedValue) {
         Integer value =0;
-
+        expectedValue = clearSpaces(expectedValue);
         if(isNumeric(expectedValue)){
             try{
                 if (isContainsDotOrComma(expectedValue)){
                     expectedValue = clearDotsAndCommasFromString(expectedValue);
+
                     Double doubleValue = Double.valueOf(expectedValue);
                     value = doubleValue.intValue();
                 }else{
@@ -269,6 +272,16 @@ public class GenericClassParser<T,V> {
         return  value;
 
     }
+
+    public String clearSpaces(String value){
+        logger.info(String.format("Value : %s includes spaces working trim.",value));
+        value = value.trim();
+        logger.info(String.format("Value : %s trim has  applied. spaces replacing",value));
+        value=value.replace(" ","");
+        logger.info(String.format("Value: %s spaces replaced",value));
+        return  value;
+    }
+
 
 
 }
