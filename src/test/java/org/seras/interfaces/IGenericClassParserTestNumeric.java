@@ -25,7 +25,7 @@ package org.seras.interfaces;
  * contains spaces and dots
  *
  * */
-public interface iGenericClassParserTestNumeric {
+public interface IGenericClassParserTestNumeric {
      void initDestinationClass() ;
      void testNormal();
      void testBigNumber();

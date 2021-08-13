@@ -4,12 +4,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.seras.Classes.DestinationClass;
 import org.seras.GenericClassParser;
-import org.seras.interfaces.iGenericClassParserTestNumeric;
+import org.seras.interfaces.IGenericClassParserTestNumeric;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class GenericClassParserBaseNumeric implements iGenericClassParserTestNumeric {
+public class GenericClassParserBaseNumeric implements IGenericClassParserTestNumeric {
 
    public GenericClassParser<Map<String, String>, DestinationClass> genericClassParser = null;
    public DestinationClass destinationClass = null;

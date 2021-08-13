@@ -16,7 +16,8 @@ import org.seras.classes.tests.*;
                 GenericClassParserTestByte.class,
                 GenericClassParserTestDouble.class,
                 GenericClassParserTestCharacter.class,
-                GenericClassParserTestBoolean.class
+                GenericClassParserTestBoolean.class,
+                GenericClassParserTestUtilDate.class
         }
 )
 public class GenericClassParserTestSuite {

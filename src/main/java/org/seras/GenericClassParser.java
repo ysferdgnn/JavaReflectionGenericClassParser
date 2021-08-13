@@ -2,12 +2,15 @@ package org.seras;
 
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
+import org.seras.Classes.Constants;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.lang.reflect.*;
 import java.util.logging.Level;
@@ -181,7 +184,14 @@ public class GenericClassParser<T,V> {
     }
 
     private Date parseUtilDate(String expectedValue) {
-        return  null;
+
+        if (Optional.ofNullable(expectedValue).orElse("").contentEquals("")) {
+            return  null;
+        }
+        expectedValue=clearSpacesDate(expectedValue);
+
+        return parseUtilDateFromStringMultipleFormats(expectedValue);
+
     }
 
     private Boolean parseBoolean(String expectedValue) {
@@ -374,7 +384,7 @@ public class GenericClassParser<T,V> {
     }
 
     public  Boolean isNumeric(String value){
-        String regex ="^[a-zA-Z]+$";
+        String regex =Constants.getInstance().regexNumeric;
        if(value.matches(regex)){
           return  false;
        }
@@ -437,9 +447,52 @@ public class GenericClassParser<T,V> {
         logger.info(String.format("Value: %s spaces replaced",value));
         return  value;
     }
+    public String clearSpacesDate(String value){
+
+        logger.info(String.format("Value: %s includes spaces working trim",value));
+        value=value.trim();
+        logger.info(String.format("Value : %s trim has  applied. spaces replacing",value));
+
+        if(value.contains(" ")){
+            logger.info(String.format("Value: %s includes Spaces after trim.Divide and clear in progress..",value));
+            String [] splitArray = value.split(" ");
+            List<String> splitList = Arrays.asList(splitArray);
+
+            if(Optional.ofNullable(splitList).map(List::size).orElse(0).equals(2)){
+                logger.info(String.format("Value %s includes 2 pieces. Dividing..",value));
+                String firstPiece = splitList.get(0);
+                String secondPiece = splitList.get(1);
+
+                logger.info(String.format("Value: %s  first piece -> %s , second piece -> %s",value,firstPiece,secondPiece));
+
+                firstPiece = clearSpaces(firstPiece);
+                secondPiece=clearSpaces(secondPiece);
+
+                logger.info(String.format("Value: %s cleared. Being combined pieces",value));
+                value = String.format("%s %s",firstPiece,secondPiece);
+                logger.info(String.format("Value: %s new value",value));
+
+            }else if (Optional.ofNullable(splitList).map(List::size).orElse(0)>2){
+                logger.info(String.format("Value: %s includes multiple spaces.",value));
+
+              value=  splitList.stream().map(this::clearSpaces).collect(Collectors.joining(""));
+
+            }
+
+
+        }
+       if(value.contains(",")){
+           logger.info(String.format("Value: %s contains comma. Changing with dots",value));
+           value=value.replace(",",".");
+       }
+
+        return value;
+
+
+    }
 
     public String clearSpecialChars(String value){
-        String regex ="/[-._!\"`'#%&,:;<>=@{}~\\$\\(\\)\\*\\+\\/\\\\\\?\\[\\]\\^\\|]+/";
+        String regex = Constants.getInstance().regexSpecialChars;
         if (value.matches(regex)){
             logger.info(String.format("Value: %s includes special characters",value));
             value =value.replaceAll(regex,"");
@@ -447,23 +500,50 @@ public class GenericClassParser<T,V> {
         }
        return  value;
     }
-    public static java.util.Date parseUtilDateFromStringMultipleFormats(String value){
-
+    public  java.util.Date parseUtilDateFromStringMultipleFormats(String value){
+        logger.info(String.format("Value: %s parsing..",value));
         if(value.length()>18) {
+            logger.info(String.format("Value: %s length(%s) overflow, Trim in progress",value,value.length()));
             value=value.substring(0,19);
+            logger.info(String.format("Value: %s divided",value));
         }
 
         DateTimeFormatter dateTimeFormatter= new DateTimeFormatterBuilder()
-                .appendOptional(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"))
-                .appendOptional(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))
-                .appendOptional(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"))
-                .appendOptional(DateTimeFormatter.ofPattern("yyy-MM-dd HH:mm:ss"))
-                .appendOptional(DateTimeFormatter.ofPattern("yyy/MM/dd HH:mm:ss"))
-                .appendOptional(DateTimeFormatter.ofPattern("yyy.MM.dd HH:mm:ss"))
+                .appendOptional(DateTimeFormatter.ofPattern("dd.MM.yyyy H:mm:ss"))
+                .appendOptional(DateTimeFormatter.ofPattern("dd/MM/yyyy H:mm:ss"))
+                .appendOptional(DateTimeFormatter.ofPattern("dd-MM-yyyy H:mm:ss"))
+                .appendOptional(DateTimeFormatter.ofPattern("yyy-MM-dd H:mm:ss"))
+                .appendOptional(DateTimeFormatter.ofPattern("yyy/MM/dd H:mm:ss"))
+                .appendOptional(DateTimeFormatter.ofPattern("yyy.MM.dd H:mm:ss"))
+                .appendOptional(DateTimeFormatter.ofPattern("dd.MM.yyyyH:mm:ss"))
+                .appendOptional(DateTimeFormatter.ofPattern("dd/MM/yyyyH:mm:ss"))
+                .appendOptional(DateTimeFormatter.ofPattern("dd-MM-yyyyH:mm:ss"))
+                .appendOptional(DateTimeFormatter.ofPattern("yyy-MM-ddH:mm:ss"))
+                .appendOptional(DateTimeFormatter.ofPattern("yyy/MM/ddH:mm:ss"))
+                .appendOptional(DateTimeFormatter.ofPattern("yyy.MM.ddH:mm:ss"))
+                .appendOptional(DateTimeFormatter.ofPattern("yyy.MM.ddH:mm:ss"))
+                .appendOptional(DateTimeFormatter.ofPattern("yyy.MM.dd"))
+                .appendOptional(DateTimeFormatter.ofPattern("yyy-MM-dd"))
+                .appendOptional(DateTimeFormatter.ofPattern("yyy/MM/dd"))
+                .appendOptional(DateTimeFormatter.ofPattern("dd/MM/yyy"))
+                .appendOptional(DateTimeFormatter.ofPattern("dd.MM.yyy"))
+                .appendOptional(DateTimeFormatter.ofPattern("dd-MM-yyy"))
                 .toFormatter();
         LocalDate localDate= LocalDate.parse(value,dateTimeFormatter);
-        Timestamp t = Timestamp.valueOf(localDate.atStartOfDay());
+        LocalTime localTime=null;
+
+        try{
+            localTime= LocalTime.parse(value,dateTimeFormatter);
+        }catch (DateTimeParseException exception){
+
+            localTime=null;
+        }
+
+        logger.info(String.format("Value: %s parsed localdate ->%s",value,localDate.toString()));
+        Timestamp t = Timestamp.valueOf(localTime !=null ? localDate.atTime(localTime) : localDate.atStartOfDay());
+        logger.info(String.format("Value %s parsed Timestamp ->%s",value,t));
         Date d = new Date(t.getTime());
+        logger.info(String.format("Value: %s parsed Date ->%s",value,d.toString()));
         return d;
     }
 
