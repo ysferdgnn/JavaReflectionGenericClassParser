@@ -4,11 +4,12 @@ package org.seras;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.util.*;
 import java.lang.reflect.*;
-import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -137,6 +138,29 @@ public class GenericClassParser<T,V> {
                 }
                 /* end Boolean */
 
+                /*start utilDate*/
+                else if(java.util.Date.class.equals(destinationClassType)){
+
+                    java.util.Date value =parseUtilDate(expectedValue);
+                    destinationField.set(destinationClazz,value);
+                }
+
+                /*end utilDate*/
+
+                /*start sqlDate*/
+                else if (java.sql.Date.class.equals(destinationClassType)){
+                    java.sql.Date value =parseSqlDate(expectedValue);
+                    destinationField.set(destinationClazz,value);
+                }
+                /*end sqlDate*/
+
+                /*start timestamp*/
+
+                else if (java.sql.Timestamp.class.equals(destinationClassType)){
+                    java.sql.Timestamp value =parseTimetamp(expectedValue);
+                    destinationField.set(destinationClazz,value);
+                }
+                /*end timestamp*/
 
 
             }catch (IllegalAccessException exception){
@@ -146,6 +170,18 @@ public class GenericClassParser<T,V> {
 
 
 
+    }
+
+    private Timestamp parseTimetamp(String expectedValue) {
+        return null;
+    }
+
+    private java.sql.Date parseSqlDate(String expectedValue) {
+        return null;
+    }
+
+    private Date parseUtilDate(String expectedValue) {
+        return  null;
     }
 
     private Boolean parseBoolean(String expectedValue) {
@@ -410,7 +446,25 @@ public class GenericClassParser<T,V> {
             return  value;
         }
        return  value;
+    }
+    public static java.util.Date parseUtilDateFromStringMultipleFormats(String value){
 
+        if(value.length()>18) {
+            value=value.substring(0,19);
+        }
+
+        DateTimeFormatter dateTimeFormatter= new DateTimeFormatterBuilder()
+                .appendOptional(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"))
+                .appendOptional(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))
+                .appendOptional(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"))
+                .appendOptional(DateTimeFormatter.ofPattern("yyy-MM-dd HH:mm:ss"))
+                .appendOptional(DateTimeFormatter.ofPattern("yyy/MM/dd HH:mm:ss"))
+                .appendOptional(DateTimeFormatter.ofPattern("yyy.MM.dd HH:mm:ss"))
+                .toFormatter();
+        LocalDate localDate= LocalDate.parse(value,dateTimeFormatter);
+        Timestamp t = Timestamp.valueOf(localDate.atStartOfDay());
+        Date d = new Date(t.getTime());
+        return d;
     }
 
 

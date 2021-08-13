@@ -1,6 +1,9 @@
 package org.seras.Classes;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.util.Date;
+import java.util.zip.DataFormatException;
 
 public class DestinationClass {
     public String ad;
@@ -12,6 +15,9 @@ public class DestinationClass {
     public Double doubleVal ;
     public Character charVal ;
     public Boolean boolVal ;
+    public Date dateUtil;
+    public java.sql.Date dateSql;
+    public Timestamp timestamp;
 
     @Override
     public String toString() {
