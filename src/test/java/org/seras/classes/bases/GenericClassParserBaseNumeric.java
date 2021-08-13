@@ -1,15 +1,15 @@
-package org.seras.classes;
+package org.seras.classes.bases;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.seras.Classes.DestinationClass;
 import org.seras.GenericClassParser;
-import org.seras.interfaces.IGenericClassParserTest;
+import org.seras.interfaces.iGenericClassParserTestNumeric;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class GenericClassParserBase implements IGenericClassParserTest {
+public class GenericClassParserBaseNumeric implements iGenericClassParserTestNumeric {
 
    public GenericClassParser<Map<String, String>, DestinationClass> genericClassParser = null;
    public DestinationClass destinationClass = null;

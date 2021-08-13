@@ -1,11 +1,14 @@
 package org.seras;
 
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.lang.reflect.*;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -123,13 +126,13 @@ public class GenericClassParser<T,V> {
 
                 /* start Character */
                 else if (Character.class.equals(destinationClassType)) {
-                    Character value = sourceMap.get(sourceField).charAt(0);
+                    Character value = parseCharacter(expectedValue);
                     destinationField.set(destinationClazz,value);
                 }
                 /* end Character */
                 /* start Boolean */
                 else if (Boolean.class.equals(destinationClassType)){
-                    Boolean value = Boolean.valueOf(sourceMap.get(sourceField));
+                    Boolean value = parseBoolean(expectedValue);
                     destinationField.set(destinationClazz,value);
                 }
                 /* end Boolean */
@@ -143,6 +146,41 @@ public class GenericClassParser<T,V> {
 
 
 
+    }
+
+    private Boolean parseBoolean(String expectedValue) {
+        Boolean value =Boolean.FALSE;
+        if(Optional.ofNullable(expectedValue).orElse("").contentEquals("")){
+            logger.info(String.format("Value: %s is null return false default",expectedValue));
+            return  Boolean.FALSE;
+        }
+        expectedValue=clearSpaces(expectedValue);
+
+        if(!isNumeric(expectedValue)){
+            logger.info(String.format("Value: %s is not numeric ",expectedValue));
+            expectedValue=clearSpecialChars(expectedValue);
+            value=Boolean.valueOf(expectedValue);
+
+            return value;
+        }else{
+            logger.info(String.format("Value: %s parsing double value..",expectedValue));
+            Double d=parseDouble(expectedValue);
+            return  d>0 ?Boolean.TRUE :Boolean.FALSE;
+        }
+
+
+    }
+
+    private Character parseCharacter(String expectedValue) {
+        Character value ;
+        if(Optional.ofNullable(expectedValue).orElse("").length()<1){
+            value=' ';
+        }else {
+            expectedValue=clearSpaces(expectedValue);
+            value = expectedValue.charAt(0);
+        }
+
+        return value;
     }
 
     private Double parseDouble(String expectedValue) {
@@ -300,7 +338,8 @@ public class GenericClassParser<T,V> {
     }
 
     public  Boolean isNumeric(String value){
-       if(value.matches("[a-zA-Z]")){
+        String regex ="^[a-zA-Z]+$";
+       if(value.matches(regex)){
           return  false;
        }
        return  true;
@@ -361,6 +400,17 @@ public class GenericClassParser<T,V> {
         value=value.replace(" ","");
         logger.info(String.format("Value: %s spaces replaced",value));
         return  value;
+    }
+
+    public String clearSpecialChars(String value){
+        String regex ="/[-._!\"`'#%&,:;<>=@{}~\\$\\(\\)\\*\\+\\/\\\\\\?\\[\\]\\^\\|]+/";
+        if (value.matches(regex)){
+            logger.info(String.format("Value: %s includes special characters",value));
+            value =value.replaceAll(regex,"");
+            return  value;
+        }
+       return  value;
+
     }
 
 

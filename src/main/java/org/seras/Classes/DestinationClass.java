@@ -10,7 +10,7 @@ public class DestinationClass {
     public Float floatVal;
     public Byte byteVal ;
     public Double doubleVal ;
-    public Character char1 ;
+    public Character charVal ;
     public Boolean boolVal ;
 
     @Override
@@ -23,7 +23,7 @@ public class DestinationClass {
                 ", floatVal=" + floatVal +
                 ", byteVal=" + byteVal +
                 ", doubleVal=" + doubleVal +
-                ", char1=" + char1 +
+                ", char1=" + charVal +
                 ", boolVal=" + boolVal +
                 '}';
     }

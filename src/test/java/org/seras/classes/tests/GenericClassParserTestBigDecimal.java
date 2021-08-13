@@ -1,17 +1,12 @@
 package org.seras.classes.tests;
 
-import org.seras.Classes.DestinationClass;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.seras.classes.GenericClassParserBase;
+import org.seras.classes.bases.GenericClassParserBaseNumeric;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
 
 
-public class GenericClassParserTestBigDecimal extends GenericClassParserBase {
+public class GenericClassParserTestBigDecimal extends GenericClassParserBaseNumeric {
 
     @Override
     public void initDestinationClass() {

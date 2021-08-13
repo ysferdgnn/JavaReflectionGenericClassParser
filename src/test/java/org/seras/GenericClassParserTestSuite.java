@@ -3,6 +3,7 @@ package org.seras;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+import org.seras.classes.bases.GenericClassParserBaseBoolean;
 import org.seras.classes.tests.*;
 
 @RunWith(Suite.class)
@@ -13,7 +14,9 @@ import org.seras.classes.tests.*;
                 GenericClassParserTestLong.class,
                 GenericClassParserTestFloat.class,
                 GenericClassParserTestByte.class,
-                GenericClassParserTestDouble.class
+                GenericClassParserTestDouble.class,
+                GenericClassParserTestCharacter.class,
+                GenericClassParserTestBoolean.class
         }
 )
 public class GenericClassParserTestSuite {

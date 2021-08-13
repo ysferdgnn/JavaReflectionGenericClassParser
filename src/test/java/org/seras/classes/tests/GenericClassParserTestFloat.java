@@ -1,9 +1,9 @@
 package org.seras.classes.tests;
 
 import org.junit.Assert;
-import org.seras.classes.GenericClassParserBase;
+import org.seras.classes.bases.GenericClassParserBaseNumeric;
 
-public class GenericClassParserTestFloat extends GenericClassParserBase {
+public class GenericClassParserTestFloat extends GenericClassParserBaseNumeric {
 
 
     @Override

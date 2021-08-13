@@ -1,8 +1,8 @@
 package org.seras.classes.tests;
 import org.junit.Assert;
-import org.seras.classes.GenericClassParserBase;
+import org.seras.classes.bases.GenericClassParserBaseNumeric;
 
-public class GenericClassParserTestInteger  extends GenericClassParserBase  {
+public class GenericClassParserTestInteger extends GenericClassParserBaseNumeric {
 
 
     @Override

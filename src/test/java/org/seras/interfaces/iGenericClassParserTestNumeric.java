@@ -1,12 +1,6 @@
 package org.seras.interfaces;
 
 
-import org.junit.Before;
-import org.junit.Test;
-import org.seras.Classes.DestinationClass;
-import org.seras.GenericClassParser;
-
-import java.util.Map;
 
 /*Test Generic Class Parser for Float Parse
  * @author Yusuf Erdoğan
@@ -31,7 +25,7 @@ import java.util.Map;
  * contains spaces and dots
  *
  * */
-public interface IGenericClassParserTest {
+public interface iGenericClassParserTestNumeric {
      void initDestinationClass() ;
      void testNormal();
      void testBigNumber();

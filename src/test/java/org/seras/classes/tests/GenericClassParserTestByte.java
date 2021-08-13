@@ -2,13 +2,7 @@ package org.seras.classes.tests;
 
 
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.seras.Classes.DestinationClass;
-import org.seras.classes.GenericClassParserBase;
-
-import java.util.HashMap;
-import java.util.Map;
+import org.seras.classes.bases.GenericClassParserBaseNumeric;
 
 /*Test Generic Class Parser for Float Parse
  * @author Yusuf Erdoğan
@@ -33,7 +27,7 @@ import java.util.Map;
  * contains spaces and dots
  *
  * */
-public class GenericClassParserTestByte  extends GenericClassParserBase {
+public class GenericClassParserTestByte extends GenericClassParserBaseNumeric {
 
 
     @Override

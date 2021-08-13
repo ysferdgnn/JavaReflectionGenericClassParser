@@ -1,13 +1,7 @@
 package org.seras.classes.tests;
 
-import org.seras.Classes.DestinationClass;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.seras.classes.GenericClassParserBase;
-
-import java.util.HashMap;
-import java.util.Map;
+import org.seras.classes.bases.GenericClassParserBaseNumeric;
 
 
 /*Test Generic Class Parser for Float Parse
@@ -34,7 +28,7 @@ import java.util.Map;
  *
  * */
 
-public class GenericClassParserTestLong extends GenericClassParserBase {
+public class GenericClassParserTestLong extends GenericClassParserBaseNumeric {
 
     @Override
     public void initDestinationClass() {
