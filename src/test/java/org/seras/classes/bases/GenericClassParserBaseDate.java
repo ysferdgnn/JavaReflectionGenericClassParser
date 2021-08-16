@@ -37,7 +37,7 @@ public class GenericClassParserBaseDate implements IGenericClassParserTestDate {
 
     @Test
     @Override
-    public void testEmptyString() {
+    public void testEmptyString() throws ParseException {
 
     }
 
@@ -155,44 +155,45 @@ public class GenericClassParserBaseDate implements IGenericClassParserTestDate {
 
     }
 
+    @Test
     @Override
-    public void testReversedString() {
+    public void testReversedString() throws ParseException {
 
     }
 
     @Test
     @Override
-    public void testStartWithDot() {
+    public void testStartWithDot() throws ParseException {
 
     }
 
     @Test
     @Override
-    public void testEndWithDot() {
+    public void testEndWithDot() throws ParseException {
 
     }
 
     @Test
     @Override
-    public void testStartWithDotAndEndWithDot() {
+    public void testStartWithDotAndEndWithDot() throws ParseException {
 
     }
 
     @Test
     @Override
-    public void testStartWithComma() {
+    public void testStartWithComma() throws ParseException {
 
     }
 
     @Test
     @Override
-    public void testEndWithComma() {
+    public void testEndWithComma() throws ParseException {
 
     }
 
     @Test
     @Override
-    public void testStartWithCommaAndEndWithComma() {
+    public void testStartWithCommaAndEndWithComma() throws ParseException {
 
     }
 }

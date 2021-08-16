@@ -288,37 +288,95 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
     }
 
     @Override
-    public void testStartWithDot() {
-        super.testStartWithDot();
+    public void testStartWithDot() throws ParseException {
+        String dateAsString ="..13-08-2021";
+        this.valuesMap.put("date",dateAsString);
+        this.fieldMatchMap.put("date","dateUtil");
+        this.genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date date = sdf.parse("13-08-2021");
+        Assert.assertEquals(destinationClass.dateUtil,date);
     }
 
     @Override
-    public void testEndWithDot() {
-        super.testEndWithDot();
+    public void testEndWithDot() throws ParseException {
+        String dateAsString ="13-08-2021....";
+        this.valuesMap.put("date",dateAsString);
+        this.fieldMatchMap.put("date","dateUtil");
+        this.genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date date = sdf.parse("13-08-2021");
+        Assert.assertEquals(destinationClass.dateUtil,date);
     }
 
     @Override
-    public void testStartWithDotAndEndWithDot() {
-        super.testStartWithDotAndEndWithDot();
+    public void testStartWithDotAndEndWithDot() throws ParseException {
+        String dateAsString ="....13-08-2021....";
+        this.valuesMap.put("date",dateAsString);
+        this.fieldMatchMap.put("date","dateUtil");
+        this.genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date date = sdf.parse("13-08-2021");
+        Assert.assertEquals(destinationClass.dateUtil,date);
     }
 
     @Override
-    public void testStartWithComma() {
-        super.testStartWithComma();
+    public void testStartWithComma() throws ParseException {
+        String dateAsString =",,13-08-2021";
+        this.valuesMap.put("date",dateAsString);
+        this.fieldMatchMap.put("date","dateUtil");
+        this.genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date date = sdf.parse("13-08-2021");
+        Assert.assertEquals(destinationClass.dateUtil,date);
     }
 
     @Override
-    public void testEndWithComma() {
-        super.testEndWithComma();
+    public void testEndWithComma() throws ParseException {
+        String dateAsString ="13-08-2021,,,";
+        this.valuesMap.put("date",dateAsString);
+        this.fieldMatchMap.put("date","dateUtil");
+        this.genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date date = sdf.parse("13-08-2021");
+        Assert.assertEquals(destinationClass.dateUtil,date);
     }
 
     @Override
-    public void testStartWithCommaAndEndWithComma() {
-        super.testStartWithCommaAndEndWithComma();
+    public void testStartWithCommaAndEndWithComma() throws ParseException {
+        String dateAsString =",,,,,13-08-2021,,,";
+        this.valuesMap.put("date",dateAsString);
+        this.fieldMatchMap.put("date","dateUtil");
+        this.genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date date = sdf.parse("13-08-2021");
+        Assert.assertEquals(destinationClass.dateUtil,date);
     }
 
     @Override
-    public void testReversedString() {
-        super.testReversedString();
+    public void testReversedString() throws ParseException {
+
+
+        String dateAsString ="Fri Aug 13 00:00:00 EET 2021";
+        this.valuesMap.put("date",dateAsString);
+        this.fieldMatchMap.put("date","dateUtil");
+        this.genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date date = sdf.parse("13-08-2021");
+        Assert.assertEquals(destinationClass.dateUtil,date);
     }
 }

@@ -2,10 +2,12 @@ package org.seras;
 
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
-import org.seras.Classes.Constants;
+import  org.seras.Classes.Constants;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -180,7 +182,14 @@ public class GenericClassParser<T,V> {
     }
 
     private java.sql.Date parseSqlDate(String expectedValue) {
-        return null;
+
+        java.util.Date dateUtil = parseUtilDate(expectedValue);
+        logger.info(String.format("Value: %s parsed to java.util.date -> %s", expectedValue,dateUtil));
+        if(dateUtil ==null){
+            return null;
+        }
+        java.sql.Date dateSql = new java.sql.Date(dateUtil.getTime());
+        return dateSql;
     }
 
     private Date parseUtilDate(String expectedValue) {
@@ -189,6 +198,8 @@ public class GenericClassParser<T,V> {
             return  null;
         }
         expectedValue=clearSpacesDate(expectedValue);
+        expectedValue = clearMultipleDotsFromStringForDates(expectedValue);
+
 
         return parseUtilDateFromStringMultipleFormats(expectedValue);
 
@@ -447,6 +458,32 @@ public class GenericClassParser<T,V> {
         logger.info(String.format("Value: %s spaces replaced",value));
         return  value;
     }
+
+    public String clearMultipleDotsFromStringForDates(String value){
+        while(value.charAt(0)=='.'){
+            StringBuilder sb = new StringBuilder(value);
+            sb.deleteCharAt(0);
+            value=sb.toString();
+        }
+
+        while(value.charAt(value.length()-1)=='.'){
+            StringBuilder sb = new StringBuilder(value);
+            sb.deleteCharAt(value.length()-1);
+            value=sb.toString();
+        }
+
+        for (int i =0; i<value.length(); i++){
+            if(value.charAt(i)=='.'){
+                if(value.charAt(Math.min(value.length(),i+1))=='.'){
+                    StringBuilder sb = new StringBuilder(value);
+                    sb.deleteCharAt(i);
+                    value=sb.toString();
+                }
+            }
+        }
+
+        return value;
+    }
     public String clearSpacesDate(String value){
 
         logger.info(String.format("Value: %s includes spaces working trim",value));
@@ -472,7 +509,8 @@ public class GenericClassParser<T,V> {
                 value = String.format("%s %s",firstPiece,secondPiece);
                 logger.info(String.format("Value: %s new value",value));
 
-            }else if (Optional.ofNullable(splitList).map(List::size).orElse(0)>2){
+            }
+            else if (Optional.ofNullable(splitList).map(List::size).orElse(0)>2){
                 logger.info(String.format("Value: %s includes multiple spaces.",value));
 
               value=  splitList.stream().map(this::clearSpaces).collect(Collectors.joining(""));
@@ -502,11 +540,25 @@ public class GenericClassParser<T,V> {
     }
     public  java.util.Date parseUtilDateFromStringMultipleFormats(String value){
         logger.info(String.format("Value: %s parsing..",value));
-        if(value.length()>18) {
+
+        if(value.length()>20) {
             logger.info(String.format("Value: %s length(%s) overflow, Trim in progress",value,value.length()));
-            value=value.substring(0,19);
-            logger.info(String.format("Value: %s divided",value));
+            try {
+
+               boolean isEng= Constants.getInstance().dayListENG.stream().anyMatch(value::contains);
+               if (isEng){
+                   logger.info(String.format("Value: %s contains english words. being adjusted locale and date format as 'EEEMMMddHH:mm:sszzzyyyy' ",value));
+                   Locale locale = Locale.ENGLISH;
+                   SimpleDateFormat formatReverse = new SimpleDateFormat("EEEMMMddHH:mm:sszzzyyyy",locale);
+                   return formatReverse.parse(value );
+               }
+
+            }catch (ParseException exception){
+                logger.warning(String.format("Value : %s can't parsed! ",value));
+            }
+
         }
+
 
         DateTimeFormatter dateTimeFormatter= new DateTimeFormatterBuilder()
                 .appendOptional(DateTimeFormatter.ofPattern("dd.MM.yyyy H:mm:ss"))

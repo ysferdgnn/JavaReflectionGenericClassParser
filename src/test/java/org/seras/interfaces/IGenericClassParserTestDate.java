@@ -6,7 +6,7 @@ public interface IGenericClassParserTestDate {
 
     void initDestinationClass();
     void testNormal() throws ParseException;
-    void testEmptyString();
+    void testEmptyString() throws ParseException;
     void testStartWithSpaces() throws ParseException;
     void testEndWithSpaces() throws ParseException;
     void testMultipleSpaces() throws ParseException;
@@ -30,15 +30,15 @@ public interface IGenericClassParserTestDate {
     void testStartWithDayHyphenWithoutTime() throws ParseException;
 
 
-    void testReversedString();
+    void testReversedString() throws ParseException;
 
-    void testStartWithDot();
-    void testEndWithDot();
-    void testStartWithDotAndEndWithDot();
+    void testStartWithDot() throws ParseException;
+    void testEndWithDot() throws ParseException;
+    void testStartWithDotAndEndWithDot() throws ParseException;
 
-    void testStartWithComma();
-    void testEndWithComma();
-    void testStartWithCommaAndEndWithComma();
+    void testStartWithComma() throws ParseException;
+    void testEndWithComma() throws ParseException;
+    void testStartWithCommaAndEndWithComma() throws ParseException;
 
 
 
