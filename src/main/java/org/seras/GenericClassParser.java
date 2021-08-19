@@ -1,9 +1,7 @@
 package org.seras;
 
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import  org.seras.Classes.Constants;
-
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -208,7 +206,8 @@ public class GenericClassParser<T,V> {
 
                 try{
                     Date date= parseUtilDate(expectedValue);
-                    return new Timestamp(date.getTime());
+
+                    return date ==null ? null : new Timestamp(date.getTime());
                 }catch (Exception exception){
                     return null;
                 }
@@ -217,7 +216,7 @@ public class GenericClassParser<T,V> {
         }else{
             try{
                 Date date= parseUtilDate(expectedValue);
-                return new Timestamp(date.getTime());
+                return date ==null ? null : new Timestamp(date.getTime());
             }catch (Exception exception){
                 return null;
             }
