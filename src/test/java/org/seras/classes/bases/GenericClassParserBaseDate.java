@@ -196,4 +196,46 @@ public class GenericClassParserBaseDate implements IGenericClassParserTestDate {
     public void testStartWithCommaAndEndWithComma() throws ParseException {
 
     }
+
+    @Test
+    @Override
+    public void testStartWithYearHypenWithTimeWithoutSecs() throws ParseException {
+
+    }
+
+    @Test
+    @Override
+    public void testStartWithYearDotWithTimeWithoutSecs() throws ParseException {
+
+    }
+
+    @Test
+    @Override
+    public void testStartWithYearSlashWithTimeWithoutSecs() throws ParseException {
+
+    }
+
+    @Test
+    @Override
+    public void testStartWithDayHypenWithTimeWithoutSecs() throws ParseException {
+
+    }
+
+    @Test
+    @Override
+    public void testStartWithDaySlashWithTimeWithoutSecs() throws ParseException {
+
+    }
+
+    @Test
+    @Override
+    public void testStartWithDayDotWithTimeWithoutSecs() throws ParseException {
+
+    }
+
+    @Test
+    @Override
+    public void testExcelDatetime() throws ParseException {
+
+    }
 }

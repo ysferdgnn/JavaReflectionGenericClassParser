@@ -15,7 +15,8 @@ public class Constants {
 
     public  String regexSpecialChars="/[-._!\"`'#%&,:;<>=@{}~\\$\\(\\)\\*\\+\\/\\\\\\?\\[\\]\\^\\|]+/";
 
-    public  String regexNumeric ="^[a-zA-Z]+$";
+
+    public  String regexNumeric ="^-?\\d*(\\.\\d+)?$";
 
     public List<String> dayListENG = Arrays.asList("Sat","Sun","Mon","Tue","Wed","Thu","Fri");
 

@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
@@ -58,7 +59,7 @@ public class GenericClassParser<T,V> {
     public void parseMapToClass(Map<String,String> sourceMap, V destinationClazz, Map<String,String> fieldMap){
 
         logger.info("Starting ParseMap To Class...");
-        List<String> sourceClazzFieldList = sourceMap.keySet().stream().collect(Collectors.toList());
+        List<String> sourceClazzFieldList = new ArrayList<>(sourceMap.keySet());
         List<Field> destinationClazzFieldList = Arrays.asList(destinationClazz.getClass().getDeclaredFields());
 
 
@@ -178,7 +179,62 @@ public class GenericClassParser<T,V> {
     }
 
     private Timestamp parseTimetamp(String expectedValue) {
-        return null;
+
+
+        String expectedValueAsStringForDotCount=String.valueOf(expectedValue);
+
+        expectedValueAsStringForDotCount=expectedValueAsStringForDotCount
+                .replace(",",".")
+                .trim();
+        long dotCount = expectedValueAsStringForDotCount.chars().filter(s->s=='.').count();
+
+        String valueASString = String.valueOf(expectedValue);
+
+        valueASString= clearStringForNumericCheck(valueASString);
+
+        if(isNumeric(valueASString)){
+
+            if(dotCount==0){
+                long timestampAsLong = parseLong(expectedValue);
+
+                return timestampAsLong==0 ? null : new Timestamp(timestampAsLong);
+            }
+
+            if(dotCount==1){
+                expectedValue =expectedValue.replace(",", ".");
+                LocalDateTime localDateTime = parseExcelDate(expectedValue);
+                return Timestamp.valueOf(localDateTime);
+            }else{
+
+                try{
+                    Date date= parseUtilDate(expectedValue);
+                    return new Timestamp(date.getTime());
+                }catch (Exception exception){
+                    return null;
+                }
+            }
+
+        }else{
+            try{
+                Date date= parseUtilDate(expectedValue);
+                return new Timestamp(date.getTime());
+            }catch (Exception exception){
+                return null;
+            }
+        }
+
+    }
+
+    private LocalDateTime parseExcelDate(String s)
+    {
+        long days = Long.parseLong(s.split("\\.")[0]); // Get days from epoch as long
+        double seconds = (Double.parseDouble(s) - days) * 86400; // Get time fraction and convert to seconds
+        if (days >= 59)
+        {
+            days--; // Shave extra day if days push date past erroneous leap day in 1900
+        }
+        // Construct and return LocalDateTime object
+        return LocalDateTime.of(1899, 12, 31, 0, 0, 0).plusDays(days).plusSeconds((long) Math.ceil(seconds));
     }
 
     private java.sql.Date parseSqlDate(String expectedValue) {
@@ -188,11 +244,10 @@ public class GenericClassParser<T,V> {
         if(dateUtil ==null){
             return null;
         }
-        java.sql.Date dateSql = new java.sql.Date(dateUtil.getTime());
-        return dateSql;
+        return new java.sql.Date(dateUtil.getTime());
     }
 
-    private Date parseUtilDate(String expectedValue) {
+    private Date parseUtilDate( String expectedValue) {
 
         if (Optional.ofNullable(expectedValue).orElse("").contentEquals("")) {
             return  null;
@@ -206,7 +261,7 @@ public class GenericClassParser<T,V> {
     }
 
     private Boolean parseBoolean(String expectedValue) {
-        Boolean value =Boolean.FALSE;
+        boolean value;
         if(Optional.ofNullable(expectedValue).orElse("").contentEquals("")){
             logger.info(String.format("Value: %s is null return false default",expectedValue));
             return  Boolean.FALSE;
@@ -216,7 +271,7 @@ public class GenericClassParser<T,V> {
         if(!isNumeric(expectedValue)){
             logger.info(String.format("Value: %s is not numeric ",expectedValue));
             expectedValue=clearSpecialChars(expectedValue);
-            value=Boolean.valueOf(expectedValue);
+            value= Boolean.parseBoolean(expectedValue);
 
             return value;
         }else{
@@ -229,7 +284,7 @@ public class GenericClassParser<T,V> {
     }
 
     private Character parseCharacter(String expectedValue) {
-        Character value ;
+        char value ;
         if(Optional.ofNullable(expectedValue).orElse("").length()<1){
             value=' ';
         }else {
@@ -241,8 +296,11 @@ public class GenericClassParser<T,V> {
     }
 
     private Double parseDouble(String expectedValue) {
-        Double value=0d;
-        if(isNumeric(expectedValue)){
+        double value=0d;
+
+        String valueForNumericCheck=clearStringForNumericCheck(expectedValue);
+
+        if(isNumeric(valueForNumericCheck)){
             expectedValue = clearSpaces(expectedValue);
 
             if(isContainsDotOrComma(expectedValue)){
@@ -265,8 +323,10 @@ public class GenericClassParser<T,V> {
     }
 
     private Byte parseByte(String expectedValue) {
-        Byte value=0;
-        if(isNumeric(expectedValue)){
+        byte value=0;
+        String valueForNumericCheck=clearStringForNumericCheck(expectedValue);
+
+        if(isNumeric(valueForNumericCheck)){
             expectedValue = clearSpaces(expectedValue);
             if(isContainsDotOrComma(expectedValue)){
                 logger.info(String.format("Value: %s is contains dot",expectedValue));
@@ -281,18 +341,16 @@ public class GenericClassParser<T,V> {
                 value=0;
             }
 
-        }else{
-            value=0;
         }
-
-
         return value;
     }
 
     private Float parseFloat(String expectedValue) {
-        Float value =0f;
+        float value =0f;
 
-        if(isNumeric(expectedValue)){
+        String valueForNumericCheck=clearStringForNumericCheck(expectedValue);
+        if(isNumeric(valueForNumericCheck)){
+
             expectedValue=clearSpaces(expectedValue);
             if(isContainsDotOrComma(expectedValue)){
                 logger.info(String.format("Value: %s is contains dot",expectedValue));
@@ -303,9 +361,9 @@ public class GenericClassParser<T,V> {
                 logger.info(String.format("Value: %s is expected value",expectedValue));
                 value=Float.parseFloat(expectedValue);
 
-                logger.info(String.format("Value: %s is %s",expectedValue,value.isInfinite() ? "infinite it must be 0" : "finite"));
+                logger.info(String.format("Value: %s is %s",expectedValue, Float.isInfinite(value) ? "infinite it must be 0" : "finite"));
 
-                value = value.isInfinite() ? 0f :value;
+                value = Float.isInfinite(value) ? 0f :value;
             }catch (NumberFormatException exception){
                 logger.warning(String.format("Value: %s Float Number Format Exception",value));
                 value=0F;
@@ -315,10 +373,21 @@ public class GenericClassParser<T,V> {
         }
         return value;
     }
+    public String clearStringForNumericCheck(String str){
+        str=String.valueOf(str)
+                .replace(".","")
+                .replace(",","")
+                .replace(" ","")
+                .trim();
+        return  str;
+    }
 
     private Long parseLong(String expectedValue) {
-        Long value =0L;
-        if(isNumeric(expectedValue)){
+        long value =0L;
+
+        String valueForNumericCheck=clearStringForNumericCheck(expectedValue);
+
+        if(isNumeric(valueForNumericCheck)){
             expectedValue = clearSpaces(expectedValue);
             if(isContainsDotOrComma(expectedValue)){
                 logger.info(String.format("Value: %s is contains dot",expectedValue));
@@ -345,7 +414,14 @@ public class GenericClassParser<T,V> {
 
     private BigDecimal parseBigDecimal(String expectedValue) {
         BigDecimal value =BigDecimal.ZERO;
-        if(isNumeric(expectedValue)){
+        String expectedValueClearedForNumeric =
+                String.valueOf(expectedValue)
+                        .replace(".","")
+                        .replace(",","")
+                        .replace(" ", "")
+                        .trim();
+
+        if(isNumeric(expectedValueClearedForNumeric)){
             try {
                 expectedValue = clearSpaces(expectedValue);
                 if(isContainsDotOrComma(expectedValue)){
@@ -370,22 +446,24 @@ public class GenericClassParser<T,V> {
     }
 
     private Integer parseInteger(String expectedValue) {
-        Integer value =0;
+        int value =0;
         expectedValue = clearSpaces(expectedValue);
-        if(isNumeric(expectedValue)){
+
+        String valueForNumericCheck=clearStringForNumericCheck(expectedValue);
+
+        if(isNumeric(valueForNumericCheck)){
             try{
                 if (isContainsDotOrComma(expectedValue)){
                     expectedValue = clearDotsAndCommasFromString(expectedValue);
 
-                    Double doubleValue = Double.valueOf(expectedValue);
-                    value = doubleValue.intValue();
+                    double doubleValue = Double.parseDouble(expectedValue);
+                    value = (int) doubleValue;
                 }else{
-                    value = Integer.valueOf(expectedValue);
+                    value = Integer.parseInt(expectedValue);
                 }
 
             }catch (NumberFormatException e){
                 logger.warning(String.format("Value: %s Integer Number Format Exception", expectedValue));
-                value =0;
             }
         }else{
             logger.info(String.format("Value: %s is not Numeric!", expectedValue));
@@ -396,29 +474,17 @@ public class GenericClassParser<T,V> {
 
     public  Boolean isNumeric(String value){
         String regex =Constants.getInstance().regexNumeric;
-       if(value.matches(regex)){
-          return  false;
-       }
-       return  true;
+        return value.matches(regex) ;
     }
     public Boolean isContainsDotOrComma(String value){
         logger.info(String.format("Value: %s containing dot or comma",value));
-        if(value.contains(".") || value.contains(",")){
-            return true;
-        }
-        return  false;
+        return value.contains(".") || value.contains(",");
     }
     public String changeCommasAsDot(String value){
         logger.info(String.format("Value: %s changing commas as dot..",value));
         value = value.replace(',','.');
         logger.info(String.format("Value: %s changed commas as dots",value));
         return  value;
-    }
-    public String changeDotsAsComma(String value){
-        logger.info(String.format("Value: %s changing dots as comma..",value));
-        value=value.replace(".",",");
-        logger.info(String.format("Value: %s changed dots as commas",value));
-        return value;
     }
     public int calculateDotCount(String value){
         value = changeCommasAsDot(value);
@@ -495,7 +561,7 @@ public class GenericClassParser<T,V> {
             String [] splitArray = value.split(" ");
             List<String> splitList = Arrays.asList(splitArray);
 
-            if(Optional.ofNullable(splitList).map(List::size).orElse(0).equals(2)){
+            if(Optional.of(splitList).map(List::size).orElse(0).equals(2)){
                 logger.info(String.format("Value %s includes 2 pieces. Dividing..",value));
                 String firstPiece = splitList.get(0);
                 String secondPiece = splitList.get(1);
@@ -510,7 +576,7 @@ public class GenericClassParser<T,V> {
                 logger.info(String.format("Value: %s new value",value));
 
             }
-            else if (Optional.ofNullable(splitList).map(List::size).orElse(0)>2){
+            else if (Optional.of(splitList).map(List::size).orElse(0)>2){
                 logger.info(String.format("Value: %s includes multiple spaces.",value));
 
               value=  splitList.stream().map(this::clearSpaces).collect(Collectors.joining(""));
@@ -561,12 +627,15 @@ public class GenericClassParser<T,V> {
 
 
         DateTimeFormatter dateTimeFormatter= new DateTimeFormatterBuilder()
+
+                //with time and space
                 .appendOptional(DateTimeFormatter.ofPattern("dd.MM.yyyy H:mm:ss"))
                 .appendOptional(DateTimeFormatter.ofPattern("dd/MM/yyyy H:mm:ss"))
                 .appendOptional(DateTimeFormatter.ofPattern("dd-MM-yyyy H:mm:ss"))
                 .appendOptional(DateTimeFormatter.ofPattern("yyy-MM-dd H:mm:ss"))
                 .appendOptional(DateTimeFormatter.ofPattern("yyy/MM/dd H:mm:ss"))
                 .appendOptional(DateTimeFormatter.ofPattern("yyy.MM.dd H:mm:ss"))
+                //with time and without space
                 .appendOptional(DateTimeFormatter.ofPattern("dd.MM.yyyyH:mm:ss"))
                 .appendOptional(DateTimeFormatter.ofPattern("dd/MM/yyyyH:mm:ss"))
                 .appendOptional(DateTimeFormatter.ofPattern("dd-MM-yyyyH:mm:ss"))
@@ -574,12 +643,28 @@ public class GenericClassParser<T,V> {
                 .appendOptional(DateTimeFormatter.ofPattern("yyy/MM/ddH:mm:ss"))
                 .appendOptional(DateTimeFormatter.ofPattern("yyy.MM.ddH:mm:ss"))
                 .appendOptional(DateTimeFormatter.ofPattern("yyy.MM.ddH:mm:ss"))
+                //without seconds and space
+                .appendOptional(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
+                .appendOptional(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm"))
+                .appendOptional(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm"))
+                .appendOptional(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"))
+                .appendOptional(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"))
+                .appendOptional(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))
+                //without seconds and without space
+                .appendOptional(DateTimeFormatter.ofPattern("yyyy-MM-ddHH:mm"))
+                .appendOptional(DateTimeFormatter.ofPattern("yyyy.MM.ddHH:mm"))
+                .appendOptional(DateTimeFormatter.ofPattern("yyyy/MM/ddHH:mm"))
+                .appendOptional(DateTimeFormatter.ofPattern("dd-MM-yyyyHH:mm"))
+                .appendOptional(DateTimeFormatter.ofPattern("dd.MM.yyyyHH:mm"))
+                .appendOptional(DateTimeFormatter.ofPattern("dd/MM/yyyyHH:mm"))
+                //without time
                 .appendOptional(DateTimeFormatter.ofPattern("yyy.MM.dd"))
                 .appendOptional(DateTimeFormatter.ofPattern("yyy-MM-dd"))
                 .appendOptional(DateTimeFormatter.ofPattern("yyy/MM/dd"))
                 .appendOptional(DateTimeFormatter.ofPattern("dd/MM/yyy"))
                 .appendOptional(DateTimeFormatter.ofPattern("dd.MM.yyy"))
                 .appendOptional(DateTimeFormatter.ofPattern("dd-MM-yyy"))
+
                 .toFormatter();
         LocalDate localDate= LocalDate.parse(value,dateTimeFormatter);
         LocalTime localTime=null;
@@ -587,15 +672,14 @@ public class GenericClassParser<T,V> {
         try{
             localTime= LocalTime.parse(value,dateTimeFormatter);
         }catch (DateTimeParseException exception){
-
-            localTime=null;
+            logger.warning(String.format("Value: %s can't parsed!",value));
         }
 
         logger.info(String.format("Value: %s parsed localdate ->%s",value,localDate.toString()));
         Timestamp t = Timestamp.valueOf(localTime !=null ? localDate.atTime(localTime) : localDate.atStartOfDay());
         logger.info(String.format("Value %s parsed Timestamp ->%s",value,t));
         Date d = new Date(t.getTime());
-        logger.info(String.format("Value: %s parsed Date ->%s",value,d.toString()));
+        logger.info(String.format("Value: %s parsed Date ->%s",value,d));
         return d;
     }
 

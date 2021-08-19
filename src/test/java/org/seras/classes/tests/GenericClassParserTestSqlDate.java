@@ -479,4 +479,107 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
 
         Assert.assertEquals(destinationClass.dateSql,date);
     }
+
+    @Override
+    public void testStartWithYearHypenWithTimeWithoutSecs() throws ParseException {
+        String dateAsString ="2021-01-01 15:00";
+        this.valuesMap.put("date",dateAsString);
+        this.fieldMatchMap.put("date","dateSql");
+
+        this.genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Date dateUtil = sdf.parse("2021-01-01 15:00");
+        java.sql.Date date= new java.sql.Date(dateUtil.getTime());
+
+
+        Assert.assertEquals(destinationClass.dateSql,date);
+    }
+
+    @Override
+    public void testStartWithYearDotWithTimeWithoutSecs() throws ParseException {
+        String dateAsString ="2021.01.01 15:00";
+        this.valuesMap.put("date",dateAsString);
+        this.fieldMatchMap.put("date","dateSql");
+
+        this.genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm");
+        Date dateUtil = sdf.parse("2021.01.01 15:00");
+        java.sql.Date date= new java.sql.Date(dateUtil.getTime());
+
+
+        Assert.assertEquals(destinationClass.dateSql,date);
+    }
+
+    @Override
+    public void testStartWithYearSlashWithTimeWithoutSecs() throws ParseException {
+        String dateAsString ="2021/01/01 15:00";
+        this.valuesMap.put("date",dateAsString);
+        this.fieldMatchMap.put("date","dateSql");
+
+        this.genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        Date dateUtil = sdf.parse("2021/01/01 15:00");
+        java.sql.Date date= new java.sql.Date(dateUtil.getTime());
+
+        Assert.assertEquals(destinationClass.dateSql,date);
+    }
+
+    @Override
+    public void testStartWithDayHypenWithTimeWithoutSecs() throws ParseException {
+        String dateAsString ="17-08-2021 15:00";
+        this.valuesMap.put("date",dateAsString);
+        this.fieldMatchMap.put("date","dateSql");
+
+        this.genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        Date dateUtil = sdf.parse("17-08-2021 15:00");
+        java.sql.Date date= new java.sql.Date(dateUtil.getTime());
+
+        Assert.assertEquals(destinationClass.dateSql,date);
+    }
+
+    @Override
+    public void testStartWithDaySlashWithTimeWithoutSecs() throws ParseException {
+        String dateAsString ="17/08/2021 15:00";
+        this.valuesMap.put("date",dateAsString);
+        this.fieldMatchMap.put("date","dateSql");
+
+        this.genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        Date dateUtil = sdf.parse("17/08/2021 15:00");
+        java.sql.Date date= new java.sql.Date(dateUtil.getTime());
+
+        Assert.assertEquals(destinationClass.dateSql,date);
+    }
+
+    @Override
+    public void testStartWithDayDotWithTimeWithoutSecs() throws ParseException {
+        String dateAsString ="17.08.2021 15:00";
+        this.valuesMap.put("date",dateAsString);
+        this.fieldMatchMap.put("date","dateSql");
+
+        this.genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+        Date dateUtil = sdf.parse("17.08.2021 15:00");
+        java.sql.Date date= new java.sql.Date(dateUtil.getTime());
+
+        Assert.assertEquals(destinationClass.dateSql,date);
+    }
+
+    @Override
+    public void testExcelDatetime() throws ParseException {
+        super.testExcelDatetime();
+    }
 }

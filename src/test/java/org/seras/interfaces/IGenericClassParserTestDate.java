@@ -40,6 +40,15 @@ public interface IGenericClassParserTestDate {
     void testEndWithComma() throws ParseException;
     void testStartWithCommaAndEndWithComma() throws ParseException;
 
+    void testStartWithYearHypenWithTimeWithoutSecs() throws  ParseException;
+    void testStartWithYearDotWithTimeWithoutSecs() throws  ParseException;
+    void testStartWithYearSlashWithTimeWithoutSecs() throws  ParseException;
+
+    void testStartWithDayHypenWithTimeWithoutSecs() throws  ParseException;
+    void testStartWithDaySlashWithTimeWithoutSecs() throws  ParseException;
+    void testStartWithDayDotWithTimeWithoutSecs() throws  ParseException;
+    void testExcelDatetime() throws ParseException;
+
 
 
 
