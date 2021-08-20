@@ -251,6 +251,9 @@ public class GenericClassParser<T,V> {
         if (Optional.ofNullable(expectedValue).orElse("").contentEquals("")) {
             return  null;
         }
+
+
+
         expectedValue=clearSpacesDate(expectedValue);
         expectedValue = clearMultipleDotsFromStringForDates(expectedValue);
 
@@ -263,7 +266,7 @@ public class GenericClassParser<T,V> {
         boolean value;
         if(Optional.ofNullable(expectedValue).orElse("").contentEquals("")){
             logger.info(String.format("Value: %s is null return false default",expectedValue));
-            return  Boolean.FALSE;
+            return  null;
         }
         expectedValue=clearSpaces(expectedValue);
 
@@ -284,12 +287,14 @@ public class GenericClassParser<T,V> {
 
     private Character parseCharacter(String expectedValue) {
         char value ;
-        if(Optional.ofNullable(expectedValue).orElse("").length()<1){
-            value=' ';
-        }else {
-            expectedValue=clearSpaces(expectedValue);
-            value = expectedValue.charAt(0);
+
+        if (expectedValue ==null || expectedValue =="")
+        {
+            return null;
         }
+        expectedValue=clearSpaces(expectedValue);
+        value = expectedValue.charAt(0);
+
 
         return value;
     }
@@ -663,10 +668,18 @@ public class GenericClassParser<T,V> {
                 .appendOptional(DateTimeFormatter.ofPattern("dd/MM/yyy"))
                 .appendOptional(DateTimeFormatter.ofPattern("dd.MM.yyy"))
                 .appendOptional(DateTimeFormatter.ofPattern("dd-MM-yyy"))
-
                 .toFormatter();
-        LocalDate localDate= LocalDate.parse(value,dateTimeFormatter);
+
+        LocalDate localDate;
+
         LocalTime localTime=null;
+
+        try{
+            localDate=LocalDate.parse(value,dateTimeFormatter);
+        }catch (Exception e ){
+            logger.info(String.format("Value: %s cant parsed return null",value));
+            return null;
+        }
 
         try{
             localTime= LocalTime.parse(value,dateTimeFormatter);

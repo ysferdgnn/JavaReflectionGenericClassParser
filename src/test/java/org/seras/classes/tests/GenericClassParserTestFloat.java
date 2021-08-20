@@ -148,4 +148,19 @@ public class GenericClassParserTestFloat extends GenericClassParserBaseNumeric {
         Assert.assertEquals(destinationClass.floatVal,999.9f,0);
     }
 
+    @Override
+    public void testNull() {
+        valuesMap.put("float",null);
+        fieldMatchMap.put("float","doubleVal");
+        genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+        Assert.assertNull(destinationClass.floatVal);
+    }
+
+    @Override
+    public void testEmptyString() {
+        valuesMap.put("float","");
+        fieldMatchMap.put("float","doubleVal");
+        genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+        Assert.assertNull(destinationClass.floatVal);
+    }
 }

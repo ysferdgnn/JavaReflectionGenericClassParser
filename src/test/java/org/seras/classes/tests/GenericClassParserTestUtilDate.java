@@ -3,6 +3,7 @@ package org.seras.classes.tests;
 import org.junit.Assert;
 import org.seras.classes.bases.GenericClassParserBaseDate;
 
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -460,6 +461,19 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
     @Override
     public void testExcelDatetime() throws ParseException {
-        super.testExcelDatetime();
+        valuesMap.put("date", "43706,4856597222");
+        fieldMatchMap.put("date","dateUtil" );
+        genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+        Assert.assertNull(destinationClass.dateUtil);
+    }
+
+    @Override
+    public void testNull() {
+        valuesMap.put("date", null);
+        fieldMatchMap.put("date","dateUtil" );
+        genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+
+
+        Assert.assertNull(destinationClass.dateUtil);
     }
 }

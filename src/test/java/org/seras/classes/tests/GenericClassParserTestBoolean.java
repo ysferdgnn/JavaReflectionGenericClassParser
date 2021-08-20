@@ -208,4 +208,20 @@ public class GenericClassParserTestBoolean extends GenericClassParserBaseBoolean
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
         Assert.assertFalse(destinationClass.boolVal);
     }
+
+    @Override
+    public void testNull() {
+        valuesMap.put("boolVal",null);
+        fieldMatchMap.put("boolVal","boolVal");
+        genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+        Assert.assertNull(destinationClass.boolVal);
+    }
+
+    @Override
+    public void testEmptyString() {
+        valuesMap.put("boolVal","");
+        fieldMatchMap.put("boolVal","boolVal");
+        genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+        Assert.assertNull(destinationClass.boolVal);
+    }
 }

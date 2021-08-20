@@ -48,6 +48,7 @@ public interface IGenericClassParserTestDate {
     void testStartWithDaySlashWithTimeWithoutSecs() throws  ParseException;
     void testStartWithDayDotWithTimeWithoutSecs() throws  ParseException;
     void testExcelDatetime() throws ParseException;
+    void testNull();
 
 
 

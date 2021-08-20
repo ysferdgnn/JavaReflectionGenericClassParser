@@ -162,4 +162,20 @@ public class GenericClassParserTestDouble extends GenericClassParserBaseNumeric 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
         Assert.assertEquals(destinationClass.doubleVal, 15.4d, 0);
     }
+
+    @Override
+    public void testNull() {
+        valuesMap.put("double",null);
+        fieldMatchMap.put("double","doubleVal");
+        genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+        Assert.assertNull(destinationClass.doubleVal);
+    }
+
+    @Override
+    public void testEmptyString() {
+        valuesMap.put("double","");
+        fieldMatchMap.put("double","doubleVal");
+        genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+        Assert.assertNull(destinationClass.doubleVal);
+    }
 }

@@ -580,6 +580,17 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
 
     @Override
     public void testExcelDatetime() throws ParseException {
-        super.testExcelDatetime();
+        valuesMap.put("date", "43706,4856597222");
+        fieldMatchMap.put("date","dateSql" );
+        genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+        Assert.assertNull(destinationClass.dateSql);
+    }
+
+    @Override
+    public void testNull() {
+        valuesMap.put("date",null);
+        fieldMatchMap.put("date","dateSql");
+        genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+        Assert.assertNull(destinationClass.dateSql);
     }
 }

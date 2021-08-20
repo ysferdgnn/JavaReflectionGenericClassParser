@@ -41,5 +41,6 @@ public interface IGenericClassParserTestTimestamp {
     void testStartWithSpaces();
     void testEndWithSpaces();
     void testIncludeMultipleSpaces();
+    void testNull();
 
 }

@@ -65,4 +65,20 @@ public class GenericClassParserTestCharacter extends GenericClassParserBaseAlpha
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
         Assert.assertEquals(destinationClass.charVal,'y',0);
     }
+
+    @Override
+    public void testNull() {
+        valuesMap.put("charVal",null);
+        fieldMatchMap.put("charVal","charVal");
+        genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+        Assert.assertNull(destinationClass.charVal);
+    }
+
+    @Override
+    public void testEmptyString() {
+        valuesMap.put("charVal","");
+        fieldMatchMap.put("charVal","charVal");
+        genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+        Assert.assertNull(destinationClass.charVal);
+    }
 }

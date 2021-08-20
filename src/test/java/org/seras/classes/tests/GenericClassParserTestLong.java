@@ -187,4 +187,20 @@ public class GenericClassParserTestLong extends GenericClassParserBaseNumeric {
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
         Assert.assertEquals(destinationClass.longval, 555L, 0);
     }
+
+    @Override
+    public void testNull() {
+        valuesMap.put("longValue",null);
+        fieldMatchMap.put("longValue","longval");
+        genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+        Assert.assertNull(destinationClass.longval);
+    }
+
+    @Override
+    public void testEmptyString() {
+        valuesMap.put("longValue","");
+        fieldMatchMap.put("longValue","longval");
+        genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+        Assert.assertNull(destinationClass.longval);
+    }
 }

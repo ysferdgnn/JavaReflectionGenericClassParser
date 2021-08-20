@@ -29,5 +29,7 @@ public interface IGenericClassParserTestBoolean {
     void testNumericAndAlphaNumeric();
     void testNumericException();
     void testAlpNumericException();
+    void testNull();
+    void testEmptyString();
 
 }

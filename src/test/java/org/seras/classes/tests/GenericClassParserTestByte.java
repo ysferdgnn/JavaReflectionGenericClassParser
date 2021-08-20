@@ -187,4 +187,20 @@ public class GenericClassParserTestByte extends GenericClassParserBaseNumeric {
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
         Assert.assertEquals(destinationClass.byteVal, 0, 0);
     }
+
+    @Override
+    public void testNull() {
+        valuesMap.put("byteVal",null);
+        fieldMatchMap.put("byteVal","byteVal");
+        genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+        Assert.assertNull(destinationClass.boolVal);
+    }
+
+    @Override
+    public void testEmptyString() {
+        valuesMap.put("byteVal","");
+        fieldMatchMap.put("byteVal","byteVal");
+        genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+        Assert.assertNull(destinationClass.byteVal);
+    }
 }

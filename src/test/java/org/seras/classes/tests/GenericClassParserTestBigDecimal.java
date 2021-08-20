@@ -166,4 +166,20 @@ public class GenericClassParserTestBigDecimal extends GenericClassParserBaseNume
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
         Assert.assertEquals(0, destinationClass.decimal.compareTo(new BigDecimal("1.2")));
     }
+
+    @Override
+    public void testNull() {
+        valuesMap.put("descimalVal",null);
+        fieldMatchMap.put("decimalVal","decimal");
+        genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+        Assert.assertNull(destinationClass.decimal);
+    }
+
+    @Override
+    public void testEmptyString() {
+        valuesMap.put("decimalVal","");
+        fieldMatchMap.put("decimalVal","decimal");
+        genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+        Assert.assertNull(destinationClass.decimal);
+    }
 }

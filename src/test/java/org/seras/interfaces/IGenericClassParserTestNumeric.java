@@ -44,5 +44,7 @@ public interface IGenericClassParserTestNumeric {
      void testStartWithNegativeNumberAndContainsAlphanumericAndContainsMultipleDots();
      void testContainsSpaces();
      void testContainsSpacesAndDots();
+     void testNull();
+     void testEmptyString();
 
 }

@@ -164,5 +164,19 @@ public class GenericClassParserTestInteger extends GenericClassParserBaseNumeric
         Assert.assertEquals(destinationClass.integerValue, 10, 0);
     }
 
+    @Override
+    public void testNull() {
+        valuesMap.put("intVal",null);
+        fieldMatchMap.put("intVal","integerValue");
+        genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+        Assert.assertNull(destinationClass.integerValue);
+    }
 
+    @Override
+    public void testEmptyString() {
+        valuesMap.put("intVal","");
+        fieldMatchMap.put("intVal","integerValue");
+        genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+        Assert.assertNull(destinationClass.integerValue);
+    }
 }

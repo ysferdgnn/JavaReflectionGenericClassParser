@@ -10,5 +10,7 @@ public interface IGenericClassParserTestAlphaNumeric {
     void testOverFlow();
     void testSpecialChars();
     void testCaseSensitive();
+    void testNull();
+    void testEmptyString();
 
 }

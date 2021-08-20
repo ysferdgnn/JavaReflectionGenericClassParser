@@ -367,4 +367,14 @@ public class GenericClassParserTestTimestamp extends GenericClassParserBaseTimes
         Timestamp timestamp=new Timestamp(1454444);
         Assert.assertEquals(timestamp,destinationClass.timestamp);
     }
+
+    @Override
+    public void testNull() {
+        valuesMap.put("tmp", null);
+        fieldMatchMap.put("tmp","timestamp" );
+        genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+
+
+        Assert.assertNull(destinationClass.timestamp);
+    }
 }
