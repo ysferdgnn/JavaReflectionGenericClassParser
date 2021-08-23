@@ -3,7 +3,6 @@ package org.seras.classes.tests;
 import org.junit.Assert;
 import org.seras.classes.bases.GenericClassParserBaseDate;
 
-import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;

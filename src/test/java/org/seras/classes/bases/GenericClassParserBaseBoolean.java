@@ -1,6 +1,5 @@
 package org.seras.classes.bases;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.seras.Classes.DestinationClass;
