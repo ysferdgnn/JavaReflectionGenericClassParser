@@ -3,13 +3,12 @@ package org.seras.Classes;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.zip.DataFormatException;
 
 public class DestinationClass {
-    public String ad;
+    public String stringVal;
     public Integer integerValue ;
     public BigDecimal decimal ;
-    public Long longval ;
+    public Long longVal;
     public Float floatVal;
     public Byte byteVal ;
     public Double doubleVal ;
@@ -22,15 +21,18 @@ public class DestinationClass {
     @Override
     public String toString() {
         return "DestinationClass{" +
-                "ad='" + ad + '\'' +
+                "stringVal='" + stringVal + '\'' +
                 ", integerValue=" + integerValue +
                 ", decimal=" + decimal +
-                ", longval=" + longval +
+                ", longval=" + longVal +
                 ", floatVal=" + floatVal +
                 ", byteVal=" + byteVal +
                 ", doubleVal=" + doubleVal +
-                ", char1=" + charVal +
+                ", charVal=" + charVal +
                 ", boolVal=" + boolVal +
+                ", dateUtil=" + dateUtil +
+                ", dateSql=" + dateSql +
+                ", timestamp=" + timestamp +
                 '}';
     }
 }

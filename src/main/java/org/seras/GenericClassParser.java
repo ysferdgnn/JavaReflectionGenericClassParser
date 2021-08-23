@@ -2,6 +2,10 @@ package org.seras;
 
 
 import  org.seras.Classes.Constants;
+import org.seras.Classes.Exceptions.NullClassException;
+import org.seras.Classes.Exceptions.NullClassFieldException;
+import org.seras.Classes.Exceptions.NullFieldMatchMapException;
+
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -18,10 +22,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-/*
+/**
 * @author Yusuf Erdoğan
 * @version 1.0
-*
+* @param <T> Source Class
+ *
 * */
 
 public class GenericClassParser<T,V> {
@@ -33,18 +38,128 @@ public class GenericClassParser<T,V> {
 
     }
 
-   public void parseClassToClass(T sourceClazz, V destinationClazz, Map<String,String> fieldMap){
+   public void parseClassToClass( T sourceClazz, V destinationClazz, Map<String,String> fieldMatchMap) throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
+
+
+       if(sourceClazz==null){
+           throw new NullClassException("Source Class can not be null!");
+       }
+       if(destinationClazz==null){
+           throw new NullClassException("Destination Class can not be null!");
+       }
 
        List<Field> sourceClazzFieldList = Arrays.asList(sourceClazz.getClass().getDeclaredFields());
        List<Field> destinationClazzFieldList = Arrays.asList(destinationClazz.getClass().getDeclaredFields());
 
+       if(sourceClazzFieldList.size()==0){
+           throw new NullClassFieldException("Source Class Fields can not be null!");
+       }
+       if(destinationClazzFieldList.size()==0){
+            throw  new NullClassFieldException("Destination Class Fields can not be null!");
+       }
 
-       fieldMap.forEach( (key,val)->{
+       if(Optional.ofNullable(fieldMatchMap).map(Map::size).orElse(0).equals(0)){
+           throw  new NullFieldMatchMapException("Field Match List can not be null");
+       }
+
+       String sourceClassFieldsAsString         = sourceClazzFieldList.stream().map(Field::getName).collect(Collectors.joining(","));
+       String destinationClassFieldAsString     = destinationClazzFieldList.stream().map(Field::getName).collect(Collectors.joining(","));
+       String fieldMapListAsString              = fieldMatchMap
+                                                   .keySet()
+                                                   .stream()
+                                                   .map(s->String.format("Key:  %s, Value: %s",s,fieldMatchMap.get(s)))
+                                                   .collect(Collectors.joining(","));
+
+
+       logger.info(String.format("Source Class Fields -> %s",sourceClassFieldsAsString ));
+       logger.info(String.format("Destination Class Fields -> %s",destinationClassFieldAsString));
+       logger.info(String.format("Field Match Fields-> %s",fieldMapListAsString));
+
+
+       fieldMatchMap.forEach( (key,val)->{
         try {
-            Field sourceCField = sourceClazzFieldList.stream().filter(s -> s.getName().contentEquals(key)).findFirst().get();
+            Field sourceField = sourceClazzFieldList.stream().filter(s -> s.getName().contentEquals(key)).findFirst().get();
             Field destinationField = destinationClazzFieldList.stream().filter(s -> s.getName().contentEquals(val)).findFirst().get();
 
-            destinationField.set(destinationClazz, sourceCField.get(sourceClazz));
+            if(sourceField.getType() != destinationField.getType()){
+              String valuesAsString=sourceField.get(sourceClazz).toString();
+
+              /*begin string*/
+              if (destinationField.getType() == String.class){
+                  destinationField.set(destinationClazz,valuesAsString);
+              }
+              /*end string*/
+              /*begin BigDecimal*/
+              else if(destinationField.getType()==BigDecimal.class){
+                  destinationField.set(destinationClazz,parseBigDecimal(valuesAsString));
+              }
+              /*end BigDecimal*/
+
+              /*begin Integer*/
+              else if(destinationField.getType()==Integer.class){
+                  destinationField.set(destinationClazz,parseInteger(valuesAsString));
+              }
+
+              /*end Integer*/
+
+              /*begin Long*/
+              else if(destinationField.getType()==Long.class){
+                  destinationField.set(destinationClazz,parseLong(valuesAsString));
+              }
+              /*end Long*/
+
+              /*begin Float*/
+              else if (destinationField.getType()==Float.class){
+                  destinationField.set(destinationClazz,parseFloat(valuesAsString));
+              }
+              /*end Float*/
+
+              /*begin Byte*/
+              else if (destinationField.getType()==Byte.class){
+                destinationField.set(destinationClazz,parseByte(valuesAsString));
+              }
+              /*end Byte*/
+
+              /* start Double */
+              else if (destinationField.getType() == Double.class){
+                destinationField.set(destinationClazz,parseDouble(valuesAsString));
+              }
+              /*end Double*/
+
+              /*begin Character*/
+              else if (destinationField.getType()==Character.class) {
+                  destinationField.set(destinationClazz,parseCharacter(valuesAsString));
+              }
+              /* end Character */
+
+              /* start Boolean */
+              else if (destinationField.getType()==Boolean.class){
+                  destinationField.set(destinationClazz,parseBoolean(valuesAsString));
+              }
+              /* end Boolean */
+
+              /*start utilDate*/
+              else if(destinationField.getType()==java.util.Date.class){
+                destinationField.set(destinationClazz,parseUtilDate(valuesAsString));
+              }
+              /*end utilDate*/
+
+              /*start sqlDate*/
+              else if (destinationField.getType()==java.sql.Date.class){
+                  destinationField.set(destinationClazz,parseSqlDate(valuesAsString));
+              }
+              /*end sqlDate*/
+
+              /*start timestamp*/
+              else if (destinationField.getType()==Timestamp.class){
+                  destinationField.set(destinationClazz,parseTimetamp(valuesAsString));
+              }
+              /*end timestamp*/
+
+
+            }else {
+                 destinationField.set(destinationClazz, sourceField.get(sourceClazz));
+            }
         }catch (IllegalAccessException exception){
             exception.printStackTrace();
         }

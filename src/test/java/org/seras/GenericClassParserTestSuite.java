@@ -19,7 +19,8 @@ import org.seras.classes.tests.*;
                 GenericClassParserTestBoolean.class,
                 GenericClassParserTestUtilDate.class,
                 GenericClassParserTestSqlDate.class,
-                GenericClassParserTestTimestamp.class
+                GenericClassParserTestTimestamp.class,
+                GenericClassParserTestClassToClass.class
         }
 )
 public class GenericClassParserTestSuite {
