@@ -2,11 +2,13 @@ package org.seras.classes.bases;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.seras.Classes.DestinationClass;
+import org.seras.Classes.Pojos.DestinationClass;
 import org.seras.Classes.Exceptions.NullClassException;
 import org.seras.Classes.Exceptions.NullClassFieldException;
 import org.seras.Classes.Exceptions.NullFieldMatchMapException;
-import org.seras.Classes.SourceClass;
+import org.seras.Classes.Pojos.NullFieldDestinationClass;
+import org.seras.Classes.Pojos.NullFieldSourceClass;
+import org.seras.Classes.Pojos.SourceClass;
 import org.seras.GenericClassParser;
 import org.seras.interfaces.IGenericClassParserClassToClassTest;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
@@ -15,22 +17,26 @@ import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class GenericClassParserBaseClassToClass implements IGenericClassParserClassToClassTest {
 
 
-    public GenericClassParser<SourceClass, DestinationClass> genericClassParser         = null;
+    public GenericClassParser<SourceClass,DestinationClass> genericClassParser          = null;
     public DestinationClass destinationClass                                            = null;
     public SourceClass sourceClass                                                      = null;
     public Map<String, String> fieldMatchMap                                            = null;
-
+    public NullFieldSourceClass nullFieldSourceClass                                    = null;
+    public NullFieldDestinationClass nullFieldDestinationClass                          = null;
 
     @Before
     @Override
     public void initDestinationClass() {
-        destinationClass    = new DestinationClass();
-        sourceClass         = new SourceClass();
-        fieldMatchMap       = new HashMap<>();
-        genericClassParser  = new GenericClassParser<SourceClass, DestinationClass>();
+        destinationClass            = new DestinationClass();
+        sourceClass                 = new SourceClass();
+        fieldMatchMap               = new HashMap<>();
+        genericClassParser          = new GenericClassParser<SourceClass, DestinationClass>();
+        nullFieldSourceClass        = new NullFieldSourceClass();
+        nullFieldDestinationClass   = new NullFieldDestinationClass();
     }
 
     @Test
@@ -219,28 +225,25 @@ public class GenericClassParserBaseClassToClass implements IGenericClassParserCl
 
     @Test
     @Override
-    public void testNullFieldList() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {throw new NotImplementedException(); }
+    public void testNullFieldList()   {throw new NotImplementedException(); }
 
     @Test
     @Override
-    public void testNullDestinationClass() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {throw new NotImplementedException(); }
+    public void testNullDestinationClass()   {throw new NotImplementedException(); }
 
     @Test
     @Override
-    public void testNullSourceClass() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {throw new NotImplementedException();}
+    public void testNullSourceClass() {throw new NotImplementedException();}
 
+    @Test
     @Override
-    public void testNotDeclaredFieldInSourceClass() { throw new NotImplementedException(); }
+    public void testNotDeclaredFieldInSourceClass()  { throw new NotImplementedException(); }
 
+    @Test
     @Override
     public void testNotDeclaredFieldInDestinationClass() { throw new NotImplementedException();}
 
+    @Test
     @Override
-    public void testNotDeclaredFieldWithDeclaredFieldsInSourceClass() {throw new NotImplementedException(); }
-
-    @Override
-    public void testNotDeclaredFieldWithDeclaredFieldsInDestinationClass() { throw new NotImplementedException();}
-
-    @Override
-    public void testMultipleFieldMatchList() {throw new NotImplementedException(); }
+    public void testMultipleFieldMatchList() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {throw new NotImplementedException(); }
 }

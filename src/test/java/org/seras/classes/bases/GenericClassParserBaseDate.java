@@ -2,7 +2,7 @@ package org.seras.classes.bases;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.seras.Classes.DestinationClass;
+import org.seras.Classes.Pojos.DestinationClass;
 import org.seras.GenericClassParser;
 import org.seras.interfaces.IGenericClassParserTestDate;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;

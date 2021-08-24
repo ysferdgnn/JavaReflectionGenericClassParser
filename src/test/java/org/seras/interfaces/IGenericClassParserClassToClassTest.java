@@ -6,6 +6,7 @@ import org.seras.Classes.Exceptions.NullFieldMatchMapException;
 
 import java.text.ParseException;
 
+@SuppressWarnings("unused")
 public interface IGenericClassParserClassToClassTest {
 
 
@@ -72,11 +73,10 @@ public interface IGenericClassParserClassToClassTest {
     void testNullDestinationClass() throws NullClassException, NullClassFieldException, NullFieldMatchMapException;
     void testNullSourceClass() throws NullClassException, NullClassFieldException, NullFieldMatchMapException;
     
-    void testNotDeclaredFieldInSourceClass();
+    void testNotDeclaredFieldInSourceClass() throws NullClassException, NullClassFieldException, NullFieldMatchMapException;
     void testNotDeclaredFieldInDestinationClass();
-    void testNotDeclaredFieldWithDeclaredFieldsInSourceClass();
-    void testNotDeclaredFieldWithDeclaredFieldsInDestinationClass();
-    void testMultipleFieldMatchList();
+
+    void testMultipleFieldMatchList() throws NullClassException, NullClassFieldException, NullFieldMatchMapException;
 
 
 

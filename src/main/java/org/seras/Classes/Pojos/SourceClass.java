@@ -1,4 +1,4 @@
-package org.seras.Classes;
+package org.seras.Classes.Pojos;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;

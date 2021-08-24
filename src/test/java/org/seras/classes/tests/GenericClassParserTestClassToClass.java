@@ -4,6 +4,11 @@ import org.junit.Assert;
 import org.seras.Classes.Exceptions.NullClassException;
 import org.seras.Classes.Exceptions.NullClassFieldException;
 import org.seras.Classes.Exceptions.NullFieldMatchMapException;
+import org.seras.Classes.Pojos.DestinationClass;
+import org.seras.Classes.Pojos.NullFieldDestinationClass;
+import org.seras.Classes.Pojos.NullFieldSourceClass;
+import org.seras.Classes.Pojos.SourceClass;
+import org.seras.GenericClassParser;
 import org.seras.classes.bases.GenericClassParserBaseClassToClass;
 
 import java.math.BigDecimal;
@@ -11,6 +16,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 
 public class GenericClassParserTestClassToClass extends GenericClassParserBaseClassToClass {
 
@@ -404,26 +410,41 @@ public class GenericClassParserTestClassToClass extends GenericClassParserBaseCl
 
     @Override
     public void testNotDeclaredFieldInSourceClass() {
+      GenericClassParser<NullFieldSourceClass, DestinationClass>  genericClassParser
+              = new GenericClassParser<NullFieldSourceClass, DestinationClass>();
+
+
+      Assert.assertThrows(NullClassFieldException.class,()->genericClassParser.parseClassToClass(nullFieldSourceClass,destinationClass,fieldMatchMap));
 
     }
 
     @Override
     public void testNotDeclaredFieldInDestinationClass() {
-        super.testNotDeclaredFieldInDestinationClass();
+        GenericClassParser<SourceClass, NullFieldDestinationClass>  genericClassParser = new GenericClassParser<SourceClass, NullFieldDestinationClass>();
+
+
+        Assert.assertThrows(NullClassFieldException.class,()->genericClassParser.parseClassToClass(sourceClass,nullFieldDestinationClass,fieldMatchMap));
+
     }
 
-    @Override
-    public void testNotDeclaredFieldWithDeclaredFieldsInSourceClass() {
-        super.testNotDeclaredFieldWithDeclaredFieldsInSourceClass();
-    }
+
 
     @Override
-    public void testNotDeclaredFieldWithDeclaredFieldsInDestinationClass() {
-        super.testNotDeclaredFieldWithDeclaredFieldsInDestinationClass();
-    }
+    public void testMultipleFieldMatchList() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
+        fieldMatchMap.put("stringVal","stringVal");
+        fieldMatchMap.put("integerValue","integerValue");
+        fieldMatchMap.put("decimal","decimal");
+        fieldMatchMap.put("floatVal","floatVal");
+        fieldMatchMap.put("boolVal","boolVal");
 
-    @Override
-    public void testMultipleFieldMatchList() {
-        super.testMultipleFieldMatchList();
+        genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
+
+        Assert.assertEquals(sourceClass.stringVal,destinationClass.stringVal);
+        Assert.assertEquals(sourceClass.integerValue,destinationClass.integerValue);
+        Assert.assertEquals(sourceClass.decimal,destinationClass.decimal);
+        Assert.assertEquals(sourceClass.floatVal,destinationClass.floatVal);
+        Assert.assertEquals(sourceClass.boolVal,destinationClass.boolVal);
+
+
     }
 }
