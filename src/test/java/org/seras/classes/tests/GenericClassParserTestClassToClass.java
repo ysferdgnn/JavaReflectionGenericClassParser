@@ -4,10 +4,7 @@ import org.junit.Assert;
 import org.seras.Classes.Exceptions.NullClassException;
 import org.seras.Classes.Exceptions.NullClassFieldException;
 import org.seras.Classes.Exceptions.NullFieldMatchMapException;
-import org.seras.Classes.Pojos.DestinationClass;
-import org.seras.Classes.Pojos.NullFieldDestinationClass;
-import org.seras.Classes.Pojos.NullFieldSourceClass;
-import org.seras.Classes.Pojos.SourceClass;
+import org.seras.Classes.Pojos.*;
 import org.seras.GenericClassParser;
 import org.seras.classes.bases.GenericClassParserBaseClassToClass;
 
@@ -411,7 +408,7 @@ public class GenericClassParserTestClassToClass extends GenericClassParserBaseCl
     @Override
     public void testNotDeclaredFieldInSourceClass() {
       GenericClassParser<NullFieldSourceClass, DestinationClass>  genericClassParser
-              = new GenericClassParser<NullFieldSourceClass, DestinationClass>();
+              = new GenericClassParser<>();
 
 
       Assert.assertThrows(NullClassFieldException.class,()->genericClassParser.parseClassToClass(nullFieldSourceClass,destinationClass,fieldMatchMap));
@@ -420,14 +417,12 @@ public class GenericClassParserTestClassToClass extends GenericClassParserBaseCl
 
     @Override
     public void testNotDeclaredFieldInDestinationClass() {
-        GenericClassParser<SourceClass, NullFieldDestinationClass>  genericClassParser = new GenericClassParser<SourceClass, NullFieldDestinationClass>();
+        GenericClassParser<SourceClass, NullFieldDestinationClass>  genericClassParser = new GenericClassParser<>();
 
 
         Assert.assertThrows(NullClassFieldException.class,()->genericClassParser.parseClassToClass(sourceClass,nullFieldDestinationClass,fieldMatchMap));
 
     }
-
-
 
     @Override
     public void testMultipleFieldMatchList() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
@@ -444,7 +439,60 @@ public class GenericClassParserTestClassToClass extends GenericClassParserBaseCl
         Assert.assertEquals(sourceClass.decimal,destinationClass.decimal);
         Assert.assertEquals(sourceClass.floatVal,destinationClass.floatVal);
         Assert.assertEquals(sourceClass.boolVal,destinationClass.boolVal);
+    }
 
+    @Override
+    public void testPrivateFieldSourceClassToPublicFieldDestinationClass() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
+        GenericClassParser<PrivateFieldSourceClass,DestinationClass> genericClassParser
+                = new GenericClassParser<PrivateFieldSourceClass, DestinationClass>();
+        fieldMatchMap.put("stringVal","stringVal");
+        fieldMatchMap.put("integerValue","integerValue");
+        fieldMatchMap.put("timestamp","timestamp");
+
+        PrivateFieldSourceClass privateFieldSourceClass = new PrivateFieldSourceClass();
+
+        genericClassParser.parseClassToClass(privateFieldSourceClass,destinationClass,fieldMatchMap);
+
+        Assert.assertEquals(privateFieldSourceClass.getStringVal(),destinationClass.stringVal);
+        Assert.assertEquals(privateFieldSourceClass.getIntegerValue(),destinationClass.integerValue);
+        Assert.assertEquals(privateFieldSourceClass.getTimestamp(),destinationClass.timestamp);
+
+    }
+
+    @Override
+    public void testPublicFieldSourceClassToPrivateFieldDestinationClass() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
+        GenericClassParser<SourceClass,PrivateFieldDestinationClass> genericClassParser
+                = new GenericClassParser<SourceClass,PrivateFieldDestinationClass>();
+        fieldMatchMap.put("stringVal","stringVal");
+        fieldMatchMap.put("integerValue","integerValue");
+        fieldMatchMap.put("timestamp","timestamp");
+
+       PrivateFieldDestinationClass privateFieldDestinationClass=new PrivateFieldDestinationClass();
+
+        genericClassParser.parseClassToClass(sourceClass,privateFieldDestinationClass,fieldMatchMap);
+
+        Assert.assertEquals(sourceClass.stringVal,privateFieldDestinationClass.getStringVal());
+        Assert.assertEquals(sourceClass.integerValue,privateFieldDestinationClass.getIntegerValue());
+        Assert.assertEquals(sourceClass.timestamp,privateFieldDestinationClass.getTimestamp());
+    }
+
+    @Override
+    public void testPrivateFieldSourceClassToPrivateFieldDestinationClass() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
+        GenericClassParser<PrivateFieldSourceClass,PrivateFieldDestinationClass> genericClassParser
+                = new GenericClassParser<PrivateFieldSourceClass,PrivateFieldDestinationClass>();
+
+        fieldMatchMap.put("stringVal","stringVal");
+        fieldMatchMap.put("integerValue","integerValue");
+        fieldMatchMap.put("timestamp","timestamp");
+
+        PrivateFieldSourceClass privateFieldSourceClass=new PrivateFieldSourceClass();
+        PrivateFieldDestinationClass privateFieldDestinationClass = new PrivateFieldDestinationClass();
+
+        genericClassParser.parseClassToClass(privateFieldSourceClass,privateFieldDestinationClass,fieldMatchMap);
+
+        Assert.assertEquals(privateFieldSourceClass.getStringVal(),privateFieldDestinationClass.getStringVal() );
+        Assert.assertEquals(privateFieldSourceClass.getIntegerValue(),privateFieldDestinationClass.getIntegerValue());
+        Assert.assertEquals(privateFieldSourceClass.getTimestamp(),privateFieldDestinationClass.getTimestamp());
 
     }
 }

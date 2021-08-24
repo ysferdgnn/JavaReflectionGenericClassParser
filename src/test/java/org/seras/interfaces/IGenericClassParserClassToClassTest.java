@@ -72,11 +72,14 @@ public interface IGenericClassParserClassToClassTest {
     void testNullFieldList() throws NullClassException, NullClassFieldException, NullFieldMatchMapException;
     void testNullDestinationClass() throws NullClassException, NullClassFieldException, NullFieldMatchMapException;
     void testNullSourceClass() throws NullClassException, NullClassFieldException, NullFieldMatchMapException;
-    
+
     void testNotDeclaredFieldInSourceClass() throws NullClassException, NullClassFieldException, NullFieldMatchMapException;
     void testNotDeclaredFieldInDestinationClass();
 
     void testMultipleFieldMatchList() throws NullClassException, NullClassFieldException, NullFieldMatchMapException;
+    void testPrivateFieldSourceClassToPublicFieldDestinationClass() throws NullClassException, NullClassFieldException, NullFieldMatchMapException;
+    void testPublicFieldSourceClassToPrivateFieldDestinationClass() throws NullClassException, NullClassFieldException, NullFieldMatchMapException;
+    void testPrivateFieldSourceClassToPrivateFieldDestinationClass() throws NullClassException, NullClassFieldException, NullFieldMatchMapException;
 
 
 

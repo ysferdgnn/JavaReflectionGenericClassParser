@@ -34,7 +34,7 @@ public class GenericClassParserBaseClassToClass implements IGenericClassParserCl
         destinationClass            = new DestinationClass();
         sourceClass                 = new SourceClass();
         fieldMatchMap               = new HashMap<>();
-        genericClassParser          = new GenericClassParser<SourceClass, DestinationClass>();
+        genericClassParser          = new GenericClassParser<>();
         nullFieldSourceClass        = new NullFieldSourceClass();
         nullFieldDestinationClass   = new NullFieldDestinationClass();
     }
@@ -246,4 +246,16 @@ public class GenericClassParserBaseClassToClass implements IGenericClassParserCl
     @Test
     @Override
     public void testMultipleFieldMatchList() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {throw new NotImplementedException(); }
+
+    @Test
+    @Override
+    public void testPrivateFieldSourceClassToPublicFieldDestinationClass() throws NullClassException, NullClassFieldException, NullFieldMatchMapException { throw new NotImplementedException();}
+
+    @Test
+    @Override
+    public void testPublicFieldSourceClassToPrivateFieldDestinationClass() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {throw new NotImplementedException(); }
+
+    @Test
+    @Override
+    public void testPrivateFieldSourceClassToPrivateFieldDestinationClass() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {throw new NotImplementedException();}
 }

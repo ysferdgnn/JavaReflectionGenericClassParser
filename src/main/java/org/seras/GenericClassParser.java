@@ -79,9 +79,22 @@ public class GenericClassParser<T,V> {
 
        fieldMatchMap.forEach( (key,val)->{
         try {
-            Field sourceField = sourceClazzFieldList.stream().filter(s -> s.getName().contentEquals(key)).findFirst().get();
-            Field destinationField = destinationClazzFieldList.stream().filter(s -> s.getName().contentEquals(val)).findFirst().get();
+            logger.info(String.format("Key Field ->%s,Value Field-> %s",key,val));
+            Optional<Field> optSourceField =sourceClazzFieldList.stream().filter(s -> s.getName().contentEquals(key)).findFirst();
+            Optional<Field> optDestinationField =  destinationClazzFieldList.stream().filter(s -> s.getName().contentEquals(val)).findFirst();
+            Field sourceField;
+            Field destinationField;
 
+            if((!optSourceField.isPresent()) || (!optDestinationField.isPresent())){
+                return;
+            }
+
+
+            sourceField = optSourceField.get();
+             destinationField = optDestinationField.get();
+
+            sourceField.setAccessible(true);
+            destinationField.setAccessible(true);
             if(sourceField.getType() != destinationField.getType()){
               String valuesAsString=sourceField.get(sourceClazz).toString();
 
