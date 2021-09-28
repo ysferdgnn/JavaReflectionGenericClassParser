@@ -16,7 +16,7 @@ public class GenericClassParserTestDouble extends GenericClassParserBaseNumeric 
         fieldMatchMap.put("double", "doubleVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.doubleVal, 1, 0);
+        Assert.assertEquals(destinationClass.getDoubleVal(), 1, 0);
     }
 
     @Override
@@ -25,7 +25,7 @@ public class GenericClassParserTestDouble extends GenericClassParserBaseNumeric 
         fieldMatchMap.put("double", "doubleVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.doubleVal, 999999999999999999999999999999999999999999999999999999999999999d, 0);
+        Assert.assertEquals(destinationClass.getDoubleVal(), 999999999999999999999999999999999999999999999999999999999999999d, 0);
     }
 
     @Override
@@ -34,7 +34,7 @@ public class GenericClassParserTestDouble extends GenericClassParserBaseNumeric 
         fieldMatchMap.put("double", "doubleVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.doubleVal, 0d, 0);
+        Assert.assertEquals(destinationClass.getDoubleVal(), 0d, 0);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class GenericClassParserTestDouble extends GenericClassParserBaseNumeric 
         fieldMatchMap.put("double", "doubleVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.doubleVal, 12.123114455484848484d, 0);
+        Assert.assertEquals(destinationClass.getDoubleVal(), 12.123114455484848484d, 0);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class GenericClassParserTestDouble extends GenericClassParserBaseNumeric 
         fieldMatchMap.put("double", "doubleVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.doubleVal, 12.123114455484848484d, 0);
+        Assert.assertEquals(destinationClass.getDoubleVal(), 12.123114455484848484d, 0);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class GenericClassParserTestDouble extends GenericClassParserBaseNumeric 
         fieldMatchMap.put("double", "doubleVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.doubleVal, 121111.1d, 0);
+        Assert.assertEquals(destinationClass.getDoubleVal(), 121111.1d, 0);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class GenericClassParserTestDouble extends GenericClassParserBaseNumeric 
         fieldMatchMap.put("double", "doubleVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.doubleVal, 12.11111d, 0);
+        Assert.assertEquals(destinationClass.getDoubleVal(), 12.11111d, 0);
     }
 
     @Override
@@ -79,7 +79,7 @@ public class GenericClassParserTestDouble extends GenericClassParserBaseNumeric 
         fieldMatchMap.put("double", "doubleVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.doubleVal, 121111.1d, 0);
+        Assert.assertEquals(destinationClass.getDoubleVal(), 121111.1d, 0);
     }
 
     @Override
@@ -88,7 +88,7 @@ public class GenericClassParserTestDouble extends GenericClassParserBaseNumeric 
         fieldMatchMap.put("double", "doubleVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.doubleVal, 15.11d, 0);
+        Assert.assertEquals(destinationClass.getDoubleVal(), 15.11d, 0);
     }
 
     @Override
@@ -97,7 +97,7 @@ public class GenericClassParserTestDouble extends GenericClassParserBaseNumeric 
         fieldMatchMap.put("double", "doubleVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.doubleVal, 15.11, 0);
+        Assert.assertEquals(destinationClass.getDoubleVal(), 15.11, 0);
     }
 
     @Override
@@ -106,7 +106,7 @@ public class GenericClassParserTestDouble extends GenericClassParserBaseNumeric 
         fieldMatchMap.put("double", "doubleVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.doubleVal, 15d, 0);
+        Assert.assertEquals(destinationClass.getDoubleVal(), 15d, 0);
     }
 
     @Override
@@ -115,7 +115,7 @@ public class GenericClassParserTestDouble extends GenericClassParserBaseNumeric 
         fieldMatchMap.put("double", "doubleVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.doubleVal, 15d, 0);
+        Assert.assertEquals(destinationClass.getDoubleVal(), 15d, 0);
     }
 
     @Override
@@ -124,7 +124,7 @@ public class GenericClassParserTestDouble extends GenericClassParserBaseNumeric 
         fieldMatchMap.put("double", "doubleVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.doubleVal, -15d, 0);
+        Assert.assertEquals(destinationClass.getDoubleVal(), -15d, 0);
     }
 
     @Override
@@ -133,7 +133,7 @@ public class GenericClassParserTestDouble extends GenericClassParserBaseNumeric 
         fieldMatchMap.put("double", "doubleVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.doubleVal, -1500000d, 0);
+        Assert.assertEquals(destinationClass.getDoubleVal(), -1500000d, 0);
     }
 
     @Override
@@ -142,7 +142,7 @@ public class GenericClassParserTestDouble extends GenericClassParserBaseNumeric 
         fieldMatchMap.put("double", "doubleVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.doubleVal, -0d, 0);
+        Assert.assertEquals(destinationClass.getDoubleVal(), -0d, 0);
     }
 
     @Override
@@ -151,7 +151,7 @@ public class GenericClassParserTestDouble extends GenericClassParserBaseNumeric 
         fieldMatchMap.put("double", "doubleVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.doubleVal, 154d, 0);
+        Assert.assertEquals(destinationClass.getDoubleVal(), 154d, 0);
     }
 
     @Override
@@ -160,7 +160,7 @@ public class GenericClassParserTestDouble extends GenericClassParserBaseNumeric 
         fieldMatchMap.put("double", "doubleVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.doubleVal, 15.4d, 0);
+        Assert.assertEquals(destinationClass.getDoubleVal(), 15.4d, 0);
     }
 
     @Override
@@ -168,7 +168,7 @@ public class GenericClassParserTestDouble extends GenericClassParserBaseNumeric 
         valuesMap.put("double",null);
         fieldMatchMap.put("double","doubleVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertNull(destinationClass.doubleVal);
+        Assert.assertNull(destinationClass.getDoubleVal());
     }
 
     @Override
@@ -176,6 +176,6 @@ public class GenericClassParserTestDouble extends GenericClassParserBaseNumeric 
         valuesMap.put("double","");
         fieldMatchMap.put("double","doubleVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertNull(destinationClass.doubleVal);
+        Assert.assertNull(destinationClass.getDoubleVal());
     }
 }

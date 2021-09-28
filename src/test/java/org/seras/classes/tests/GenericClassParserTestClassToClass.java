@@ -28,16 +28,16 @@ public class GenericClassParserTestClassToClass extends GenericClassParserBaseCl
 
         this.fieldMatchMap.put("stringVal", "stringVal");
         genericClassParser.parseClassToClass(this.sourceClass,this.destinationClass,this.fieldMatchMap);
-        Assert.assertEquals(destinationClass.stringVal, sourceClass.stringVal);
+        Assert.assertEquals(destinationClass.getStringVal(), sourceClass.getStringVal());
 
     }
 
     @Override
     public void testNullToString() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
-        sourceClass.stringVal=null;
+        sourceClass.setStringVal(null);
         this.fieldMatchMap.put("stringVal", "stringVal");
         genericClassParser.parseClassToClass(this.sourceClass,this.destinationClass,this.fieldMatchMap);
-        Assert.assertNull(destinationClass.stringVal);
+        Assert.assertNull(destinationClass.getStringVal());
     }
 
     @Override
@@ -45,15 +45,15 @@ public class GenericClassParserTestClassToClass extends GenericClassParserBaseCl
 
         this.fieldMatchMap.put("integerValue", "integerValue");
         genericClassParser.parseClassToClass(this.sourceClass,this.destinationClass,this.fieldMatchMap);
-        Assert.assertEquals(destinationClass.integerValue, sourceClass.integerValue);
+        Assert.assertEquals(destinationClass.getIntegerValue(), sourceClass.getIntegerValue());
     }
 
     @Override
     public void testNullToInteger() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
-        sourceClass.integerValue=null;
+        sourceClass.setIntegerValue(null);
         this.fieldMatchMap.put("integerValue", "integerValue");
         genericClassParser.parseClassToClass(this.sourceClass,this.destinationClass,this.fieldMatchMap);
-        Assert.assertNull(destinationClass.integerValue);
+        Assert.assertNull(destinationClass.getIntegerValue());
     }
 
     @Override
@@ -61,279 +61,279 @@ public class GenericClassParserTestClassToClass extends GenericClassParserBaseCl
 
         this.fieldMatchMap.put("integerValue", "stringVal");
         genericClassParser.parseClassToClass(this.sourceClass,this.destinationClass,this.fieldMatchMap);
-        Assert.assertEquals(destinationClass.stringVal,sourceClass.integerValue.toString());
+        Assert.assertEquals(destinationClass.getStringVal(),sourceClass.getIntegerValue().toString());
     }
 
     @Override
     public void testStringToInteger() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
-       sourceClass.stringVal="50";
+       sourceClass.setStringVal("50");
        fieldMatchMap.put("stringVal", "integerValue");
        genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-       Assert.assertEquals(destinationClass.integerValue, new Integer(50));
+       Assert.assertEquals(destinationClass.getIntegerValue(), new Integer(50));
     }
 
     @Override
     public void testBigDecimalToBigDecimal() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
        fieldMatchMap.put("decimal","decimal");
        genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-       Assert.assertEquals(sourceClass.decimal,destinationClass.decimal);
+       Assert.assertEquals(sourceClass.getDecimal(),destinationClass.getDecimal());
     }
 
     @Override
     public void testNullToBigDecimal() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
-        sourceClass.decimal=null;
+        sourceClass.setDecimal(null);
         fieldMatchMap.put("decimal","decimal");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertNull(destinationClass.decimal);
+        Assert.assertNull(destinationClass.getDecimal());
     }
 
     @Override
     public void testBigDecimalToString() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
         fieldMatchMap.put("decimal","stringVal");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.stringVal,sourceClass.decimal.toString());
+        Assert.assertEquals(destinationClass.getStringVal(),sourceClass.getDecimal().toString());
     }
 
     @Override
     public void testStringToBigDecimal() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
-        sourceClass.stringVal="50";
+        sourceClass.setStringVal("50");
         fieldMatchMap.put("stringVal","decimal");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.decimal,new BigDecimal("50"));
+        Assert.assertEquals(destinationClass.getDecimal(),new BigDecimal("50"));
     }
 
     @Override
     public void testLongToLong() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
         fieldMatchMap.put("longVal","longVal");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.longVal,sourceClass.longVal);
+        Assert.assertEquals(destinationClass.getLongVal(),sourceClass.getLongVal());
     }
 
     @Override
     public void testNullToLong() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
-        sourceClass.longVal=null;
+        sourceClass.setLongVal(null);
         fieldMatchMap.put("longVal","longVal");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertNull(destinationClass.longVal);
+        Assert.assertNull(destinationClass.getLongVal());
     }
 
     @Override
     public void testLongToString() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
         fieldMatchMap.put("longVal","stringVal");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.stringVal,sourceClass.longVal.toString());
+        Assert.assertEquals(destinationClass.getStringVal(),sourceClass.getLongVal().toString());
     }
 
     @Override
     public void testStringToLong() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
-        sourceClass.stringVal="50";
+        sourceClass.setStringVal("50");
         fieldMatchMap.put("stringVal","longVal");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.longVal, new Long(50L));
+        Assert.assertEquals(destinationClass.getLongVal(), new Long(50L));
     }
 
     @Override
     public void testFloatToFloat() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
         fieldMatchMap.put("floatVal","floatVal");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.floatVal,sourceClass.floatVal);
+        Assert.assertEquals(destinationClass.getFloatVal(),sourceClass.getFloatVal());
     }
 
     @Override
     public void testNullToFloat() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
-       sourceClass.floatVal=null;
+       sourceClass.setFloatVal(null);
        fieldMatchMap.put("floatVal","floatVal");
        genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-       Assert.assertNull(destinationClass.floatVal);
+       Assert.assertNull(destinationClass.getFloatVal());
     }
 
     @Override
     public void testFloatToString() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
-        sourceClass.floatVal=60f;
+        sourceClass.setFloatVal(60f);
         fieldMatchMap.put("floatVal","stringVal");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.stringVal,"60.0");
+        Assert.assertEquals(destinationClass.getStringVal(),"60.0");
     }
 
     @Override
     public void testStringToFloat() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
-        sourceClass.stringVal="10";
+        sourceClass.setStringVal("10");
         fieldMatchMap.put("stringVal","floatVal");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.floatVal,new Float(10f));
+        Assert.assertEquals(destinationClass.getFloatVal(),new Float(10f));
     }
 
     @Override
     public void testByteToByte() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
         fieldMatchMap.put("byteVal","byteVal");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.byteVal,sourceClass.byteVal);
+        Assert.assertEquals(destinationClass.getByteVal(),sourceClass.getByteVal());
     }
 
     @Override
     public void testNullToByte() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
-        sourceClass.byteVal=null;
+        sourceClass.setByteVal(null);
         fieldMatchMap.put("byteVal","byteVal");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertNull(destinationClass.byteVal);
+        Assert.assertNull(destinationClass.getByteVal());
     }
 
     @Override
     public void testByteToString() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
         fieldMatchMap.put("byteVal","stringVal");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.stringVal,sourceClass.byteVal.toString());
+        Assert.assertEquals(destinationClass.getStringVal(),sourceClass.getByteVal().toString());
     }
 
     @Override
     public void testStringToByte() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
-        sourceClass.stringVal="10";
+        sourceClass.setStringVal("10");
         fieldMatchMap.put("stringVal","byteVal");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.byteVal,new Byte("10"));
+        Assert.assertEquals(destinationClass.getByteVal(),new Byte("10"));
     }
 
     @Override
     public void testDoubleToDouble() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
         fieldMatchMap.put("doubleVal","doubleVal");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.doubleVal,sourceClass.doubleVal);
+        Assert.assertEquals(destinationClass.getDoubleVal(),sourceClass.getDoubleVal());
     }
 
     @Override
     public void testNullToDouble() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
-        sourceClass.doubleVal=null;
+        sourceClass.setDoubleVal(null);
         fieldMatchMap.put("doubleVal","doubleVal");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertNull(destinationClass.doubleVal);
+        Assert.assertNull(destinationClass.getDoubleVal());
     }
 
     @Override
     public void testDoubleToString() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
         fieldMatchMap.put("doubleVal","stringVal");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.stringVal,sourceClass.doubleVal.toString());
+        Assert.assertEquals(destinationClass.getStringVal(),sourceClass.getDoubleVal().toString());
     }
 
     @Override
     public void testStringToDouble() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
-        sourceClass.stringVal="50";
+        sourceClass.setStringVal("50");
         fieldMatchMap.put("stringVal","doubleVal");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.doubleVal,new Double("50"));
+        Assert.assertEquals(destinationClass.getDoubleVal(),new Double("50"));
     }
 
     @Override
     public void testCharacterToCharacter() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
         fieldMatchMap.put("charVal","charVal");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.charVal,sourceClass.charVal);
+        Assert.assertEquals(destinationClass.getCharVal(),sourceClass.getCharVal());
     }
 
     @Override
     public void testNullToCharacter() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
-        sourceClass.charVal=null;
+        sourceClass.setCharVal(null);
         fieldMatchMap.put("charVal","charVal");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertNull(destinationClass.charVal);
+        Assert.assertNull(destinationClass.getCharVal());
     }
 
     @Override
     public void testCharacterToString() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
        fieldMatchMap.put("charVal","stringVal");
        genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-       Assert.assertEquals(destinationClass.stringVal,sourceClass.charVal.toString());
+       Assert.assertEquals(destinationClass.getStringVal(),sourceClass.getCharVal().toString());
     }
 
     @Override
     public void testStringToCharacter() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
-        sourceClass.stringVal="C";
+        sourceClass.setStringVal("C");
         fieldMatchMap.put("stringVal","charVal");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.charVal,new Character('C'));
+        Assert.assertEquals(destinationClass.getCharVal(),new Character('C'));
     }
 
     @Override
     public void testBooleanToBoolean() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
         fieldMatchMap.put("boolVal","boolVal");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.boolVal,sourceClass.boolVal);
+        Assert.assertEquals(destinationClass.getBoolVal(),sourceClass.getBoolVal());
     }
 
     @Override
     public void testNullToBoolean() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
-        sourceClass.boolVal=null;
+        sourceClass.setBoolVal(null);
         fieldMatchMap.put("boolVal","boolVal");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertNull(destinationClass.boolVal);
+        Assert.assertNull(destinationClass.getBoolVal());
     }
 
     @Override
     public void testBooleanToString() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
-        sourceClass.boolVal=Boolean.TRUE;
+        sourceClass.setBoolVal(Boolean.TRUE);
         fieldMatchMap.put("boolVal","stringVal");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.stringVal,"true");
+        Assert.assertEquals(destinationClass.getStringVal(),"true");
     }
 
     @Override
     public void testStringToBoolean() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
-        sourceClass.stringVal="true";
+        sourceClass.setStringVal("true");
         fieldMatchMap.put("stringVal","boolVal");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.boolVal,Boolean.TRUE);
+        Assert.assertEquals(destinationClass.getBoolVal(),Boolean.TRUE);
     }
 
     @Override
     public void testUtilDateToUtilDate() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
         fieldMatchMap.put("dateUtil","dateUtil");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.dateUtil,sourceClass.dateUtil);
+        Assert.assertEquals(destinationClass.getDateUtil(),sourceClass.getDateUtil());
     }
 
     @Override
     public void testNullToUtilDate() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
-        sourceClass.dateUtil=null;
+        sourceClass.setDateUtil(null);
         fieldMatchMap.put("dateUtil","dateUtil");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertNull(destinationClass.dateUtil);
+        Assert.assertNull(destinationClass.getDateUtil());
     }
 
     @Override
     public void testUtilDateToString() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
         fieldMatchMap.put("dateUtil","stringVal");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.stringVal,sourceClass.dateUtil.toString());
+        Assert.assertEquals(destinationClass.getStringVal(),sourceClass.getDateUtil().toString());
     }
 
     @Override
     public void testStringToUtilDate() throws ParseException, NullClassException, NullClassFieldException, NullFieldMatchMapException {
-        sourceClass.stringVal="2021-01-01";
+        sourceClass.setStringVal("2021-01-01");
         fieldMatchMap.put("stringVal","dateUtil");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.dateUtil, new SimpleDateFormat("yyyy-MM-dd").parse("2021-01-01"));
+        Assert.assertEquals(destinationClass.getDateUtil(), new SimpleDateFormat("yyyy-MM-dd").parse("2021-01-01"));
     }
 
     @Override
     public void testSqlDateToSqlDate() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
        fieldMatchMap.put("dateSql", "dateSql");
        genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-       Assert.assertEquals(destinationClass.dateSql,sourceClass.dateSql);
+       Assert.assertEquals(destinationClass.getDateSql(),sourceClass.getDateSql());
     }
 
     @Override
     public void testNullToSqlDate() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
-        sourceClass.dateSql=null;
+        sourceClass.setDateSql(null);
         fieldMatchMap.put("dateSql","dateSql");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertNull(destinationClass.dateSql);
+        Assert.assertNull(destinationClass.getDateSql());
     }
 
     @Override
     public void testSqlDateToString() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
         fieldMatchMap.put("dateSql","stringVal");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.stringVal,sourceClass.dateSql.toString());
+        Assert.assertEquals(destinationClass.getStringVal(),sourceClass.getDateSql().toString());
     }
 
     @Override
@@ -346,40 +346,40 @@ public class GenericClassParserTestClassToClass extends GenericClassParserBaseCl
 //        Timestamp timestampForSqlDate = new Timestamp(dateToBeParsed.getTime());
         java.sql.Date dateSql = new java.sql.Date(dateToBeParsed.getTime());
 
-        sourceClass.stringVal=dateAsString;
+        sourceClass.setStringVal(dateAsString);
         fieldMatchMap.put("stringVal","dateSql");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.dateSql,dateSql);
+        Assert.assertEquals(destinationClass.getDateSql(),dateSql);
     }
 
     @Override
     public void testTimestampToTimestamp() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
         fieldMatchMap.put("timestamp","timestamp");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.timestamp,sourceClass.timestamp);
+        Assert.assertEquals(destinationClass.getTimestamp(),sourceClass.getTimestamp());
     }
 
     @Override
     public void testNullToTimestamp() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
-        sourceClass.timestamp=null;
+        sourceClass.setTimestamp(null);
         fieldMatchMap.put("timestamp","timestamp");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertNull(destinationClass.timestamp);
+        Assert.assertNull(destinationClass.getTimestamp());
     }
 
     @Override
     public void testTimestampToString() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
         fieldMatchMap.put("timestamp","stringVal");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.stringVal,sourceClass.timestamp.toString());
+        Assert.assertEquals(destinationClass.getStringVal(),sourceClass.getTimestamp().toString());
     }
 
     @Override
     public void testStringToTimestamp() throws NullClassException, NullClassFieldException, NullFieldMatchMapException {
-        sourceClass.stringVal= "11111";
+        sourceClass.setStringVal("11111");
         fieldMatchMap.put("stringVal","timestamp");
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.timestamp, new Timestamp(11111));
+        Assert.assertEquals(destinationClass.getTimestamp(), new Timestamp(11111));
     }
 
     @Override
@@ -434,11 +434,11 @@ public class GenericClassParserTestClassToClass extends GenericClassParserBaseCl
 
         genericClassParser.parseClassToClass(sourceClass,destinationClass,fieldMatchMap);
 
-        Assert.assertEquals(sourceClass.stringVal,destinationClass.stringVal);
-        Assert.assertEquals(sourceClass.integerValue,destinationClass.integerValue);
-        Assert.assertEquals(sourceClass.decimal,destinationClass.decimal);
-        Assert.assertEquals(sourceClass.floatVal,destinationClass.floatVal);
-        Assert.assertEquals(sourceClass.boolVal,destinationClass.boolVal);
+        Assert.assertEquals(sourceClass.getStringVal(),destinationClass.getStringVal());
+        Assert.assertEquals(sourceClass.getIntegerValue(),destinationClass.getIntegerValue());
+        Assert.assertEquals(sourceClass.getDecimal(),destinationClass.getDecimal());
+        Assert.assertEquals(sourceClass.getFloatVal(),destinationClass.getFloatVal());
+        Assert.assertEquals(sourceClass.getBoolVal(),destinationClass.getBoolVal());
     }
 
     @Override
@@ -453,9 +453,9 @@ public class GenericClassParserTestClassToClass extends GenericClassParserBaseCl
 
         genericClassParser.parseClassToClass(privateFieldSourceClass,destinationClass,fieldMatchMap);
 
-        Assert.assertEquals(privateFieldSourceClass.getStringVal(),destinationClass.stringVal);
-        Assert.assertEquals(privateFieldSourceClass.getIntegerValue(),destinationClass.integerValue);
-        Assert.assertEquals(privateFieldSourceClass.getTimestamp(),destinationClass.timestamp);
+        Assert.assertEquals(privateFieldSourceClass.getStringVal(),destinationClass.getStringVal());
+        Assert.assertEquals(privateFieldSourceClass.getIntegerValue(),destinationClass.getIntegerValue());
+        Assert.assertEquals(privateFieldSourceClass.getTimestamp(),destinationClass.getTimestamp());
 
     }
 
@@ -471,9 +471,9 @@ public class GenericClassParserTestClassToClass extends GenericClassParserBaseCl
 
         genericClassParser.parseClassToClass(sourceClass,privateFieldDestinationClass,fieldMatchMap);
 
-        Assert.assertEquals(sourceClass.stringVal,privateFieldDestinationClass.getStringVal());
-        Assert.assertEquals(sourceClass.integerValue,privateFieldDestinationClass.getIntegerValue());
-        Assert.assertEquals(sourceClass.timestamp,privateFieldDestinationClass.getTimestamp());
+        Assert.assertEquals(sourceClass.getStringVal(),privateFieldDestinationClass.getStringVal());
+        Assert.assertEquals(sourceClass.getIntegerValue(),privateFieldDestinationClass.getIntegerValue());
+        Assert.assertEquals(sourceClass.getTimestamp(),privateFieldDestinationClass.getTimestamp());
     }
 
     @Override

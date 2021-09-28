@@ -25,7 +25,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = sdf.parse(dateAsString);
-        Assert.assertEquals(destinationClass.dateUtil,date);
+        Assert.assertEquals(destinationClass.getDateUtil(),date);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
         this.genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
 
 
-        Assert.assertNull(destinationClass.dateUtil);
+        Assert.assertNull(destinationClass.getDateUtil());
     }
 
     @Override
@@ -49,7 +49,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = sdf.parse(dateAsString);
-        Assert.assertEquals(destinationClass.dateUtil,date);
+        Assert.assertEquals(destinationClass.getDateUtil(),date);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = sdf.parse(dateAsString);
-        Assert.assertEquals(destinationClass.dateUtil,date);
+        Assert.assertEquals(destinationClass.getDateUtil(),date);
     }
 
     @Override
@@ -75,7 +75,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = sdf.parse("2021-01-01 13:06:06");
-        Assert.assertEquals(destinationClass.dateUtil,date);
+        Assert.assertEquals(destinationClass.getDateUtil(),date);
     }
 
     @Override
@@ -88,7 +88,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
         Date date = sdf.parse("2021.08.13 17:10:10");
-        Assert.assertEquals(destinationClass.dateUtil,date);
+        Assert.assertEquals(destinationClass.getDateUtil(),date);
 
     }
 
@@ -102,7 +102,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
         Date date = sdf.parse("2021.08.13 17:10:10");
-        Assert.assertEquals(destinationClass.dateUtil,date);
+        Assert.assertEquals(destinationClass.getDateUtil(),date);
     }
 
     @Override
@@ -115,7 +115,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = sdf.parse("2021/08/13 17:10:10");
-        Assert.assertEquals(destinationClass.dateUtil,date);
+        Assert.assertEquals(destinationClass.getDateUtil(),date);
     }
 
     @Override
@@ -128,7 +128,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = sdf.parse("2021-08-13 17:10:10");
-        Assert.assertEquals(destinationClass.dateUtil,date);
+        Assert.assertEquals(destinationClass.getDateUtil(),date);
     }
 
     @Override
@@ -141,7 +141,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         Date date = sdf.parse("13-08-2021 17:10:10");
-        Assert.assertEquals(destinationClass.dateUtil,date);
+        Assert.assertEquals(destinationClass.getDateUtil(),date);
     }
 
     @Override
@@ -154,7 +154,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
         Date date = sdf.parse("13.08.2021 17:10:10");
-        Assert.assertEquals(destinationClass.dateUtil,date);
+        Assert.assertEquals(destinationClass.getDateUtil(),date);
     }
 
     @Override
@@ -167,7 +167,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = sdf.parse("13/08/2021 17:10:10");
-        Assert.assertEquals(destinationClass.dateUtil,date);
+        Assert.assertEquals(destinationClass.getDateUtil(),date);
     }
 
     @Override
@@ -180,7 +180,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         Date date = sdf.parse("13-08-2021 17:10:10");
-        Assert.assertEquals(destinationClass.dateUtil,date);
+        Assert.assertEquals(destinationClass.getDateUtil(),date);
     }
 
     @Override
@@ -193,7 +193,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date date = sdf.parse("2021-08-13");
-        Assert.assertEquals(destinationClass.dateUtil,date);
+        Assert.assertEquals(destinationClass.getDateUtil(),date);
     }
 
     @Override
@@ -206,7 +206,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
         Date date = sdf.parse("2021.08.13");
-        Assert.assertEquals(destinationClass.dateUtil,date);
+        Assert.assertEquals(destinationClass.getDateUtil(),date);
     }
 
     @Override
@@ -219,7 +219,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
         Date date = sdf.parse("2021/08/13");
-        Assert.assertEquals(destinationClass.dateUtil,date);
+        Assert.assertEquals(destinationClass.getDateUtil(),date);
     }
 
     @Override
@@ -232,7 +232,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date date = sdf.parse("2021-08-13");
-        Assert.assertEquals(destinationClass.dateUtil,date);
+        Assert.assertEquals(destinationClass.getDateUtil(),date);
     }
 
     @Override
@@ -245,7 +245,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         Date date = sdf.parse("13.08.2021");
-        Assert.assertEquals(destinationClass.dateUtil,date);
+        Assert.assertEquals(destinationClass.getDateUtil(),date);
     }
 
     @Override
@@ -258,7 +258,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         Date date = sdf.parse("13.08.2021");
-        Assert.assertEquals(destinationClass.dateUtil,date);
+        Assert.assertEquals(destinationClass.getDateUtil(),date);
     }
 
     @Override
@@ -271,7 +271,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Date date = sdf.parse("13/08/2021");
-        Assert.assertEquals(destinationClass.dateUtil,date);
+        Assert.assertEquals(destinationClass.getDateUtil(),date);
     }
 
     @Override
@@ -284,7 +284,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date date = sdf.parse("13-08-2021");
-        Assert.assertEquals(destinationClass.dateUtil,date);
+        Assert.assertEquals(destinationClass.getDateUtil(),date);
     }
 
     @Override
@@ -297,7 +297,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date date = sdf.parse("13-08-2021");
-        Assert.assertEquals(destinationClass.dateUtil,date);
+        Assert.assertEquals(destinationClass.getDateUtil(),date);
     }
 
     @Override
@@ -310,7 +310,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date date = sdf.parse("13-08-2021");
-        Assert.assertEquals(destinationClass.dateUtil,date);
+        Assert.assertEquals(destinationClass.getDateUtil(),date);
     }
 
     @Override
@@ -323,7 +323,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date date = sdf.parse("13-08-2021");
-        Assert.assertEquals(destinationClass.dateUtil,date);
+        Assert.assertEquals(destinationClass.getDateUtil(),date);
     }
 
     @Override
@@ -336,7 +336,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date date = sdf.parse("13-08-2021");
-        Assert.assertEquals(destinationClass.dateUtil,date);
+        Assert.assertEquals(destinationClass.getDateUtil(),date);
     }
 
     @Override
@@ -349,7 +349,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date date = sdf.parse("13-08-2021");
-        Assert.assertEquals(destinationClass.dateUtil,date);
+        Assert.assertEquals(destinationClass.getDateUtil(),date);
     }
 
     @Override
@@ -362,7 +362,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date date = sdf.parse("13-08-2021");
-        Assert.assertEquals(destinationClass.dateUtil,date);
+        Assert.assertEquals(destinationClass.getDateUtil(),date);
     }
 
     @Override
@@ -377,7 +377,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date date = sdf.parse("13-08-2021");
-        Assert.assertEquals(destinationClass.dateUtil,date);
+        Assert.assertEquals(destinationClass.getDateUtil(),date);
     }
 
     @Override
@@ -390,7 +390,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Date date = sdf.parse(dateAsString);
-        Assert.assertEquals(destinationClass.dateUtil,date);
+        Assert.assertEquals(destinationClass.getDateUtil(),date);
     }
 
     @Override
@@ -403,7 +403,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm");
         Date date = sdf.parse(dateAsString);
-        Assert.assertEquals(destinationClass.dateUtil,date);
+        Assert.assertEquals(destinationClass.getDateUtil(),date);
     }
 
     @Override
@@ -416,7 +416,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
         Date date = sdf.parse(dateAsString);
-        Assert.assertEquals(destinationClass.dateUtil,date);
+        Assert.assertEquals(destinationClass.getDateUtil(),date);
     }
 
     @Override
@@ -429,7 +429,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         Date date = sdf.parse(dateAsString);
-        Assert.assertEquals(destinationClass.dateUtil,date);
+        Assert.assertEquals(destinationClass.getDateUtil(),date);
     }
 
     @Override
@@ -442,7 +442,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         Date date = sdf.parse(dateAsString);
-        Assert.assertEquals(destinationClass.dateUtil,date);
+        Assert.assertEquals(destinationClass.getDateUtil(),date);
     }
 
     @Override
@@ -455,7 +455,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm");
         Date date = sdf.parse(dateAsString);
-        Assert.assertEquals(destinationClass.dateUtil,date);
+        Assert.assertEquals(destinationClass.getDateUtil(),date);
     }
 
     @Override
@@ -463,7 +463,7 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
         valuesMap.put("date", "43706,4856597222");
         fieldMatchMap.put("date","dateUtil" );
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertNull(destinationClass.dateUtil);
+        Assert.assertNull(destinationClass.getDateUtil());
     }
 
     @Override
@@ -473,6 +473,6 @@ public class GenericClassParserTestUtilDate extends GenericClassParserBaseDate {
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
 
 
-        Assert.assertNull(destinationClass.dateUtil);
+        Assert.assertNull(destinationClass.getDateUtil());
     }
 }

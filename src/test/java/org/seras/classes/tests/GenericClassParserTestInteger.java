@@ -16,7 +16,7 @@ public class GenericClassParserTestInteger extends GenericClassParserBaseNumeric
         fieldMatchMap.put("integerValue", "integerValue");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.integerValue, 15, 0);
+        Assert.assertEquals(destinationClass.getIntegerValue(), 15, 0);
     }
 
     @Override
@@ -26,7 +26,7 @@ public class GenericClassParserTestInteger extends GenericClassParserBaseNumeric
         fieldMatchMap.put("integerValue", "integerValue");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.integerValue, 0, 0);
+        Assert.assertEquals(destinationClass.getIntegerValue(), 0, 0);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class GenericClassParserTestInteger extends GenericClassParserBaseNumeric
         fieldMatchMap.put("integerValue", "integerValue");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.integerValue, 0, 0);
+        Assert.assertEquals(destinationClass.getIntegerValue(), 0, 0);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class GenericClassParserTestInteger extends GenericClassParserBaseNumeric
         fieldMatchMap.put("integerValue", "integerValue");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.integerValue, 125, 0);
+        Assert.assertEquals(destinationClass.getIntegerValue(), 125, 0);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class GenericClassParserTestInteger extends GenericClassParserBaseNumeric
         fieldMatchMap.put("integerValue", "integerValue");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.integerValue, 154123, 0);
+        Assert.assertEquals(destinationClass.getIntegerValue(), 154123, 0);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class GenericClassParserTestInteger extends GenericClassParserBaseNumeric
         fieldMatchMap.put("integerValue", "integerValue");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.integerValue, 11, 0);
+        Assert.assertEquals(destinationClass.getIntegerValue(), 11, 0);
     }
 
     @Override
@@ -71,7 +71,7 @@ public class GenericClassParserTestInteger extends GenericClassParserBaseNumeric
         fieldMatchMap.put("integerValue", "integerValue");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.integerValue, 154123, 0);
+        Assert.assertEquals(destinationClass.getIntegerValue(), 154123, 0);
     }
 
     @Override
@@ -80,7 +80,7 @@ public class GenericClassParserTestInteger extends GenericClassParserBaseNumeric
         fieldMatchMap.put("integerValue", "integerValue");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.integerValue, 11, 0);
+        Assert.assertEquals(destinationClass.getIntegerValue(), 11, 0);
     }
 
     @Override
@@ -89,7 +89,7 @@ public class GenericClassParserTestInteger extends GenericClassParserBaseNumeric
         fieldMatchMap.put("integerValue", "integerValue");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.integerValue, 15, 0);
+        Assert.assertEquals(destinationClass.getIntegerValue(), 15, 0);
     }
 
     @Override
@@ -98,7 +98,7 @@ public class GenericClassParserTestInteger extends GenericClassParserBaseNumeric
         fieldMatchMap.put("integerValue", "integerValue");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.integerValue, 0, 0);
+        Assert.assertEquals(destinationClass.getIntegerValue(), 0, 0);
     }
 
     @Override
@@ -107,7 +107,7 @@ public class GenericClassParserTestInteger extends GenericClassParserBaseNumeric
         fieldMatchMap.put("integerValue", "integerValue");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.integerValue, 150000, 0);
+        Assert.assertEquals(destinationClass.getIntegerValue(), 150000, 0);
     }
 
     @Override
@@ -116,7 +116,7 @@ public class GenericClassParserTestInteger extends GenericClassParserBaseNumeric
         fieldMatchMap.put("integerValue", "integerValue");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.integerValue, 150000, 0);
+        Assert.assertEquals(destinationClass.getIntegerValue(), 150000, 0);
     }
 
     @Override
@@ -125,7 +125,7 @@ public class GenericClassParserTestInteger extends GenericClassParserBaseNumeric
         fieldMatchMap.put("integerValue", "integerValue");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.integerValue, -500, 0);
+        Assert.assertEquals(destinationClass.getIntegerValue(), -500, 0);
     }
 
     @Override
@@ -134,7 +134,7 @@ public class GenericClassParserTestInteger extends GenericClassParserBaseNumeric
         fieldMatchMap.put("integerValue", "integerValue");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.integerValue, -50000, 0);
+        Assert.assertEquals(destinationClass.getIntegerValue(), -50000, 0);
     }
 
     @Override
@@ -143,7 +143,7 @@ public class GenericClassParserTestInteger extends GenericClassParserBaseNumeric
         fieldMatchMap.put("integerValue", "integerValue");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.integerValue, 0, 0);
+        Assert.assertEquals(destinationClass.getIntegerValue(), 0, 0);
     }
 
     @Override
@@ -152,7 +152,7 @@ public class GenericClassParserTestInteger extends GenericClassParserBaseNumeric
         fieldMatchMap.put("integerValue", "integerValue");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.integerValue, 100, 0);
+        Assert.assertEquals(destinationClass.getIntegerValue(), 100, 0);
     }
 
     @Override
@@ -161,7 +161,7 @@ public class GenericClassParserTestInteger extends GenericClassParserBaseNumeric
         fieldMatchMap.put("integerValue", "integerValue");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.integerValue, 10, 0);
+        Assert.assertEquals(destinationClass.getIntegerValue(), 10, 0);
     }
 
     @Override
@@ -169,7 +169,7 @@ public class GenericClassParserTestInteger extends GenericClassParserBaseNumeric
         valuesMap.put("intVal",null);
         fieldMatchMap.put("intVal","integerValue");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertNull(destinationClass.integerValue);
+        Assert.assertNull(destinationClass.getIntegerValue());
     }
 
     @Override
@@ -177,6 +177,6 @@ public class GenericClassParserTestInteger extends GenericClassParserBaseNumeric
         valuesMap.put("intVal","");
         fieldMatchMap.put("intVal","integerValue");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertNull(destinationClass.integerValue);
+        Assert.assertNull(destinationClass.getIntegerValue());
     }
 }

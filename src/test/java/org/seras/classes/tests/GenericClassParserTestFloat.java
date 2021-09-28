@@ -17,7 +17,7 @@ public class GenericClassParserTestFloat extends GenericClassParserBaseNumeric {
         fieldMatchMap.put("float", "floatVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.floatVal, 1f, 0);
+        Assert.assertEquals(destinationClass.getFloatVal(), 1f, 0);
     }
 
     @Override
@@ -25,7 +25,7 @@ public class GenericClassParserTestFloat extends GenericClassParserBaseNumeric {
         valuesMap.put("float","999999999999999999999999999999999999999999999999999999999");
         fieldMatchMap.put("float","floatVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.floatVal,0f,0);
+        Assert.assertEquals(destinationClass.getFloatVal(),0f,0);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class GenericClassParserTestFloat extends GenericClassParserBaseNumeric {
         valuesMap.put("float","99a9,99a9");
         fieldMatchMap.put("float","floatVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.floatVal,0f,0);
+        Assert.assertEquals(destinationClass.getFloatVal(),0f,0);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class GenericClassParserTestFloat extends GenericClassParserBaseNumeric {
         valuesMap.put("float","9,999999999");
         fieldMatchMap.put("float","floatVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.floatVal,9.999999999f,0);
+        Assert.assertEquals(destinationClass.getFloatVal(),9.999999999f,0);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class GenericClassParserTestFloat extends GenericClassParserBaseNumeric {
         valuesMap.put("float","9.999999999");
         fieldMatchMap.put("float","floatVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.floatVal,9.999999999f,0);
+        Assert.assertEquals(destinationClass.getFloatVal(),9.999999999f,0);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class GenericClassParserTestFloat extends GenericClassParserBaseNumeric {
         valuesMap.put("float","9.9.9.9.9.99999");
         fieldMatchMap.put("float","floatVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.floatVal,99999.99999f,0);
+        Assert.assertEquals(destinationClass.getFloatVal(),99999.99999f,0);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class GenericClassParserTestFloat extends GenericClassParserBaseNumeric {
         valuesMap.put("float","9,99");
         fieldMatchMap.put("float","floatVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.floatVal,9.99f,0);
+        Assert.assertEquals(destinationClass.getFloatVal(),9.99f,0);
     }
 
     @Override
@@ -73,7 +73,7 @@ public class GenericClassParserTestFloat extends GenericClassParserBaseNumeric {
         valuesMap.put("float","9,9,9,9,9,99999");
         fieldMatchMap.put("float","floatVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.floatVal,99999.99999f,0);
+        Assert.assertEquals(destinationClass.getFloatVal(),99999.99999f,0);
     }
 
     @Override
@@ -81,7 +81,7 @@ public class GenericClassParserTestFloat extends GenericClassParserBaseNumeric {
         valuesMap.put("float","0000099,99");
         fieldMatchMap.put("float","floatVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.floatVal,99.99f,0);
+        Assert.assertEquals(destinationClass.getFloatVal(),99.99f,0);
     }
 
     @Override
@@ -89,7 +89,7 @@ public class GenericClassParserTestFloat extends GenericClassParserBaseNumeric {
         valuesMap.put("float","0000099.99");
         fieldMatchMap.put("float","floatVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.floatVal,99.99f,0);
+        Assert.assertEquals(destinationClass.getFloatVal(),99.99f,0);
     }
 
     @Override
@@ -97,7 +97,7 @@ public class GenericClassParserTestFloat extends GenericClassParserBaseNumeric {
         valuesMap.put("float","99.99000000");
         fieldMatchMap.put("float","floatVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.floatVal,99.99f,0);
+        Assert.assertEquals(destinationClass.getFloatVal(),99.99f,0);
     }
 
     @Override
@@ -105,7 +105,7 @@ public class GenericClassParserTestFloat extends GenericClassParserBaseNumeric {
         valuesMap.put("float","00099.99000000");
         fieldMatchMap.put("float","floatVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.floatVal,99.99f,0);
+        Assert.assertEquals(destinationClass.getFloatVal(),99.99f,0);
     }
 
     @Override
@@ -113,7 +113,7 @@ public class GenericClassParserTestFloat extends GenericClassParserBaseNumeric {
         valuesMap.put("float","-99.99");
         fieldMatchMap.put("float","floatVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.floatVal,-99.99f,0);
+        Assert.assertEquals(destinationClass.getFloatVal(),-99.99f,0);
     }
 
     @Override
@@ -121,7 +121,7 @@ public class GenericClassParserTestFloat extends GenericClassParserBaseNumeric {
         valuesMap.put("float","-99.9.9");
         fieldMatchMap.put("float","floatVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.floatVal,-999.9f,0);
+        Assert.assertEquals(destinationClass.getFloatVal(),-999.9f,0);
     }
 
     @Override
@@ -129,7 +129,7 @@ public class GenericClassParserTestFloat extends GenericClassParserBaseNumeric {
         valuesMap.put("float","-99abc.9.9");
         fieldMatchMap.put("float","floatVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.floatVal,0f,0);
+        Assert.assertEquals(destinationClass.getFloatVal(),0f,0);
     }
 
     @Override
@@ -137,7 +137,7 @@ public class GenericClassParserTestFloat extends GenericClassParserBaseNumeric {
         valuesMap.put("float","9 99 9");
         fieldMatchMap.put("float","floatVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.floatVal,9999f,0);
+        Assert.assertEquals(destinationClass.getFloatVal(),9999f,0);
     }
 
     @Override
@@ -145,7 +145,7 @@ public class GenericClassParserTestFloat extends GenericClassParserBaseNumeric {
         valuesMap.put("float","9 9 9.9");
         fieldMatchMap.put("float","floatVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.floatVal,999.9f,0);
+        Assert.assertEquals(destinationClass.getFloatVal(),999.9f,0);
     }
 
     @Override
@@ -153,7 +153,7 @@ public class GenericClassParserTestFloat extends GenericClassParserBaseNumeric {
         valuesMap.put("float",null);
         fieldMatchMap.put("float","doubleVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertNull(destinationClass.floatVal);
+        Assert.assertNull(destinationClass.getFloatVal());
     }
 
     @Override
@@ -161,6 +161,6 @@ public class GenericClassParserTestFloat extends GenericClassParserBaseNumeric {
         valuesMap.put("float","");
         fieldMatchMap.put("float","doubleVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertNull(destinationClass.floatVal);
+        Assert.assertNull(destinationClass.getFloatVal());
     }
 }

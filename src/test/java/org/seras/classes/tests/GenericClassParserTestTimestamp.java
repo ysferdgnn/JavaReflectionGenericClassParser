@@ -21,7 +21,7 @@ public class GenericClassParserTestTimestamp extends GenericClassParserBaseTimes
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
 
         Timestamp timestamp=new Timestamp(1454444);
-        Assert.assertEquals(timestamp,destinationClass.timestamp);
+        Assert.assertEquals(timestamp,destinationClass.getTimestamp());
 
     }
 
@@ -38,7 +38,7 @@ public class GenericClassParserTestTimestamp extends GenericClassParserBaseTimes
         Date date = simpleDateFormat.parse(dateAsString);
         Timestamp timestamp = new Timestamp(date.getTime());
 
-        Assert.assertEquals(timestamp,destinationClass.timestamp);
+        Assert.assertEquals(timestamp,destinationClass.getTimestamp());
     }
 
     @Override
@@ -54,7 +54,7 @@ public class GenericClassParserTestTimestamp extends GenericClassParserBaseTimes
         Date date = simpleDateFormat.parse(dateAsString);
         Timestamp timestamp = new Timestamp(date.getTime());
 
-        Assert.assertEquals(timestamp,destinationClass.timestamp);
+        Assert.assertEquals(timestamp,destinationClass.getTimestamp());
     }
 
 
@@ -72,7 +72,7 @@ public class GenericClassParserTestTimestamp extends GenericClassParserBaseTimes
         Date date = simpleDateFormat.parse(dateAsString);
         Timestamp timestamp = new Timestamp(date.getTime());
 
-        Assert.assertEquals(timestamp,destinationClass.timestamp);
+        Assert.assertEquals(timestamp,destinationClass.getTimestamp());
     }
 
     @Override
@@ -88,7 +88,7 @@ public class GenericClassParserTestTimestamp extends GenericClassParserBaseTimes
         Date date = simpleDateFormat.parse(dateAsString);
         Timestamp timestamp = new Timestamp(date.getTime());
 
-        Assert.assertEquals(timestamp,destinationClass.timestamp);
+        Assert.assertEquals(timestamp,destinationClass.getTimestamp());
     }
 
     @Override
@@ -104,7 +104,7 @@ public class GenericClassParserTestTimestamp extends GenericClassParserBaseTimes
         Date date = simpleDateFormat.parse(dateAsString);
         Timestamp timestamp = new Timestamp(date.getTime());
 
-        Assert.assertEquals(timestamp,destinationClass.timestamp);
+        Assert.assertEquals(timestamp,destinationClass.getTimestamp());
     }
 
     @Override
@@ -120,7 +120,7 @@ public class GenericClassParserTestTimestamp extends GenericClassParserBaseTimes
         Date date = simpleDateFormat.parse(dateAsString);
         Timestamp timestamp = new Timestamp(date.getTime());
 
-        Assert.assertEquals(timestamp,destinationClass.timestamp);
+        Assert.assertEquals(timestamp,destinationClass.getTimestamp());
     }
 
     @Override
@@ -136,7 +136,7 @@ public class GenericClassParserTestTimestamp extends GenericClassParserBaseTimes
         Date date = simpleDateFormat.parse(dateAsString);
         Timestamp timestamp = new Timestamp(date.getTime());
 
-        Assert.assertEquals(timestamp,destinationClass.timestamp);
+        Assert.assertEquals(timestamp,destinationClass.getTimestamp());
     }
 
     @Override
@@ -152,7 +152,7 @@ public class GenericClassParserTestTimestamp extends GenericClassParserBaseTimes
         Date date = simpleDateFormat.parse(dateAsString);
         Timestamp timestamp = new Timestamp(date.getTime());
 
-        Assert.assertEquals(timestamp,destinationClass.timestamp);
+        Assert.assertEquals(timestamp,destinationClass.getTimestamp());
     }
 
     @Override
@@ -168,7 +168,7 @@ public class GenericClassParserTestTimestamp extends GenericClassParserBaseTimes
         Date date = simpleDateFormat.parse(dateAsString);
         Timestamp timestamp = new Timestamp(date.getTime());
 
-        Assert.assertEquals(timestamp,destinationClass.timestamp);
+        Assert.assertEquals(timestamp,destinationClass.getTimestamp());
     }
 
     @Override
@@ -184,7 +184,7 @@ public class GenericClassParserTestTimestamp extends GenericClassParserBaseTimes
         Date date = simpleDateFormat.parse(dateAsString);
         Timestamp timestamp = new Timestamp(date.getTime());
 
-        Assert.assertEquals(timestamp,destinationClass.timestamp);
+        Assert.assertEquals(timestamp,destinationClass.getTimestamp());
     }
 
     @Override
@@ -200,7 +200,7 @@ public class GenericClassParserTestTimestamp extends GenericClassParserBaseTimes
         Date date = simpleDateFormat.parse(dateAsString);
         Timestamp timestamp = new Timestamp(date.getTime());
 
-        Assert.assertEquals(timestamp,destinationClass.timestamp);
+        Assert.assertEquals(timestamp,destinationClass.getTimestamp());
     }
 
     @Override
@@ -216,7 +216,7 @@ public class GenericClassParserTestTimestamp extends GenericClassParserBaseTimes
         Date date = simpleDateFormat.parse(dateAsString);
         Timestamp timestamp = new Timestamp(date.getTime());
 
-        Assert.assertEquals(timestamp,destinationClass.timestamp);
+        Assert.assertEquals(timestamp,destinationClass.getTimestamp());
     }
 
     @Override
@@ -232,7 +232,7 @@ public class GenericClassParserTestTimestamp extends GenericClassParserBaseTimes
         Date date = simpleDateFormat.parse(dateAsString);
         Timestamp timestamp = new Timestamp(date.getTime());
 
-        Assert.assertEquals(timestamp,destinationClass.timestamp);
+        Assert.assertEquals(timestamp,destinationClass.getTimestamp());
     }
 
     @Override
@@ -248,7 +248,7 @@ public class GenericClassParserTestTimestamp extends GenericClassParserBaseTimes
         Date date = simpleDateFormat.parse(dateAsString);
         Timestamp timestamp = new Timestamp(date.getTime());
 
-        Assert.assertEquals(timestamp,destinationClass.timestamp);
+        Assert.assertEquals(timestamp,destinationClass.getTimestamp());
     }
 
     @Override
@@ -264,7 +264,7 @@ public class GenericClassParserTestTimestamp extends GenericClassParserBaseTimes
         Date date = simpleDateFormat.parse(dateAsString);
         Timestamp timestamp = new Timestamp(date.getTime());
 
-        Assert.assertEquals(timestamp,destinationClass.timestamp);
+        Assert.assertEquals(timestamp,destinationClass.getTimestamp());
     }
 
     @Override
@@ -280,7 +280,7 @@ public class GenericClassParserTestTimestamp extends GenericClassParserBaseTimes
         Date date = simpleDateFormat.parse(dateAsString);
         Timestamp timestamp = new Timestamp(date.getTime());
 
-        Assert.assertEquals(timestamp,destinationClass.timestamp);
+        Assert.assertEquals(timestamp,destinationClass.getTimestamp());
     }
 
     @Override
@@ -289,7 +289,7 @@ public class GenericClassParserTestTimestamp extends GenericClassParserBaseTimes
         fieldMatchMap.put("tmp","timestamp" );
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
 
-        Assert.assertNull(destinationClass.timestamp);
+        Assert.assertNull(destinationClass.getTimestamp());
 
     }
 
@@ -299,7 +299,7 @@ public class GenericClassParserTestTimestamp extends GenericClassParserBaseTimes
         fieldMatchMap.put("tmp","timestamp" );
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
 
-        Assert.assertNull(destinationClass.timestamp);
+        Assert.assertNull(destinationClass.getTimestamp());
     }
 
     @Override
@@ -308,7 +308,7 @@ public class GenericClassParserTestTimestamp extends GenericClassParserBaseTimes
         fieldMatchMap.put("tmp","timestamp" );
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
 
-        Assert.assertNull(destinationClass.timestamp);
+        Assert.assertNull(destinationClass.getTimestamp());
     }
 
     @Override
@@ -317,7 +317,7 @@ public class GenericClassParserTestTimestamp extends GenericClassParserBaseTimes
         fieldMatchMap.put("tmp","timestamp" );
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
 
-        Assert.assertNull(destinationClass.timestamp);
+        Assert.assertNull(destinationClass.getTimestamp());
     }
 
     @Override
@@ -326,7 +326,7 @@ public class GenericClassParserTestTimestamp extends GenericClassParserBaseTimes
         fieldMatchMap.put("tmp","timestamp" );
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
 
-        Assert.assertNull(destinationClass.timestamp);
+        Assert.assertNull(destinationClass.getTimestamp());
     }
 
     @Override
@@ -335,7 +335,7 @@ public class GenericClassParserTestTimestamp extends GenericClassParserBaseTimes
         fieldMatchMap.put("tmp","timestamp" );
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
 
-        Assert.assertNull(destinationClass.timestamp);
+        Assert.assertNull(destinationClass.getTimestamp());
     }
 
     @Override
@@ -345,7 +345,7 @@ public class GenericClassParserTestTimestamp extends GenericClassParserBaseTimes
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
 
         Timestamp timestamp=new Timestamp(1454444);
-        Assert.assertEquals(timestamp,destinationClass.timestamp);
+        Assert.assertEquals(timestamp,destinationClass.getTimestamp());
     }
 
     @Override
@@ -355,7 +355,7 @@ public class GenericClassParserTestTimestamp extends GenericClassParserBaseTimes
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
 
         Timestamp timestamp=new Timestamp(1454444);
-        Assert.assertEquals(timestamp,destinationClass.timestamp);
+        Assert.assertEquals(timestamp,destinationClass.getTimestamp());
     }
 
     @Override
@@ -365,7 +365,7 @@ public class GenericClassParserTestTimestamp extends GenericClassParserBaseTimes
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
 
         Timestamp timestamp=new Timestamp(1454444);
-        Assert.assertEquals(timestamp,destinationClass.timestamp);
+        Assert.assertEquals(timestamp,destinationClass.getTimestamp());
     }
 
     @Override
@@ -375,6 +375,6 @@ public class GenericClassParserTestTimestamp extends GenericClassParserBaseTimes
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
 
 
-        Assert.assertNull(destinationClass.timestamp);
+        Assert.assertNull(destinationClass.getTimestamp());
     }
 }

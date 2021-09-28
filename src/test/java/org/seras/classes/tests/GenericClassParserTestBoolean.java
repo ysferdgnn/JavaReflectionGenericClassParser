@@ -15,7 +15,7 @@ public class GenericClassParserTestBoolean extends GenericClassParserBaseBoolean
        fieldMatchMap.put("bool","boolVal");
 
        genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertTrue(destinationClass.boolVal);
+        Assert.assertTrue(destinationClass.getBoolVal());
     }
 
     @Override
@@ -24,7 +24,7 @@ public class GenericClassParserTestBoolean extends GenericClassParserBaseBoolean
         fieldMatchMap.put("bool","boolVal");
 
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertFalse(destinationClass.boolVal);
+        Assert.assertFalse(destinationClass.getBoolVal());
     }
 
     @Override
@@ -33,7 +33,7 @@ public class GenericClassParserTestBoolean extends GenericClassParserBaseBoolean
         fieldMatchMap.put("bool","boolVal");
 
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertTrue(destinationClass.boolVal);
+        Assert.assertTrue(destinationClass.getBoolVal());
     }
 
     @Override
@@ -42,7 +42,7 @@ public class GenericClassParserTestBoolean extends GenericClassParserBaseBoolean
         fieldMatchMap.put("bool","boolVal");
 
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertFalse(destinationClass.boolVal);
+        Assert.assertFalse(destinationClass.getBoolVal());
     }
 
     @Override
@@ -51,7 +51,7 @@ public class GenericClassParserTestBoolean extends GenericClassParserBaseBoolean
         fieldMatchMap.put("bool","boolVal");
 
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertTrue(destinationClass.boolVal);
+        Assert.assertTrue(destinationClass.getBoolVal());
     }
 
     @Override
@@ -60,7 +60,7 @@ public class GenericClassParserTestBoolean extends GenericClassParserBaseBoolean
         fieldMatchMap.put("bool","boolVal");
 
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertFalse(destinationClass.boolVal);
+        Assert.assertFalse(destinationClass.getBoolVal());
     }
 
     @Override
@@ -69,7 +69,7 @@ public class GenericClassParserTestBoolean extends GenericClassParserBaseBoolean
         fieldMatchMap.put("bool","boolVal");
 
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertTrue(destinationClass.boolVal);
+        Assert.assertTrue(destinationClass.getBoolVal());
     }
 
     @Override
@@ -78,7 +78,7 @@ public class GenericClassParserTestBoolean extends GenericClassParserBaseBoolean
         fieldMatchMap.put("bool","boolVal");
 
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertFalse(destinationClass.boolVal);
+        Assert.assertFalse(destinationClass.getBoolVal());
     }
 
     @Override
@@ -87,7 +87,7 @@ public class GenericClassParserTestBoolean extends GenericClassParserBaseBoolean
         fieldMatchMap.put("bool","boolVal");
 
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertTrue(destinationClass.boolVal);
+        Assert.assertTrue(destinationClass.getBoolVal());
     }
 
     @Override
@@ -96,7 +96,7 @@ public class GenericClassParserTestBoolean extends GenericClassParserBaseBoolean
         fieldMatchMap.put("bool","boolVal");
 
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertFalse(destinationClass.boolVal);
+        Assert.assertFalse(destinationClass.getBoolVal());
     }
 
     @Override
@@ -105,7 +105,7 @@ public class GenericClassParserTestBoolean extends GenericClassParserBaseBoolean
         fieldMatchMap.put("bool","boolVal");
 
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertTrue(destinationClass.boolVal);
+        Assert.assertTrue(destinationClass.getBoolVal());
     }
 
     @Override
@@ -114,7 +114,7 @@ public class GenericClassParserTestBoolean extends GenericClassParserBaseBoolean
         fieldMatchMap.put("bool","boolVal");
 
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertFalse(destinationClass.boolVal);
+        Assert.assertFalse(destinationClass.getBoolVal());
     }
 
     @Override
@@ -123,7 +123,7 @@ public class GenericClassParserTestBoolean extends GenericClassParserBaseBoolean
         fieldMatchMap.put("bool","boolVal");
 
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertFalse(destinationClass.boolVal);
+        Assert.assertFalse(destinationClass.getBoolVal());
     }
 
     @Override
@@ -132,7 +132,7 @@ public class GenericClassParserTestBoolean extends GenericClassParserBaseBoolean
         fieldMatchMap.put("bool","boolVal");
 
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertFalse(destinationClass.boolVal);
+        Assert.assertFalse(destinationClass.getBoolVal());
     }
 
     @Override
@@ -141,7 +141,7 @@ public class GenericClassParserTestBoolean extends GenericClassParserBaseBoolean
         fieldMatchMap.put("bool","boolVal");
 
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertTrue(destinationClass.boolVal);
+        Assert.assertTrue(destinationClass.getBoolVal());
     }
 
     @Override
@@ -159,7 +159,7 @@ public class GenericClassParserTestBoolean extends GenericClassParserBaseBoolean
         fieldMatchMap.put("bool","boolVal");
 
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertFalse(destinationClass.boolVal);
+        Assert.assertFalse(destinationClass.getBoolVal());
     }
 
     @Override
@@ -170,7 +170,7 @@ public class GenericClassParserTestBoolean extends GenericClassParserBaseBoolean
         fieldMatchMap.put("bool","boolVal");
 
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertFalse(destinationClass.boolVal);
+        Assert.assertFalse(destinationClass.getBoolVal());
     }
 
     @Override
@@ -181,7 +181,7 @@ public class GenericClassParserTestBoolean extends GenericClassParserBaseBoolean
         fieldMatchMap.put("bool","boolVal");
 
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertFalse(destinationClass.boolVal);
+        Assert.assertFalse(destinationClass.getBoolVal());
     }
 
     @Override
@@ -206,7 +206,7 @@ public class GenericClassParserTestBoolean extends GenericClassParserBaseBoolean
         fieldMatchMap.put("bool","boolVal");
 
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertFalse(destinationClass.boolVal);
+        Assert.assertFalse(destinationClass.getBoolVal());
     }
 
     @Override
@@ -214,7 +214,7 @@ public class GenericClassParserTestBoolean extends GenericClassParserBaseBoolean
         valuesMap.put("boolVal",null);
         fieldMatchMap.put("boolVal","boolVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertNull(destinationClass.boolVal);
+        Assert.assertNull(destinationClass.getBoolVal());
     }
 
     @Override
@@ -222,6 +222,6 @@ public class GenericClassParserTestBoolean extends GenericClassParserBaseBoolean
         valuesMap.put("boolVal","");
         fieldMatchMap.put("boolVal","boolVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertNull(destinationClass.boolVal);
+        Assert.assertNull(destinationClass.getBoolVal());
     }
 }

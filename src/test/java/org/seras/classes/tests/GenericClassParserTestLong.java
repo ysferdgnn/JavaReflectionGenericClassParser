@@ -41,7 +41,7 @@ public class GenericClassParserTestLong extends GenericClassParserBaseNumeric {
         fieldMatchMap.put("longValue", "longVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.longVal, 154, 0);
+        Assert.assertEquals(destinationClass.getLongVal(), 154, 0);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class GenericClassParserTestLong extends GenericClassParserBaseNumeric {
         fieldMatchMap.put("longValue", "longVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.longVal, 0L, 0);
+        Assert.assertEquals(destinationClass.getLongVal(), 0L, 0);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class GenericClassParserTestLong extends GenericClassParserBaseNumeric {
         fieldMatchMap.put("longValue", "longVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.longVal, 0L, 0);
+        Assert.assertEquals(destinationClass.getLongVal(), 0L, 0);
     }
 
     @Override
@@ -68,7 +68,7 @@ public class GenericClassParserTestLong extends GenericClassParserBaseNumeric {
         fieldMatchMap.put("longValue", "longVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.longVal, 99L, 0);
+        Assert.assertEquals(destinationClass.getLongVal(), 99L, 0);
     }
 
     @Override
@@ -77,7 +77,7 @@ public class GenericClassParserTestLong extends GenericClassParserBaseNumeric {
         fieldMatchMap.put("longValue", "longVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.longVal, 0L, 0);
+        Assert.assertEquals(destinationClass.getLongVal(), 0L, 0);
     }
 
     @Override
@@ -86,7 +86,7 @@ public class GenericClassParserTestLong extends GenericClassParserBaseNumeric {
         fieldMatchMap.put("longValue", "longVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.longVal, 9900008L, 0);
+        Assert.assertEquals(destinationClass.getLongVal(), 9900008L, 0);
     }
 
     @Override
@@ -95,7 +95,7 @@ public class GenericClassParserTestLong extends GenericClassParserBaseNumeric {
         fieldMatchMap.put("longValue", "longVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.longVal, 1L, 0);
+        Assert.assertEquals(destinationClass.getLongVal(), 1L, 0);
     }
 
     @Override
@@ -104,7 +104,7 @@ public class GenericClassParserTestLong extends GenericClassParserBaseNumeric {
         fieldMatchMap.put("longValue", "longVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.longVal, 19L, 0);
+        Assert.assertEquals(destinationClass.getLongVal(), 19L, 0);
     }
 
     @Override
@@ -113,7 +113,7 @@ public class GenericClassParserTestLong extends GenericClassParserBaseNumeric {
         fieldMatchMap.put("longValue", "longVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.longVal, 17L, 0);
+        Assert.assertEquals(destinationClass.getLongVal(), 17L, 0);
     }
 
     @Override
@@ -122,7 +122,7 @@ public class GenericClassParserTestLong extends GenericClassParserBaseNumeric {
         fieldMatchMap.put("longValue", "longVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.longVal, 0L, 0);
+        Assert.assertEquals(destinationClass.getLongVal(), 0L, 0);
     }
 
     @Override
@@ -131,7 +131,7 @@ public class GenericClassParserTestLong extends GenericClassParserBaseNumeric {
         fieldMatchMap.put("longValue", "longVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.longVal, 17000000000L, 0);
+        Assert.assertEquals(destinationClass.getLongVal(), 17000000000L, 0);
     }
 
     @Override
@@ -140,7 +140,7 @@ public class GenericClassParserTestLong extends GenericClassParserBaseNumeric {
         fieldMatchMap.put("longValue", "longVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.longVal, 17000000000L, 0);
+        Assert.assertEquals(destinationClass.getLongVal(), 17000000000L, 0);
     }
 
     @Override
@@ -149,7 +149,7 @@ public class GenericClassParserTestLong extends GenericClassParserBaseNumeric {
         fieldMatchMap.put("longValue", "longVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.longVal, -17000000000L, 0);
+        Assert.assertEquals(destinationClass.getLongVal(), -17000000000L, 0);
     }
 
     @Override
@@ -158,7 +158,7 @@ public class GenericClassParserTestLong extends GenericClassParserBaseNumeric {
         fieldMatchMap.put("longValue", "longVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.longVal, -170000000L, 0);
+        Assert.assertEquals(destinationClass.getLongVal(), -170000000L, 0);
     }
 
     @Override
@@ -167,7 +167,7 @@ public class GenericClassParserTestLong extends GenericClassParserBaseNumeric {
         fieldMatchMap.put("longValue", "longVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.longVal, 0L, 0);
+        Assert.assertEquals(destinationClass.getLongVal(), 0L, 0);
     }
 
     @Override
@@ -176,7 +176,7 @@ public class GenericClassParserTestLong extends GenericClassParserBaseNumeric {
         fieldMatchMap.put("longValue", "longVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.longVal, 555L, 0);
+        Assert.assertEquals(destinationClass.getLongVal(), 555L, 0);
     }
 
     @Override
@@ -185,7 +185,7 @@ public class GenericClassParserTestLong extends GenericClassParserBaseNumeric {
         fieldMatchMap.put("longValue", "longVal");
 
         genericClassParser.parseMapToClass(valuesMap, destinationClass, fieldMatchMap);
-        Assert.assertEquals(destinationClass.longVal, 555L, 0);
+        Assert.assertEquals(destinationClass.getLongVal(), 555L, 0);
     }
 
     @Override
@@ -193,7 +193,7 @@ public class GenericClassParserTestLong extends GenericClassParserBaseNumeric {
         valuesMap.put("longValue",null);
         fieldMatchMap.put("longValue","longVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertNull(destinationClass.longVal);
+        Assert.assertNull(destinationClass.getLongVal());
     }
 
     @Override
@@ -201,6 +201,6 @@ public class GenericClassParserTestLong extends GenericClassParserBaseNumeric {
         valuesMap.put("longValue","");
         fieldMatchMap.put("longValue","longVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertNull(destinationClass.longVal);
+        Assert.assertNull(destinationClass.getLongVal());
     }
 }

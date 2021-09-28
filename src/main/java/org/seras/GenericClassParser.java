@@ -199,6 +199,7 @@ public class GenericClassParser<T,V> {
                 logger.info(String.format("Field Map ->  Key : %s , Value: %s",key,val));
                 String sourceField = sourceClazzFieldList.stream().filter(s -> s.contentEquals(key)).findFirst().get();
                 Field destinationField = destinationClazzFieldList.stream().filter(s -> s.getName().contentEquals(val)).findFirst().get();
+                destinationField.setAccessible(true);
                 String expectedValue = sourceMap.get(sourceField);
 
                 Type destinationClassType = destinationField.getType();

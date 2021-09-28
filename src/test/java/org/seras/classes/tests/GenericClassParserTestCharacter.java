@@ -14,7 +14,7 @@ public class GenericClassParserTestCharacter extends GenericClassParserBaseAlpha
         valuesMap.put("charVal","C");
         fieldMatchMap.put("charVal","charVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.charVal,'C',0);
+        Assert.assertEquals(destinationClass.getCharVal(),'C',0);
 
     }
 
@@ -23,7 +23,7 @@ public class GenericClassParserTestCharacter extends GenericClassParserBaseAlpha
         valuesMap.put("charVal"," C");
         fieldMatchMap.put("charVal","charVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.charVal,'C',0);
+        Assert.assertEquals(destinationClass.getCharVal(),'C',0);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class GenericClassParserTestCharacter extends GenericClassParserBaseAlpha
         valuesMap.put("charVal","C " );
         fieldMatchMap.put("charVal","charVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.charVal,'C',0);
+        Assert.assertEquals(destinationClass.getCharVal(),'C',0);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class GenericClassParserTestCharacter extends GenericClassParserBaseAlpha
         valuesMap.put("charVal","      C      ");
         fieldMatchMap.put("charVal","charVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.charVal,'C',0);
+        Assert.assertEquals(destinationClass.getCharVal(),'C',0);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class GenericClassParserTestCharacter extends GenericClassParserBaseAlpha
         valuesMap.put("charVal","SAURON!");
         fieldMatchMap.put("charVal","charVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.charVal,'S',0);
+        Assert.assertEquals(destinationClass.getCharVal(),'S',0);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class GenericClassParserTestCharacter extends GenericClassParserBaseAlpha
         valuesMap.put("charVal","/.+$%\\");
         fieldMatchMap.put("charVal","charVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.charVal,'/',0);
+        Assert.assertEquals(destinationClass.getCharVal(),'/',0);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class GenericClassParserTestCharacter extends GenericClassParserBaseAlpha
         valuesMap.put("charVal","yY");
         fieldMatchMap.put("charVal","charVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertEquals(destinationClass.charVal,'y',0);
+        Assert.assertEquals(destinationClass.getCharVal(),'y',0);
     }
 
     @Override
@@ -71,7 +71,7 @@ public class GenericClassParserTestCharacter extends GenericClassParserBaseAlpha
         valuesMap.put("charVal",null);
         fieldMatchMap.put("charVal","charVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertNull(destinationClass.charVal);
+        Assert.assertNull(destinationClass.getCharVal());
     }
 
     @Override
@@ -79,6 +79,6 @@ public class GenericClassParserTestCharacter extends GenericClassParserBaseAlpha
         valuesMap.put("charVal","");
         fieldMatchMap.put("charVal","charVal");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertNull(destinationClass.charVal);
+        Assert.assertNull(destinationClass.getCharVal());
     }
 }

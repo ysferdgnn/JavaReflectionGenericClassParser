@@ -27,7 +27,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         java.sql.Date date= new java.sql.Date(dateUtil.getTime());
 
 
-        Assert.assertEquals(destinationClass.dateSql,date);
+        Assert.assertEquals(destinationClass.getDateSql(),date);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         this.genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
 
 
-        Assert.assertNull(destinationClass.dateSql);
+        Assert.assertNull(destinationClass.getDateSql());
     }
 
     @Override
@@ -55,7 +55,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         java.sql.Date date= new java.sql.Date(dateUtil.getTime());
 
 
-        Assert.assertEquals(destinationClass.dateSql,date);
+        Assert.assertEquals(destinationClass.getDateSql(),date);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         java.sql.Date date= new java.sql.Date(dateUtil.getTime());
 
 
-        Assert.assertEquals(destinationClass.dateSql,date);
+        Assert.assertEquals(destinationClass.getDateSql(),date);
     }
 
     @Override
@@ -89,7 +89,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         java.sql.Date date= new java.sql.Date(dateUtil.getTime());
 
 
-        Assert.assertEquals(destinationClass.dateSql,date);
+        Assert.assertEquals(destinationClass.getDateSql(),date);
     }
 
     @Override
@@ -106,7 +106,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         java.sql.Date date= new java.sql.Date(dateUtil.getTime());
 
 
-        Assert.assertEquals(destinationClass.dateSql,date);
+        Assert.assertEquals(destinationClass.getDateSql(),date);
     }
 
     @Override
@@ -123,7 +123,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         java.sql.Date date= new java.sql.Date(dateUtil.getTime());
 
 
-        Assert.assertEquals(destinationClass.dateSql,date);
+        Assert.assertEquals(destinationClass.getDateSql(),date);
     }
 
     @Override
@@ -140,7 +140,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         java.sql.Date date= new java.sql.Date(dateUtil.getTime());
 
 
-        Assert.assertEquals(destinationClass.dateSql,date);
+        Assert.assertEquals(destinationClass.getDateSql(),date);
     }
 
     @Override
@@ -157,7 +157,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         java.sql.Date date= new java.sql.Date(dateUtil.getTime());
 
 
-        Assert.assertEquals(destinationClass.dateSql,date);
+        Assert.assertEquals(destinationClass.getDateSql(),date);
     }
 
     @Override
@@ -174,7 +174,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         java.sql.Date date= new java.sql.Date(dateUtil.getTime());
 
 
-        Assert.assertEquals(destinationClass.dateSql,date);
+        Assert.assertEquals(destinationClass.getDateSql(),date);
     }
 
     @Override
@@ -191,7 +191,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         java.sql.Date date= new java.sql.Date(dateUtil.getTime());
 
 
-        Assert.assertEquals(destinationClass.dateSql,date);
+        Assert.assertEquals(destinationClass.getDateSql(),date);
     }
 
     @Override
@@ -208,7 +208,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         java.sql.Date date= new java.sql.Date(dateUtil.getTime());
 
 
-        Assert.assertEquals(destinationClass.dateSql,date);
+        Assert.assertEquals(destinationClass.getDateSql(),date);
     }
 
     @Override
@@ -225,7 +225,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         java.sql.Date date= new java.sql.Date(dateUtil.getTime());
 
 
-        Assert.assertEquals(destinationClass.dateSql,date);
+        Assert.assertEquals(destinationClass.getDateSql(),date);
     }
 
     @Override
@@ -242,7 +242,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         java.sql.Date date= new java.sql.Date(dateUtil.getTime());
 
 
-        Assert.assertEquals(destinationClass.dateSql,date);
+        Assert.assertEquals(destinationClass.getDateSql(),date);
     }
 
     @Override
@@ -259,7 +259,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         java.sql.Date date= new java.sql.Date(dateUtil.getTime());
 
 
-        Assert.assertEquals(destinationClass.dateSql,date);
+        Assert.assertEquals(destinationClass.getDateSql(),date);
     }
 
     @Override
@@ -276,7 +276,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         java.sql.Date date= new java.sql.Date(dateUtil.getTime());
 
 
-        Assert.assertEquals(destinationClass.dateSql,date);
+        Assert.assertEquals(destinationClass.getDateSql(),date);
     }
 
     @Override
@@ -293,7 +293,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         java.sql.Date date= new java.sql.Date(dateUtil.getTime());
 
 
-        Assert.assertEquals(destinationClass.dateSql,date);
+        Assert.assertEquals(destinationClass.getDateSql(),date);
     }
 
     @Override
@@ -310,7 +310,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         java.sql.Date date= new java.sql.Date(dateUtil.getTime());
 
 
-        Assert.assertEquals(destinationClass.dateSql,date);
+        Assert.assertEquals(destinationClass.getDateSql(),date);
     }
 
     @Override
@@ -327,7 +327,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         java.sql.Date date= new java.sql.Date(dateUtil.getTime());
 
 
-        Assert.assertEquals(destinationClass.dateSql,date);
+        Assert.assertEquals(destinationClass.getDateSql(),date);
     }
 
     @Override
@@ -344,7 +344,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         java.sql.Date date= new java.sql.Date(dateUtil.getTime());
 
 
-        Assert.assertEquals(destinationClass.dateSql,date);
+        Assert.assertEquals(destinationClass.getDateSql(),date);
     }
 
     @Override
@@ -361,7 +361,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         java.sql.Date date= new java.sql.Date(dateUtil.getTime());
 
 
-        Assert.assertEquals(destinationClass.dateSql,date);
+        Assert.assertEquals(destinationClass.getDateSql(),date);
     }
 
     @Override
@@ -375,7 +375,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date date = sdf.parse("13-08-2021");
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-        Assert.assertEquals(destinationClass.dateSql,sqlDate);
+        Assert.assertEquals(destinationClass.getDateSql(),sqlDate);
     }
 
     @Override
@@ -392,7 +392,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         java.sql.Date date= new java.sql.Date(dateUtil.getTime());
 
 
-        Assert.assertEquals(destinationClass.dateSql,date);
+        Assert.assertEquals(destinationClass.getDateSql(),date);
     }
 
     @Override
@@ -409,7 +409,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         java.sql.Date date= new java.sql.Date(dateUtil.getTime());
 
 
-        Assert.assertEquals(destinationClass.dateSql,date);
+        Assert.assertEquals(destinationClass.getDateSql(),date);
     }
 
     @Override
@@ -426,7 +426,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         java.sql.Date date= new java.sql.Date(dateUtil.getTime());
 
 
-        Assert.assertEquals(destinationClass.dateSql,date);
+        Assert.assertEquals(destinationClass.getDateSql(),date);
     }
 
     @Override
@@ -443,7 +443,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         java.sql.Date date= new java.sql.Date(dateUtil.getTime());
 
 
-        Assert.assertEquals(destinationClass.dateSql,date);
+        Assert.assertEquals(destinationClass.getDateSql(),date);
     }
 
     @Override
@@ -460,7 +460,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         java.sql.Date date= new java.sql.Date(dateUtil.getTime());
 
 
-        Assert.assertEquals(destinationClass.dateSql,date);
+        Assert.assertEquals(destinationClass.getDateSql(),date);
     }
 
     @Override
@@ -477,7 +477,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         java.sql.Date date= new java.sql.Date(dateUtil.getTime());
 
 
-        Assert.assertEquals(destinationClass.dateSql,date);
+        Assert.assertEquals(destinationClass.getDateSql(),date);
     }
 
     @Override
@@ -494,7 +494,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         java.sql.Date date= new java.sql.Date(dateUtil.getTime());
 
 
-        Assert.assertEquals(destinationClass.dateSql,date);
+        Assert.assertEquals(destinationClass.getDateSql(),date);
     }
 
     @Override
@@ -511,7 +511,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         java.sql.Date date= new java.sql.Date(dateUtil.getTime());
 
 
-        Assert.assertEquals(destinationClass.dateSql,date);
+        Assert.assertEquals(destinationClass.getDateSql(),date);
     }
 
     @Override
@@ -527,7 +527,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         Date dateUtil = sdf.parse("2021/01/01 15:00");
         java.sql.Date date= new java.sql.Date(dateUtil.getTime());
 
-        Assert.assertEquals(destinationClass.dateSql,date);
+        Assert.assertEquals(destinationClass.getDateSql(),date);
     }
 
     @Override
@@ -543,7 +543,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         Date dateUtil = sdf.parse("17-08-2021 15:00");
         java.sql.Date date= new java.sql.Date(dateUtil.getTime());
 
-        Assert.assertEquals(destinationClass.dateSql,date);
+        Assert.assertEquals(destinationClass.getDateSql(),date);
     }
 
     @Override
@@ -559,7 +559,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         Date dateUtil = sdf.parse("17/08/2021 15:00");
         java.sql.Date date= new java.sql.Date(dateUtil.getTime());
 
-        Assert.assertEquals(destinationClass.dateSql,date);
+        Assert.assertEquals(destinationClass.getDateSql(),date);
     }
 
     @Override
@@ -575,7 +575,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         Date dateUtil = sdf.parse("17.08.2021 15:00");
         java.sql.Date date= new java.sql.Date(dateUtil.getTime());
 
-        Assert.assertEquals(destinationClass.dateSql,date);
+        Assert.assertEquals(destinationClass.getDateSql(),date);
     }
 
     @Override
@@ -583,7 +583,7 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         valuesMap.put("date", "43706,4856597222");
         fieldMatchMap.put("date","dateSql" );
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertNull(destinationClass.dateSql);
+        Assert.assertNull(destinationClass.getDateSql());
     }
 
     @Override
@@ -591,6 +591,6 @@ public class GenericClassParserTestSqlDate extends GenericClassParserBaseDate {
         valuesMap.put("date",null);
         fieldMatchMap.put("date","dateSql");
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
-        Assert.assertNull(destinationClass.dateSql);
+        Assert.assertNull(destinationClass.getDateSql());
     }
 }
