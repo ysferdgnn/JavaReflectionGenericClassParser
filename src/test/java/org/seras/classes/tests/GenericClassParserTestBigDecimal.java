@@ -1,6 +1,7 @@
 package org.seras.classes.tests;
 
 import org.junit.Assert;
+import org.junit.Test;
 import org.seras.classes.bases.GenericClassParserBaseNumeric;
 
 import java.math.BigDecimal;
@@ -179,6 +180,14 @@ public class GenericClassParserTestBigDecimal extends GenericClassParserBaseNume
     public void testEmptyString() {
         valuesMap.put("decimalVal","");
         fieldMatchMap.put("decimalVal","decimal");
+        genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
+        Assert.assertNull(destinationClass.getDecimal());
+    }
+
+    @Test
+    public void testEmptyDestination(){
+        valuesMap.put("decimalVal","50");
+        fieldMatchMap.put("decimalVal",null);
         genericClassParser.parseMapToClass(valuesMap,destinationClass,fieldMatchMap);
         Assert.assertNull(destinationClass.getDecimal());
     }
